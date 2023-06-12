@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { pokemon } from "../pokemonInterface";
 import "./../../styles/index.css";
-import { Navbar } from "../navbar";
-
+import Navbar from "../navbar";
 import PokemonNavbar from "../pokemonNavbar";
 import PokemonCard from "../pokemonCard";
 import { useParams } from "next/navigation";
