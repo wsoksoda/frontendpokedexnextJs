@@ -2,5 +2,5 @@ import Image from "next/image";
 import styles from "./page.module.css";
 
 export default function Home() {
-  return <p>pp</p>;
+  return <p>Home</p>;
 }
