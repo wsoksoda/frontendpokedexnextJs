@@ -1,4 +1,11 @@
-import { Card } from "react-bootstrap";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Text,
+  Image,
+} from "@chakra-ui/react";
 import Link from "next/link";
 import { pokemon, statColor, typeInterface } from "./pokemonInterface";
 
@@ -18,14 +25,14 @@ function PokemonCard(props: Props) {
             style={{ color: "black", textDecoration: "none" }}
             href={`pokemon/${post.id}`}
           >
-            <Card.Body>
-              <Card.Title>{post.name}</Card.Title>
-              <Card.Img
+            <CardBody>
+              <CardHeader>{post.name}</CardHeader>
+              <Image
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${post.id}.png`}
-              ></Card.Img>
+              ></Image>
               <div className="display">
                 {post.type.map((type: typeInterface, typeIndex) => (
-                  <Card.Text
+                  <Text
                     style={{
                       width: "5rem",
                       backgroundColor: statColor[type.type],
@@ -40,10 +47,10 @@ function PokemonCard(props: Props) {
                     key={typeIndex}
                   >
                     {type.type}
-                  </Card.Text>
+                  </Text>
                 ))}
               </div>
-            </Card.Body>
+            </CardBody>
           </Link>
         </Card>
       ))}

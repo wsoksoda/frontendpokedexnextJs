@@ -1,69 +1,52 @@
-import axios from "axios";
-import React from "react";
-import { useEffect } from "react";
-import { Button, Form, OverlayTrigger, Popover } from "react-bootstrap";
-import { Search2Icon } from "@chakra-ui/icons";
+// The below import defines which components come from formik
+// import { Field, Form, Formik } from 'formik';
 
-function Search() {
-  // const navigate = useNavigate();
+import { Input, FormErrorMessage } from "@chakra-ui/react";
+import { Field, Form, Formik } from "formik";
+import { FormControl, FormLabel, Button } from "react-bootstrap";
 
-  let searchId: any;
-
-  const [searchInput, setSearchInput] = React.useState(String);
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8081/api/pokemon/name/${searchInput}`)
-      .then((response) => {
-        searchId = response.data["id"];
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, [searchInput]);
-
-  const popoverBottom = (
-    <Popover id="popover-positioned-bottom" title="Uh Oh">
-      Looks like that pokemon doesn't exist. Make sure to capitalize the first
-      initial of their name
-    </Popover>
-  );
-
-  const handleChange = (e: {
-    preventDefault: () => void;
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    e.preventDefault();
-    setSearchInput(e.target.value);
-  };
-
-  function toPokemon() {
-    if (searchId != null) {
-      // navigate(`pokemon/${searchId}`);
+function FormikExample() {
+  function validateName(value) {
+    let error;
+    if (!value) {
+      error = "Name is required";
+    } else if (value.toLowerCase() !== "naruto") {
+      error = "Jeez! You're not a fan 😱";
     }
+    return error;
   }
 
   return (
-    <Form className="d-flex" onSubmit={toPokemon}>
-      <Form.Control
-        type="search"
-        placeholder="Search"
-        className="me-2"
-        aria-label="Search"
-        onChange={handleChange}
-        value={searchInput}
-      />
-      <OverlayTrigger
-        trigger="click"
-        placement="bottom"
-        overlay={popoverBottom}
-      >
-        <Button>
-          <Search2Icon />
-        </Button>
-      </OverlayTrigger>
-    </Form>
+    <Formik
+      initialValues={{ name: "Sasuke" }}
+      onSubmit={(values, actions) => {
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2));
+          actions.setSubmitting(false);
+        }, 1000);
+      }}
+    >
+      {(props) => (
+        <Form>
+          <Field name="name" validate={validateName}>
+            {({ field, form }) => (
+              <FormControl isInvalid={form.errors.name && form.touched.name}>
+                <FormLabel>First name</FormLabel>
+                <Input {...field} placeholder="name" />
+                <FormErrorMessage>{form.errors.name}</FormErrorMessage>
+              </FormControl>
+            )}
+          </Field>
+          <Button
+            mt={4}
+            colorScheme="teal"
+            isLoading={props.isSubmitting}
+            type="submit"
+          >
+            Submit
+          </Button>
+        </Form>
+      )}
+    </Formik>
   );
 }
-
-export default Search;

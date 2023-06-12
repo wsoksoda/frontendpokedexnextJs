@@ -7,6 +7,7 @@ import PokemonNavbar from "../pokemonNavbar";
 import PokemonCard from "../pokemonCard";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/router";
+import { ChakraProvider } from "@chakra-ui/react";
 
 function Home() {
   let pokemons: pokemon[] = [];
@@ -15,11 +16,11 @@ function Home() {
 
   const [pages, setPages] = React.useState(1);
 
-  const pageable = useRouter();
+  const pageable = useParams();
 
   const [offset, setOffset] = React.useState(Number(pageable));
 
-  //   let navigate = useNavigate();
+  let router = useRouter();
 
   useEffect(() => {
     axios
@@ -51,7 +52,7 @@ function Home() {
   function next(): number {
     let currentPage = changePage(offset + 1);
 
-    //   navigate(`/${currentPage}`);
+    router.push(`/home/${currentPage}`);
 
     return 1;
   }
@@ -59,15 +60,17 @@ function Home() {
   function back(): number {
     let currentPage = changePage(offset - 1);
 
-    //   navigate(`/${currentPage}`);
+    router.push(`/home/${currentPage}`);
 
     return 1;
   }
 
   return (
     <div className="body">
-      <Navbar></Navbar>
-      {/* <PokemonCard offset={offset} post={post} /> */}
+      <ChakraProvider>
+        <Navbar goBack={back} goForward={next}></Navbar>
+        <PokemonCard offset={offset} post={post} />
+      </ChakraProvider>
     </div>
   );
 }
