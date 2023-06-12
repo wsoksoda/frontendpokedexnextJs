@@ -2,8 +2,8 @@ import { Container, Nav } from "react-bootstrap";
 import { Navbar } from "react-bootstrap";
 import "./../styles/index.css";
 import Link from "next/link";
-import ForwardButton from "./forwardButton";
-import BackButton from "./backButton";
+import ForwardButton from "../pages/forwardButton";
+import BackButton from "../pages/backButton";
 import Search from "./search";
 
 interface navbarProp {

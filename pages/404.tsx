@@ -1,4 +1,3 @@
-import "./../assets/lost.css";
 import { Link } from "react-router-dom";
 
 function Lost() {

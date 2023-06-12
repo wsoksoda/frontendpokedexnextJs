@@ -7,7 +7,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { pokemon, statColor, typeInterface } from "./pokemonInterface";
+import { statColor } from "./pokemonInterface";
 
 interface Props {
   offset: number;
@@ -18,9 +18,17 @@ function PokemonCard(props: Props) {
   const {} = props;
 
   return (
-    <div className="display">
+    <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
       {props.post.map((post, index) => (
-        <Card className="m-2 " style={{ width: "17rem" }} key={index}>
+        <Card
+          className="m-1 "
+          style={{
+            width: "17rem",
+            height: "25rem",
+            margin: ".5rem",
+          }}
+          key={index}
+        >
           <Link
             style={{ color: "black", textDecoration: "none" }}
             href={`pokemon/${post.id}`}
@@ -31,7 +39,7 @@ function PokemonCard(props: Props) {
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${post.id}.png`}
               ></Image>
               <div className="display">
-                {post.type.map((type: typeInterface, typeIndex) => (
+                {post.type.map((type, typeIndex) => (
                   <Text
                     style={{
                       width: "5rem",
@@ -43,6 +51,7 @@ function PokemonCard(props: Props) {
                       textAlign: "center",
                       height: "2rem",
                       borderRadius: "1rem",
+                      marginTop: ".5rem",
                     }}
                     key={typeIndex}
                   >

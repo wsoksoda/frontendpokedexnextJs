@@ -41,8 +41,8 @@ const NavLink = ({ children }: { children: ReactNode }) => (
 );
 
 interface navbarProp {
-  goBack: () => number;
-  goForward: () => number;
+  goBack: () => void;
+  goForward: () => void;
 }
 
 export default function Navbar(props: navbarProp) {
@@ -64,7 +64,7 @@ export default function Navbar(props: navbarProp) {
           </Button>
           <HStack spacing={8} alignItems={"center"}>
             <Box>
-              <Link href="http://localhost:3000/home/1">Pokedex</Link>
+              <Link href="http://localhost:3000/?offset=1">Pokedex</Link>
             </Box>
             <HStack
               as={"nav"}
@@ -81,8 +81,6 @@ export default function Navbar(props: navbarProp) {
           </Flex>
         </Flex>
       </Box>
-
-      <Box p={4}>Main Content Here</Box>
     </>
   );
 }
