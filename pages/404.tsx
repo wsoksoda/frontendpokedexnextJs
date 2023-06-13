@@ -5,7 +5,9 @@ function Lost() {
     <div className="lost">
       <div className="text">
         <h1>Looks like you're lost</h1>
-        <Link to="http://localhost:5173/1">Click here to get back home</Link>
+        <Link to="http://localhost:3000/?offset=1">
+          Click here to get back home
+        </Link>
       </div>
     </div>
   );
