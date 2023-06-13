@@ -21,7 +21,7 @@ function Pokemon() {
 
   let router = useRouter();
 
-  const id = parseInt((router.query.offset as string) ?? "1");
+  const id = parseInt((router.query.id as string) ?? "1");
 
   const pokemonSize = 553;
 
