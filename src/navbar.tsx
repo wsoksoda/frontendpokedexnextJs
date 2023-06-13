@@ -24,6 +24,7 @@ import {
   ChevronLeftIcon,
 } from "@chakra-ui/icons";
 import { NavbarProps } from "react-bootstrap";
+import { useRouter } from "next/router";
 
 const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
@@ -46,6 +47,7 @@ interface navbarProp {
 }
 
 export default function Navbar(props: navbarProp) {
+  const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -71,7 +73,9 @@ export default function Navbar(props: navbarProp) {
               spacing={4}
               display={{ base: "none", md: "flex" }}
             >
-              <Link href="/search">Advanced Search</Link>
+              <Link href={"/advanced?previous=" + router.asPath}>
+                Advanced Search
+              </Link>
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>

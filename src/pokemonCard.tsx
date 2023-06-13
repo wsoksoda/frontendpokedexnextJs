@@ -31,7 +31,7 @@ function PokemonCard(props: Props) {
         >
           <Link
             style={{ color: "black", textDecoration: "none" }}
-            href={`/example`}
+            href={`/pokemon?id=${post.id}`}
           >
             <CardBody>
               <CardHeader>{post.name}</CardHeader>
