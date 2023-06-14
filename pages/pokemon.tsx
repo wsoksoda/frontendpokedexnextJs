@@ -21,13 +21,9 @@ import { ArrowBackIcon } from "@chakra-ui/icons";
 function Pokemon() {
   let thisPokemon = {} as pokemon;
   let thisStat = {} as stat;
-  let thisAbility = {} as pokemon["ability"];
-  let thisEggGroup = {} as pokemon["eggGroup"];
 
   const [post, setPost] = React.useState(thisPokemon);
   const [stats, setStats] = React.useState(thisStat);
-  const [ability, setAbility] = React.useState(thisAbility);
-  const [eggGroup, setEggGroup] = React.useState(thisEggGroup);
 
   let router = useRouter();
 
@@ -41,8 +37,6 @@ function Pokemon() {
       .then((response) => {
         setPost(response.data);
         setStats(response.data["stats"]);
-        setAbility(response.data["abilty"]);
-        setEggGroup(response.data["eggGroup"]);
         console.log(post);
       })
       .catch((error) => {
@@ -118,24 +112,22 @@ function Pokemon() {
                 style={{ maxWidth: "20rem" }}
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${post.id}.png`}
               ></Image>
-              <div className="centerText">
-                <HStack>
-                  <Text fontSize="2xl">Height: {post.height} </Text>{" "}
-                  <Text fontSize="xs">M</Text>
-                </HStack>
-                <HStack>
-                  <Text fontSize="2xl">Weight: {post.weight}</Text>
-                  <Text fontSize="xs">Kg</Text>
-                </HStack>
-                <Text fontSize="2xl">Abilities:</Text>
-                {post.ability?.map((ability: abilityInterface, index) => (
-                  <Text key={index}>&emsp;{ability.ability}</Text>
-                ))}
-                <Text fontSize="2xl">Egg Groups:</Text>
-                {post.eggGroup?.map((eggGroup: eggGroupInterface, index) => (
-                  <Text key={index}>&emsp;{eggGroup.eggGroup}</Text>
-                ))}
-              </div>
+              <HStack>
+                <Text fontSize="2xl">Height: {post.height} </Text>{" "}
+                <Text fontSize="xs">M</Text>
+              </HStack>
+              <HStack>
+                <Text fontSize="2xl">Weight: {post.weight}</Text>
+                <Text fontSize="xs">Kg</Text>
+              </HStack>
+              <Text fontSize="2xl">Abilities:</Text>
+              {post.ability?.map((ability: abilityInterface, index) => (
+                <Text key={index}>&emsp;{ability.ability}</Text>
+              ))}
+              <Text fontSize="2xl">Egg Groups:</Text>
+              {post.eggGroup?.map((eggGroup: eggGroupInterface, index) => (
+                <Text key={index}>&emsp;{eggGroup.eggGroup}</Text>
+              ))}
             </HStack>
             <PokemonChart
               id={stats.id}
