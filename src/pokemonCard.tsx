@@ -1,16 +1,8 @@
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Text,
-  Image,
-} from "@chakra-ui/react";
+import { Card, CardHeader, CardBody, Text, Image } from "@chakra-ui/react";
 import Link from "next/link";
 import { statColor } from "./pokemonInterface";
 
 interface Props {
-  offset: number;
   post: pokemon[];
 }
 

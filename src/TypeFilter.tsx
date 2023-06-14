@@ -5,6 +5,7 @@ import PokemonCard from "./pokemonCard";
 
 interface Props {
   choice: string;
+  offset: number;
 }
 
 function TypeFilter(props: Props) {
@@ -16,12 +17,10 @@ function TypeFilter(props: Props) {
 
   const { pageable } = useParams();
 
-  const [offset, setOffset] = React.useState(Number(pageable));
-
   useEffect(() => {
     axios
       .get(
-        `http://localhost:8081/api/pokemon?type=${props.choice}&offset=${offset}&pageSize=24`
+        `http://localhost:8081/api/pokemon/type?type=${props.choice}&offset=${props.offset}&pageSize=24`
       )
       .then((response) => {
         setPost(response.data["content"]);
@@ -31,38 +30,11 @@ function TypeFilter(props: Props) {
       .catch((error) => {
         console.error(error);
       });
-  }, [offset]);
-
-  function changePage(page: number): number {
-    if (page < 1) {
-      setOffset(pages);
-      return pages;
-    } else if (page > pages) {
-      setOffset(1);
-      page = 1;
-      return 1;
-    } else {
-      setOffset(page);
-      page = page;
-      return page;
-    }
-  }
-
-  function next(): number {
-    let currentPage = changePage(offset + 1);
-
-    return 1;
-  }
-
-  function back(): number {
-    let currentPage = changePage(offset - 1);
-
-    return 1;
-  }
+  }, []);
 
   return (
     <div className="body">
-      <PokemonCard offset={offset} post={post} />
+      <PokemonCard post={post} />
     </div>
   );
 }

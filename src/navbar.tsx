@@ -2,20 +2,12 @@ import { ReactNode } from "react";
 import {
   Box,
   Flex,
-  Avatar,
   HStack,
   Link,
   IconButton,
   Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
   useDisclosure,
   useColorModeValue,
-  Stack,
-  Input,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -23,7 +15,6 @@ import {
   ChevronRightIcon,
   ChevronLeftIcon,
 } from "@chakra-ui/icons";
-import { NavbarProps } from "react-bootstrap";
 import { useRouter } from "next/router";
 
 const NavLink = ({ children }: { children: ReactNode }) => (

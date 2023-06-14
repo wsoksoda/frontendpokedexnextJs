@@ -4,7 +4,6 @@ import PokemonCard from "../src/pokemonCard";
 import { useRouter } from "next/router";
 import { Box, ChakraProvider } from "@chakra-ui/react";
 import Navbar from "@/navbar";
-import { BrowserRouter } from "react-router-dom";
 
 function Home() {
   let pokemons: pokemon[] = [];
@@ -47,7 +46,7 @@ function Home() {
     <ChakraProvider>
       <Box bgGradient="linear(to-l,#41295a,#2F0743)">
         <Navbar goBack={back} goForward={next}></Navbar>
-        <PokemonCard offset={offset} post={post} />
+        <PokemonCard post={post} />
       </Box>
     </ChakraProvider>
   );

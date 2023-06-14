@@ -1,23 +1,39 @@
 import { Select } from "@chakra-ui/react";
+import { useState, SetStateAction } from "react";
 
-function Egg() {
+interface Prop {
+  optionChoice: (chosen: string) => void;
+}
+
+function Egg(props: Prop) {
+  const [filterValue, setFilterValue] = useState("");
+
+  function handleChange(e: { target: { value: SetStateAction<string> } }) {
+    setFilterValue(e.target.value);
+    props.optionChoice(filterValue);
+    console.log(filterValue);
+  }
   return (
-    <Select aria-label="select type">
-      <option value="1">Plant</option>
-      <option value="2">Monster</option>
-      <option value="3">Dragon</option>
-      <option value="4">Water1</option>
-      <option value="5">Bug</option>
-      <option value="6">Flying</option>
-      <option value="7">Ground</option>
-      <option value="8">Fairy</option>
-      <option value="9">No-Eggs</option>
-      <option value="10">Humanshape</option>
-      <option value="11">Water2</option>
-      <option value="12">Mineral</option>
-      <option value="13">Indeterminate</option>
-      <option value="14">Water3</option>
-      <option value="15">Ditto</option>
+    <Select
+      aria-label="select type"
+      value={filterValue}
+      onChange={handleChange}
+    >
+      <option value="Plant">Plant</option>
+      <option value="Monster">Monster</option>
+      <option value="Dragon">Dragon</option>
+      <option value="Water1">Water1</option>
+      <option value="Bug">Bug</option>
+      <option value="Flying">Flying</option>
+      <option value="Ground">Ground</option>
+      <option value="Fairy">Fairy</option>
+      <option value="No-Eggs">No-Eggs</option>
+      <option value="Humanshape">Humanshape</option>
+      <option value="Water2">Water2</option>
+      <option value="Mineral">Mineral</option>
+      <option value="Indeterminate">Indeterminate</option>
+      <option value="Water3">Water3</option>
+      <option value="Ditto">Ditto</option>
     </Select>
   );
 }

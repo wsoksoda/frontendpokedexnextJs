@@ -1,19 +1,21 @@
-import { SearchIcon } from "@chakra-ui/icons";
-import { Button, FormControl, Input } from "@chakra-ui/react";
+import { Input } from "@chakra-ui/react";
 
 import React, { useState } from "react";
-import { Form, redirect } from "react-router-dom";
-import SearchForm from "./searchForm";
 interface Prop {
-  optionChoice: (chosen: string) => string;
+  optionChoice: (chosen: string) => void;
 }
 
 function Search(props: Prop) {
-  const handleSearch = (query: string) => {
-    props.optionChoice(query);
-  };
+  const [text, setText] = useState("");
 
-  return <SearchForm onSearch={handleSearch}></SearchForm>;
+  function handleChange(e: {
+    target: { value: React.SetStateAction<string> };
+  }) {
+    setText(e.target.value);
+    props.optionChoice(text);
+    console.log(text);
+  }
+  return <Input value={text} onChange={handleChange} />;
 }
 
 export default Search;

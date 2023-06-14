@@ -14,7 +14,6 @@ import {
   Link,
 } from "@chakra-ui/react";
 import { PokemonChart } from "@/pokemonChart";
-import BackButton from "@/backButton";
 import { statColor } from "@/pokemonInterface";
 import { useRouter } from "next/router";
 import { ArrowBackIcon } from "@chakra-ui/icons";
