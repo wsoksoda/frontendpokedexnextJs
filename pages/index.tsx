@@ -4,6 +4,7 @@ import PokemonCard from "../src/pokemonCard";
 import { useRouter } from "next/router";
 import { Box, ChakraProvider } from "@chakra-ui/react";
 import Navbar from "@/navbar";
+import { request } from "./../src/getRequests";
 import { useQuery } from "@tanstack/react-query";
 
 function Home() {
@@ -28,6 +29,10 @@ function Home() {
         console.error(error);
       });
   }, [offset]);
+
+  const getPokemon = () => {
+    return request({ url: "/api/pokemon?offset=${offset}&pageSize=24" });
+  };
 
   function next() {
     if (offset < pages) {
