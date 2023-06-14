@@ -98,7 +98,7 @@ function Pokemon() {
                         borderRadius: "1rem",
                         marginTop: ".5rem",
                       }}
-                      key={typeIndex}
+                      key={id}
                     >
                       {type.type}
                     </Text>
@@ -122,11 +122,11 @@ function Pokemon() {
                 </HStack>
                 <Text fontSize="2xl">Abilities:</Text>
                 {post.ability?.map((ability: abilityInterface, index) => (
-                  <Text key={index}>&emsp;{ability.ability}</Text>
+                  <Text key={id}>&emsp;{ability.ability}</Text>
                 ))}
                 <Text fontSize="2xl">Egg Groups:</Text>
                 {post.eggGroup?.map((eggGroup: eggGroupInterface, index) => (
-                  <Text key={index}>&emsp;{eggGroup.eggGroup}</Text>
+                  <Text key={id}>&emsp;{eggGroup.eggGroup}</Text>
                 ))}
               </div>
             </HStack>

@@ -17,7 +17,7 @@ function PokemonCard(props: Props) {
             height: "25rem",
             margin: ".5rem",
           }}
-          key={index}
+          key={post.id}
         >
           <Link
             style={{ color: "black", textDecoration: "none" }}
@@ -43,7 +43,7 @@ function PokemonCard(props: Props) {
                       borderRadius: "1rem",
                       marginTop: ".5rem",
                     }}
-                    key={typeIndex}
+                    key={type.id}
                   >
                     {type.type}
                   </Text>

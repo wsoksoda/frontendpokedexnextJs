@@ -4,6 +4,7 @@ import PokemonCard from "../src/pokemonCard";
 import { useRouter } from "next/router";
 import { Box, ChakraProvider } from "@chakra-ui/react";
 import Navbar from "@/navbar";
+import { useQuery } from "@tanstack/react-query";
 
 function Home() {
   let pokemons: pokemon[] = [];

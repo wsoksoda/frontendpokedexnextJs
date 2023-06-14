@@ -87,8 +87,8 @@ function PokemonSearch() {
           <Grid templateColumns="repeat(2,1fr)" gap={6}>
             <Select
               aria-label="Floating label select example"
-              value={filterValue}
               onChange={(e) => setFilterValue(e.target.value)}
+              value={filterValue}
             >
               <option value="1">Search by name</option>
               <option value="2">Type</option>

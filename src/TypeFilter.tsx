@@ -15,8 +15,6 @@ function TypeFilter(props: Props) {
 
   const [pages, setPages] = React.useState(1);
 
-  const { pageable } = useParams();
-
   useEffect(() => {
     axios
       .get(
