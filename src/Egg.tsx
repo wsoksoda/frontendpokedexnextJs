@@ -1,22 +1,16 @@
 import { Select } from "@chakra-ui/react";
-import { useState, SetStateAction } from "react";
 
 interface Prop {
   optionChoice: (chosen: string) => void;
 }
 
 function Egg(props: Prop) {
-  const [filterValue, setFilterValue] = useState("");
-
-  function handleChange(e: { target: { value: SetStateAction<string> } }) {
-    setFilterValue(e.target.value);
-    props.optionChoice(filterValue);
-  }
   return (
     <Select
       aria-label="select type"
-      value={filterValue}
-      onChange={handleChange}
+      onChange={(e) => {
+        props.optionChoice(e.target.value);
+      }}
     >
       <option value="Plant">Plant</option>
       <option value="Monster">Monster</option>
