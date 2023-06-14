@@ -7,8 +7,6 @@ interface Props {
 }
 
 function PokemonCard(props: Props) {
-  const {} = props;
-
   return (
     <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
       {props.post.map((post, index) => (

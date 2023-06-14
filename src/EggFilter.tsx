@@ -23,12 +23,11 @@ function EggFilter(props: Props) {
       .then((response) => {
         setPost(response.data["content"]);
         setPages(response.data["totalPages"]);
-        console.log(props.choice);
       })
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [props.choice]);
 
   return (
     <div className="body">

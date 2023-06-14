@@ -11,7 +11,6 @@ function Egg(props: Prop) {
   function handleChange(e: { target: { value: SetStateAction<string> } }) {
     setFilterValue(e.target.value);
     props.optionChoice(filterValue);
-    console.log(filterValue);
   }
   return (
     <Select

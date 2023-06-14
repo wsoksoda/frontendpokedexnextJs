@@ -27,7 +27,7 @@ function SearchFilter(props: Props) {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [props.choice]);
 
   return <PokemonCard post={post} />;
 }

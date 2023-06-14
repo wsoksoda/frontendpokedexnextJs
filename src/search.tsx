@@ -13,7 +13,6 @@ function Search(props: Prop) {
   }) {
     setText(e.target.value);
     props.optionChoice(text);
-    console.log(text);
   }
   return <Input value={text} onChange={handleChange} />;
 }

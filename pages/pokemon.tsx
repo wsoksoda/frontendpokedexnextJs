@@ -37,7 +37,6 @@ function Pokemon() {
       .then((response) => {
         setPost(response.data);
         setStats(response.data["stats"]);
-        console.log(post);
       })
       .catch((error) => {
         console.error(error);
@@ -112,22 +111,24 @@ function Pokemon() {
                 style={{ maxWidth: "20rem" }}
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${post.id}.png`}
               ></Image>
-              <HStack>
-                <Text fontSize="2xl">Height: {post.height} </Text>{" "}
-                <Text fontSize="xs">M</Text>
-              </HStack>
-              <HStack>
-                <Text fontSize="2xl">Weight: {post.weight}</Text>
-                <Text fontSize="xs">Kg</Text>
-              </HStack>
-              <Text fontSize="2xl">Abilities:</Text>
-              {post.ability?.map((ability: abilityInterface, index) => (
-                <Text key={index}>&emsp;{ability.ability}</Text>
-              ))}
-              <Text fontSize="2xl">Egg Groups:</Text>
-              {post.eggGroup?.map((eggGroup: eggGroupInterface, index) => (
-                <Text key={index}>&emsp;{eggGroup.eggGroup}</Text>
-              ))}
+              <div>
+                <HStack>
+                  <Text fontSize="2xl">Height: {post.height} </Text>{" "}
+                  <Text fontSize="xs">M</Text>
+                </HStack>
+                <HStack>
+                  <Text fontSize="2xl">Weight: {post.weight}</Text>
+                  <Text fontSize="xs">Kg</Text>
+                </HStack>
+                <Text fontSize="2xl">Abilities:</Text>
+                {post.ability?.map((ability: abilityInterface, index) => (
+                  <Text key={index}>&emsp;{ability.ability}</Text>
+                ))}
+                <Text fontSize="2xl">Egg Groups:</Text>
+                {post.eggGroup?.map((eggGroup: eggGroupInterface, index) => (
+                  <Text key={index}>&emsp;{eggGroup.eggGroup}</Text>
+                ))}
+              </div>
             </HStack>
             <PokemonChart
               id={stats.id}

@@ -9,8 +9,48 @@ import Navbar from "@/navbar";
 import Search from "@/search";
 import { Box, ChakraProvider, Grid, Select } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { off } from "process";
 import React from "react";
 import { useState } from "react";
+
+interface DropdownProp {
+  filterValue: string;
+  optionChoice: (chosen: string) => void;
+}
+
+interface FilteredPokemonProp {
+  filterValue: string;
+  choice: string;
+  offset: number;
+}
+
+function Dropdown(props: DropdownProp) {
+  if (props.filterValue == "1") {
+    return <Search optionChoice={props.optionChoice} />;
+  } else if (props.filterValue == "2") {
+    return <Type optionChoice={props.optionChoice} />;
+  } else if (props.filterValue == "3") {
+    return <Ability optionChoice={props.optionChoice} />;
+  } else if (props.filterValue == "4") {
+    return <Egg optionChoice={props.optionChoice} />;
+  } else {
+    return <></>;
+  }
+}
+
+function FilteredPokemonList(props: FilteredPokemonProp) {
+  if (props.filterValue == "1") {
+    return <SearchFilter choice={props.choice} offset={props.offset} />;
+  } else if (props.filterValue == "2") {
+    return <TypeFilter choice={props.choice} offset={props.offset} />;
+  } else if (props.filterValue == "3") {
+    return <AbilityFilter choice={props.choice} offset={props.offset} />;
+  } else if (props.filterValue == "4") {
+    return <EggFilter choice={props.choice} offset={props.offset} />;
+  } else {
+    return <></>;
+  }
+}
 
 function PokemonSearch() {
   const [filterValue, setFilterValue] = useState("1");
@@ -19,34 +59,6 @@ function PokemonSearch() {
   const router = useRouter();
 
   const offset = parseInt((router.query.offset as string) ?? "1");
-
-  function Dropdown() {
-    if (filterValue == "1") {
-      return <Search optionChoice={optionChoice} />;
-    } else if (filterValue == "2") {
-      return <Type optionChoice={optionChoice} />;
-    } else if (filterValue == "3") {
-      return <Ability optionChoice={optionChoice} />;
-    } else if (filterValue == "4") {
-      return <Egg optionChoice={optionChoice} />;
-    } else {
-      return <></>;
-    }
-  }
-
-  function FilteredPokemonList() {
-    if (filterValue == "1") {
-      return <SearchFilter choice={choice} offset={offset} />;
-    } else if (filterValue == "2") {
-      return <TypeFilter choice={choice} offset={offset} />;
-    } else if (filterValue == "3") {
-      return <AbilityFilter choice={choice} offset={offset} />;
-    } else if (filterValue == "4") {
-      return <EggFilter choice={choice} offset={offset} />;
-    } else {
-      return <></>;
-    }
-  }
 
   function optionChoice(chosen: string): void {
     setChoice(chosen);
@@ -83,9 +95,13 @@ function PokemonSearch() {
               <option value="3">Ability</option>
               <option value="4">Egg Group</option>
             </Select>
-            <Dropdown />
+            <Dropdown filterValue={filterValue} optionChoice={optionChoice} />
           </Grid>
-          <FilteredPokemonList />
+          <FilteredPokemonList
+            filterValue={filterValue}
+            offset={offset}
+            choice={choice}
+          />
         </div>
       </Box>
     </ChakraProvider>

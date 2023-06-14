@@ -44,7 +44,10 @@ function Home() {
 
   return (
     <ChakraProvider>
-      <Box bgGradient="linear(to-l,#41295a,#2F0743)">
+      <Box
+        bgGradient="linear(to-l,#41295a,#2F0743)"
+        style={{ minHeight: "70rem" }}
+      >
         <Navbar goBack={back} goForward={next}></Navbar>
         <PokemonCard post={post} />
       </Box>

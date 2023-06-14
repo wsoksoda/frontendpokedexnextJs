@@ -19,6 +19,7 @@
     "plugin:prettier/recommended",
     "next/core-web-vitals"
   ],
+  
   "rules": {
     // Place to specify and overwrite ESLint rules
     "@typescript-eslint/explicit-function-return-type": "off",
