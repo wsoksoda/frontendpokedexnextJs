@@ -17,7 +17,7 @@ function AbilityFilter(props: Props) {
   const [pages, setPages] = React.useState(1);
 
   const { isLoading, error, data } = useQuery(
-    ["ability", props.choice],
+    ["ability", props.offset, props.choice],
     async () => {
       const response = await axios.get(
         `http://localhost:8081/api/pokemon/ability?ability=${props.choice}&offset=${props.offset}&pageSize=24`

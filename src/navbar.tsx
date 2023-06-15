@@ -16,6 +16,7 @@ import {
   ChevronLeftIcon,
 } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
+import { DesktopOnly, MobileOnly } from "./breakpointVisibility";
 
 interface navbarProp {
   goBack: () => void;
@@ -30,35 +31,24 @@ export default function Navbar(props: navbarProp) {
     <>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <IconButton
-            size={"md"}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={"Open Menu"}
-            display={{ md: "none" }}
-            onClick={isOpen ? onClose : onOpen}
-          />
-          <Button onClick={props.goBack}>
-            <ChevronLeftIcon />
-          </Button>
-          <HStack spacing={8} alignItems={"center"}>
-            <Box>
-              <Link href="http://localhost:3000/?offset=1">Pokedex</Link>
-            </Box>
-            <HStack
-              as={"nav"}
-              spacing={4}
-              display={{ base: "none", md: "flex" }}
-            >
-              <Link href={"/advanced?previous=" + router.asPath}>
-                Advanced Search
-              </Link>
-            </HStack>
-          </HStack>
-          <Flex alignItems={"center"}>
+          <DesktopOnly>
+            <Button onClick={props.goBack}>
+              <ChevronLeftIcon />
+            </Button>
+          </DesktopOnly>
+          <Box>
+            <Link href="http://localhost:3000/?offset=1">Pokedex</Link>
+          </Box>
+          <Box>
+            <Link href={"/advanced?previous=" + router.asPath}>
+              Advanced Search
+            </Link>
+          </Box>
+          <DesktopOnly>
             <Button onClick={props.goForward}>
               <ChevronRightIcon />
             </Button>
-          </Flex>
+          </DesktopOnly>
         </Flex>
       </Box>
     </>

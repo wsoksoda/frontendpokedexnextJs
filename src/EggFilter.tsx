@@ -18,7 +18,7 @@ function EggFilter(props: Props) {
   const [pages, setPages] = React.useState(1);
 
   const { isLoading, error, data } = useQuery(
-    ["eggGroup", props.choice],
+    ["eggGroup", props.offset, props.choice],
     async () => {
       const response = await axios.get(
         `http://localhost:8081/api/pokemon/egg?eggGroup=${props.choice}&offset=${props.offset}&pageSize=24`

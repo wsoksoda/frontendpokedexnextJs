@@ -9,6 +9,8 @@ import {
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
+import { MobileOnly } from "@/breakpointVisibility";
+import MobileFooter from "@/mobileFooter";
 
 function Home() {
   let pokemons: pokemon[] = [];
@@ -62,6 +64,10 @@ function Home() {
       >
         <Navbar goBack={back} goForward={next}></Navbar>
         <PokemonCard post={post} />
+
+        <MobileOnly>
+          <MobileFooter goBack={back} goForward={next} />
+        </MobileOnly>
       </Box>
     </ChakraProvider>
   );
