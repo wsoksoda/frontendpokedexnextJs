@@ -1,20 +1,18 @@
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
-const fetchPokemon = async (off: string) => {
-  const res = await axios.get(
-    "http://localhost:8081/api/pokemon?offset=" + off + "&pageSize=24"
-  );
-  return {
-    post: res.data.content,
-    pages: res.data.pages,
-  };
-};
+export const client = axios.create({ baseURL: "http://localhost:8081" });
 
-const client = axios.create({ baseURL: "http://localhost:8081" });
+export function useRequestProcessor() {
+  const queryClient = useQueryClient();
 
-export const request = ({ ...options }) => {
-  client.defaults.headers.common.Authorization = `Bearer token`;
-  const onSuccess = (response: any) => response;
-  const onError = (error: any) => {};
-  return client(options).then(onSuccess).catch(onError);
-};
+  function getAllPokemon(key: pokemon[], queryFunction: any, options = {}) {
+    return useQuery({
+      queryKey: key,
+      queryFn: queryFunction,
+      ...options,
+    });
+  }
+
+  return getAllPokemon;
+}
