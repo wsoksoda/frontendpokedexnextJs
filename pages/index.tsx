@@ -22,10 +22,16 @@ function Home() {
 
   const offset = parseInt((router.query.offset as string) ?? "1");
 
-  const { data, isLoading, isError } = useQuery(["content"], () => {
+  const { data } = useQuery(["content"], () => {
     axios
       .get(`http://localhost:8081/api/pokemon?offset=${offset}&pageSize=24`)
-      .then((res) => res.data);
+      .then((response) => {
+        setPost(response.data["content"]);
+        setPages(response.data["pages"]);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   });
 
   function next() {
@@ -50,7 +56,7 @@ function Home() {
           style={{ minHeight: "70rem" }}
         >
           <Navbar goBack={back} goForward={next}></Navbar>
-          <PokemonCard post={data} />
+          <PokemonCard post={post} />
         </Box>
       </ChakraProvider>
     </QueryClientProvider>
