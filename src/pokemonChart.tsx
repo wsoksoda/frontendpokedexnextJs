@@ -19,6 +19,7 @@ ChartJS.register(
 );
 
 export const options = {
+  maintainAspectRatio: false,
   scales: {
     x: {
       max: 256,

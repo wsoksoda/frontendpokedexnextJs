@@ -45,10 +45,7 @@ function Pokemon() {
 
   return (
     <ChakraProvider>
-      <Box
-        bgGradient="linear(to-l,#41295a,#2F0743)"
-        style={{ minHeight: "130rem" }}
-      >
+      <Box bgGradient="linear(to-l,#41295a,#2F0743)">
         <Navbar goBack={back} goForward={next} />
         <DesktopOnly>
           <DesktopPokemonCard data={data} />
