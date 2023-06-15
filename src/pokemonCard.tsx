@@ -1,6 +1,7 @@
 import { Card, CardHeader, CardBody, Text, Image } from "@chakra-ui/react";
 import Link from "next/link";
 import { statColor } from "./pokemonInterface";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 interface Props {
   post: pokemon[];

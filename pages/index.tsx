@@ -4,8 +4,12 @@ import PokemonCard from "../src/pokemonCard";
 import { useRouter } from "next/router";
 import { Box, ChakraProvider } from "@chakra-ui/react";
 import Navbar from "@/navbar";
-import { request } from "./../src/getRequests";
-import { useQuery } from "@tanstack/react-query";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from "@tanstack/react-query";
+import { useRequestProcessor } from "@/getRequests";
 
 function Home() {
   let pokemons: pokemon[] = [];
@@ -18,21 +22,11 @@ function Home() {
 
   const offset = parseInt((router.query.offset as string) ?? "1");
 
-  useEffect(() => {
+  const { data, isLoading, isError } = useQuery(["content"], () => {
     axios
       .get(`http://localhost:8081/api/pokemon?offset=${offset}&pageSize=24`)
-      .then((response) => {
-        setPost(response.data["content"]);
-        setPages(response.data["totalPages"]);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, [offset]);
-
-  const getPokemon = () => {
-    return request({ url: "/api/pokemon?offset=${offset}&pageSize=24" });
-  };
+      .then((res) => res.data);
+  });
 
   function next() {
     if (offset < pages) {
@@ -49,15 +43,17 @@ function Home() {
   }
 
   return (
-    <ChakraProvider>
-      <Box
-        bgGradient="linear(to-l,#41295a,#2F0743)"
-        style={{ minHeight: "70rem" }}
-      >
-        <Navbar goBack={back} goForward={next}></Navbar>
-        <PokemonCard post={post} />
-      </Box>
-    </ChakraProvider>
+    <QueryClientProvider client={new QueryClient()}>
+      <ChakraProvider>
+        <Box
+          bgGradient="linear(to-l,#41295a,#2F0743)"
+          style={{ minHeight: "70rem" }}
+        >
+          <Navbar goBack={back} goForward={next}></Navbar>
+          <PokemonCard post={data} />
+        </Box>
+      </ChakraProvider>
+    </QueryClientProvider>
   );
 }
 
