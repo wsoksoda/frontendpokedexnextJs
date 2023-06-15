@@ -78,36 +78,34 @@ function PokemonSearch() {
   }
 
   return (
-    <QueryClientProvider client={new QueryClient()}>
-      <ChakraProvider>
-        <Box
-          bgGradient="linear(to-l,#41295a,#2F0743)"
-          style={{ minHeight: "100rem" }}
-        >
-          <Navbar goBack={back} goForward={next} />
-          <div className="body" style={{ paddingTop: "2rem", color: "white" }}>
-            <Grid templateColumns="repeat(2,1fr)" gap={6}>
-              <Select
-                aria-label="Floating label select example"
-                onChange={(e) => setFilterValue(e.target.value)}
-                value={filterValue}
-              >
-                <option value="1">Search by name</option>
-                <option value="2">Type</option>
-                <option value="3">Ability</option>
-                <option value="4">Egg Group</option>
-              </Select>
-              <Dropdown filterValue={filterValue} optionChoice={optionChoice} />
-            </Grid>
-            <FilteredPokemonList
-              filterValue={filterValue}
-              offset={offset}
-              choice={choice}
-            />
-          </div>
-        </Box>
-      </ChakraProvider>
-    </QueryClientProvider>
+    <ChakraProvider>
+      <Box
+        bgGradient="linear(to-l,#41295a,#2F0743)"
+        style={{ minHeight: "100rem" }}
+      >
+        <Navbar goBack={back} goForward={next} />
+        <div className="body" style={{ paddingTop: "2rem", color: "white" }}>
+          <Grid templateColumns="repeat(2,1fr)" gap={6}>
+            <Select
+              aria-label="Floating label select example"
+              onChange={(e) => setFilterValue(e.target.value)}
+              value={filterValue}
+            >
+              <option value="1">Search by name</option>
+              <option value="2">Type</option>
+              <option value="3">Ability</option>
+              <option value="4">Egg Group</option>
+            </Select>
+            <Dropdown filterValue={filterValue} optionChoice={optionChoice} />
+          </Grid>
+          <FilteredPokemonList
+            filterValue={filterValue}
+            offset={offset}
+            choice={choice}
+          />
+        </div>
+      </Box>
+    </ChakraProvider>
   );
 }
 

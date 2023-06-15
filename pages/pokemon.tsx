@@ -12,11 +12,13 @@ import {
   Text,
   HStack,
   Link,
+  Spinner,
 } from "@chakra-ui/react";
 import { PokemonChart } from "@/pokemonChart";
 import { statColor } from "@/pokemonInterface";
 import { useRouter } from "next/router";
 import { ArrowBackIcon } from "@chakra-ui/icons";
+import { useQuery } from "@tanstack/react-query";
 
 function Pokemon() {
   let thisPokemon = {} as pokemon;
@@ -31,17 +33,22 @@ function Pokemon() {
 
   const pokemonSize = 553;
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8081/api/pokemon/${id}`)
-      .then((response) => {
-        setPost(response.data);
-        setStats(response.data["stats"]);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  const { isLoading, error, data } = useQuery(["id", id], async () => {
+    const response = await axios.get(`http://localhost:8081/api/pokemon/${id}`);
+    const data = await response.data;
+    return data;
   });
+
+  useEffect(() => {
+    if (data) {
+      setPost(data);
+      setStats(data.stats);
+    }
+  }, [data]);
+
+  if (isLoading) return <Spinner />;
+
+  if (error) return "An error has occured";
 
   function next(): void {
     if (id < pokemonSize) {

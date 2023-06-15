@@ -11,7 +11,7 @@ interface Props {
 function PokemonCard(props: Props) {
   return (
     <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
-      {props.post.map((post, index) => (
+      {props.post.map((post) => (
         <Card
           className="m-1 "
           style={{

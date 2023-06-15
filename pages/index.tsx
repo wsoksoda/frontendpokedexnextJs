@@ -2,14 +2,13 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import PokemonCard from "../src/pokemonCard";
 import { useRouter } from "next/router";
-import { Box, ChakraProvider } from "@chakra-ui/react";
+import { Box, ChakraProvider, Spinner } from "@chakra-ui/react";
 import Navbar from "@/navbar";
 import {
   QueryClient,
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
-import { useRequestProcessor } from "@/getRequests";
 
 function Home() {
   let pokemons: pokemon[] = [];
@@ -20,19 +19,26 @@ function Home() {
 
   const router = useRouter();
 
-  const offset = parseInt((router.query.offset as string) ?? "1");
+  let offset = parseInt((router.query.offset as string) ?? "1");
 
-  const { data } = useQuery(["content"], () => {
-    axios
-      .get(`http://localhost:8081/api/pokemon?offset=${offset}&pageSize=24`)
-      .then((response) => {
-        setPost(response.data["content"]);
-        setPages(response.data["pages"]);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  const { isLoading, error, data } = useQuery(["content", offset], async () => {
+    const response = await axios.get(
+      `http://localhost:8081/api/pokemon?offset=${offset}&pageSize=24`
+    );
+    const data = await response.data;
+    return data;
   });
+
+  useEffect(() => {
+    if (data) {
+      setPost(data.content);
+      setPages(data.totalPages);
+    }
+  }, [offset, data]);
+
+  if (isLoading) return <Spinner />;
+
+  if (error) return "An error has occured";
 
   function next() {
     if (offset < pages) {
@@ -49,17 +55,15 @@ function Home() {
   }
 
   return (
-    <QueryClientProvider client={new QueryClient()}>
-      <ChakraProvider>
-        <Box
-          bgGradient="linear(to-l,#41295a,#2F0743)"
-          style={{ minHeight: "70rem" }}
-        >
-          <Navbar goBack={back} goForward={next}></Navbar>
-          <PokemonCard post={post} />
-        </Box>
-      </ChakraProvider>
-    </QueryClientProvider>
+    <ChakraProvider>
+      <Box
+        bgGradient="linear(to-l,#41295a,#2F0743)"
+        style={{ minHeight: "70rem" }}
+      >
+        <Navbar goBack={back} goForward={next}></Navbar>
+        <PokemonCard post={post} />
+      </Box>
+    </ChakraProvider>
   );
 }
 
