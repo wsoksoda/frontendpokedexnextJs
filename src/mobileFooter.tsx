@@ -18,6 +18,8 @@ function MobileFooter(props: Props) {
         justifyContent={"space-between"}
         as="footer"
         position="fixed"
+        left="0"
+        bottom="0"
         w="100%"
       >
         <Button onClick={props.goBack}>

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import PokemonCard from "../src/pokemonCard";
+import PokemonCard from "../src/pokemonList";
 import { useRouter } from "next/router";
 import { Box, ChakraProvider, Spinner } from "@chakra-ui/react";
 import Navbar from "@/navbar";
@@ -9,8 +9,11 @@ import {
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
-import { MobileOnly } from "@/breakpointVisibility";
+import { DesktopOnly, MobileOnly } from "@/breakpointVisibility";
 import MobileFooter from "@/mobileFooter";
+import MobilePokemonCard from "@/mobilePokemonCard";
+import MobilePokemonList from "@/mobilePokemonList";
+import PokemonList from "../src/pokemonList";
 
 function Home() {
   let pokemons: pokemon[] = [];
@@ -63,9 +66,11 @@ function Home() {
         style={{ minHeight: "70rem" }}
       >
         <Navbar goBack={back} goForward={next}></Navbar>
-        <PokemonCard post={post} />
-
+        <DesktopOnly>
+          <PokemonList post={post} />
+        </DesktopOnly>
         <MobileOnly>
+          <MobilePokemonList post={post} />
           <MobileFooter goBack={back} goForward={next} />
         </MobileOnly>
       </Box>

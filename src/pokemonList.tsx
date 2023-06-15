@@ -8,9 +8,15 @@ interface Props {
   post: pokemon[];
 }
 
-function PokemonCard(props: Props) {
+function PokemonList(props: Props) {
   return (
-    <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+      }}
+    >
       {props.post.map((post) => (
         <Card
           className="m-1 "
@@ -59,4 +65,4 @@ function PokemonCard(props: Props) {
   );
 }
 
-export default PokemonCard;
+export default PokemonList;
