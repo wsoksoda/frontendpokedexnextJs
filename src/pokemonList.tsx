@@ -37,7 +37,7 @@ function PokemonList(props: Props) {
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${post.id}.png`}
               ></Image>
               <div className="display">
-                {post.type.map((type, typeIndex) => (
+                {post.type.map((type) => (
                   <Text
                     style={{
                       width: "5rem",

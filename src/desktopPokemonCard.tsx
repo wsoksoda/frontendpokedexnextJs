@@ -13,6 +13,7 @@ import {
 import React, { useEffect } from "react";
 import { PokemonChart } from "./pokemonChart";
 import { statColor } from "./pokemonInterface";
+import { useRouter } from "next/router";
 
 interface Props {
   data: any;
@@ -25,6 +26,8 @@ function DesktopPokemonCard(props: Props) {
   const [post, setPost] = React.useState(thisPokemon);
   const [stats, setStats] = React.useState(thisStat);
 
+  const router = useRouter();
+
   useEffect(() => {
     if (props.data) {
       setPost(props.data);
@@ -33,7 +36,7 @@ function DesktopPokemonCard(props: Props) {
   }, [props.data]);
 
   return (
-    <Box style={{ minHeight: "60rem" }}>
+    <Box style={{ minHeight: "100rem" }}>
       <Card
         style={{
           width: "50rem",
@@ -47,10 +50,8 @@ function DesktopPokemonCard(props: Props) {
           <CardHeader>
             <HStack spacing="1rem">
               <Box>
-                <Button>
-                  <Link href="http://localhost:3000">
-                    <ArrowBackIcon />
-                  </Link>
+                <Button onClick={() => router.back()}>
+                  <ArrowBackIcon />
                 </Button>
               </Box>
               <Box>
@@ -68,7 +69,7 @@ function DesktopPokemonCard(props: Props) {
                       borderRadius: "1rem",
                       marginTop: ".5rem",
                     }}
-                    key={post.id}
+                    key={type.id}
                   >
                     {type.type}
                   </Text>
@@ -92,11 +93,11 @@ function DesktopPokemonCard(props: Props) {
               </HStack>
               <Text fontSize="2xl">Abilities:</Text>
               {post.ability?.map((ability: abilityInterface, index) => (
-                <Text key={post.id}>&emsp;{ability.ability}</Text>
+                <Text key={ability.id}>&emsp;{ability.ability}</Text>
               ))}
               <Text fontSize="2xl">Egg Groups:</Text>
               {post.eggGroup?.map((eggGroup: eggGroupInterface, index) => (
-                <Text key={post.id}>&emsp;{eggGroup.eggGroup}</Text>
+                <Text key={eggGroup.id}>&emsp;{eggGroup.eggGroup}</Text>
               ))}
             </div>
           </HStack>

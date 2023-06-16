@@ -12,13 +12,16 @@ interface pokemon {
 }
 
 interface typeInterface {
+  id: number;
   type: string;
 }
 interface abilityInterface {
+  id: number;
   ability: string;
 }
 
 interface eggGroupInterface {
+  id: number;
   eggGroup: string;
 }
 

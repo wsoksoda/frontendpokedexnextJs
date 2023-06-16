@@ -52,6 +52,7 @@ function Pokemon() {
         </DesktopOnly>
         <MobileOnly>
           <MobilePokemonCard data={data} />
+          <MobileFooter goBack={back} goForward={next} />
         </MobileOnly>
       </Box>
     </ChakraProvider>
