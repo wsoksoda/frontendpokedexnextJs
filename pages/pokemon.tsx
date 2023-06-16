@@ -12,12 +12,14 @@ import MobilePokemonCard from "@/mobilePokemonCard";
 function Pokemon() {
   let router = useRouter();
 
-  const id = parseInt((router.query.id as string) ?? "1");
+  const pokemonId = parseInt((router.query.id as string) ?? "1");
 
   const pokemonSize = 553;
 
-  const { isLoading, error, data } = useQuery(["id", id], async () => {
-    const response = await axios.get(`http://localhost:8081/api/pokemon/${id}`);
+  const { isLoading, error, data } = useQuery(["id", pokemonId], async () => {
+    const response = await axios.get(
+      `http://localhost:8081/api/pokemon/${pokemonId}`
+    );
     const data = await response.data;
     return data;
   });
@@ -26,16 +28,16 @@ function Pokemon() {
 
   if (error) return "An error has occured";
 
-  function next(): void {
-    if (id < pokemonSize) {
-      let currentPage = id + 1;
+  function forward(): void {
+    if (pokemonId < pokemonSize) {
+      let currentPage = pokemonId + 1;
       router.push(`/pokemon?id=${currentPage}`);
     }
   }
 
   function back(): void {
-    if (id > 1) {
-      let currentPage = id - 1;
+    if (pokemonId > 1) {
+      let currentPage = pokemonId - 1;
       router.push(`/pokemon?id=${currentPage}`);
     }
   }
@@ -43,13 +45,13 @@ function Pokemon() {
   return (
     <ChakraProvider>
       <Box bgGradient="linear(to-l,#41295a,#2F0743)">
-        <Navbar goBack={back} goForward={next} />
+        <Navbar goBack={back} goForward={forward} />
         <DesktopOnly>
           <DesktopPokemonCard data={data} />
         </DesktopOnly>
         <MobileOnly>
           <MobilePokemonCard data={data} />
-          <MobileFooter goBack={back} goForward={next} />
+          <MobileFooter goBack={back} goForward={forward} />
         </MobileOnly>
       </Box>
     </ChakraProvider>

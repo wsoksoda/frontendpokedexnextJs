@@ -1,15 +1,7 @@
 import { ReactNode } from "react";
-import {
-  Box,
-  Flex,
-  Link,
-  Button,
-  useDisclosure,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Box, Flex, Link, Button, useColorModeValue } from "@chakra-ui/react";
 import { ChevronRightIcon, ChevronLeftIcon } from "@chakra-ui/icons";
-import { useRouter } from "next/router";
-import { DesktopOnly, MobileOnly } from "./breakpointVisibility";
+import { DesktopOnly } from "./breakpointVisibility";
 
 interface navbarProp {
   goBack: () => void;
@@ -17,9 +9,6 @@ interface navbarProp {
 }
 
 export default function Navbar(props: navbarProp) {
-  const router = useRouter();
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
   return (
     <>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>

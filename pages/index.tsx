@@ -7,12 +7,12 @@ import { useQuery } from "@tanstack/react-query";
 import { DesktopOnly, MobileOnly } from "@/breakpointVisibility";
 import MobileFooter from "@/mobileFooter";
 import MobilePokemonList from "@/mobilePokemonList";
-import PokemonList from "../src/pokemonList";
+import PokemonList from "../src/desktopPokemonList";
 
 function Home() {
-  let pokemons: pokemon[] = [];
+  let pokemonArray: pokemon[] = [];
 
-  const [post, setPost] = React.useState<pokemon[]>(pokemons);
+  const [pokemon, setPokemon] = React.useState<pokemon[]>(pokemonArray);
 
   const [pages, setPages] = React.useState(1);
 
@@ -31,7 +31,7 @@ function Home() {
 
   useEffect(() => {
     if (data) {
-      setPost(data.content);
+      setPokemon(data.content);
       setPages(data.totalPages);
     }
   }, [offset, data]);
@@ -40,7 +40,7 @@ function Home() {
 
   if (error) return "An error has occured";
 
-  function next() {
+  function forward() {
     if (offset < pages) {
       const currentPage = offset + 1;
       router.push(`/?offset=${currentPage}`);
@@ -60,13 +60,13 @@ function Home() {
         bgGradient="linear(to-l,#41295a,#2F0743)"
         style={{ minHeight: "70rem" }}
       >
-        <Navbar goBack={back} goForward={next}></Navbar>
+        <Navbar goBack={back} goForward={forward}></Navbar>
         <DesktopOnly>
-          <PokemonList post={post} />
+          <PokemonList post={pokemon} />
         </DesktopOnly>
         <MobileOnly>
-          <MobilePokemonList post={post} />
-          <MobileFooter goBack={back} goForward={next} />
+          <MobilePokemonList post={pokemon} />
+          <MobileFooter goBack={back} goForward={forward} />
         </MobileOnly>
       </Box>
     </ChakraProvider>

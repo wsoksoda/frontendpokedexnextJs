@@ -11,10 +11,6 @@ interface pokemon {
   description: string;
 }
 
-interface typeInterface {
-  id: number;
-  type: string;
-}
 interface abilityInterface {
   id: number;
   ability: string;

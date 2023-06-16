@@ -13,59 +13,88 @@ import React from "react";
 import { useState } from "react";
 
 interface DropdownProp {
-  filterValue: string;
-  optionChoice: (chosen: string) => void;
+  typeOfSearch: string;
+  setSearchInput: (chosen: string) => void;
 }
 
 interface FilteredPokemonProp {
-  filterValue: string;
-  choice: string;
+  typeOfSearch: string;
+  searchInputValue: string;
   offset: number;
+  setPages: (pages: number) => void;
 }
 
 function Dropdown(props: DropdownProp) {
-  if (props.filterValue == "1") {
-    return <Search optionChoice={props.optionChoice} />;
-  } else if (props.filterValue == "2") {
-    return <Type optionChoice={props.optionChoice} />;
-  } else if (props.filterValue == "3") {
-    return <Ability optionChoice={props.optionChoice} />;
-  } else if (props.filterValue == "4") {
-    return <Egg optionChoice={props.optionChoice} />;
+  if (props.typeOfSearch == "1") {
+    return <Search optionChoice={props.setSearchInput} />;
+  } else if (props.typeOfSearch == "2") {
+    return <Type optionChoice={props.setSearchInput} />;
+  } else if (props.typeOfSearch == "3") {
+    return <Ability optionChoice={props.setSearchInput} />;
+  } else if (props.typeOfSearch == "4") {
+    return <Egg optionChoice={props.setSearchInput} />;
   } else {
     return <></>;
   }
 }
 
 function FilteredPokemonList(props: FilteredPokemonProp) {
-  if (props.filterValue == "1") {
-    return <SearchFilter choice={props.choice} offset={props.offset} />;
-  } else if (props.filterValue == "2") {
-    return <TypeFilter choice={props.choice} offset={props.offset} />;
-  } else if (props.filterValue == "3") {
-    return <AbilityFilter choice={props.choice} offset={props.offset} />;
-  } else if (props.filterValue == "4") {
-    return <EggFilter choice={props.choice} offset={props.offset} />;
+  if (props.typeOfSearch == "1") {
+    return (
+      <SearchFilter
+        choice={props.searchInputValue}
+        offset={props.offset}
+        setPages={props.setPages}
+      />
+    );
+  } else if (props.typeOfSearch == "2") {
+    return (
+      <TypeFilter
+        choice={props.searchInputValue}
+        offset={props.offset}
+        setPages={props.setPages}
+      />
+    );
+  } else if (props.typeOfSearch == "3") {
+    return (
+      <AbilityFilter
+        choice={props.searchInputValue}
+        offset={props.offset}
+        setPages={props.setPages}
+      />
+    );
+  } else if (props.typeOfSearch == "4") {
+    return (
+      <EggFilter
+        choice={props.searchInputValue}
+        offset={props.offset}
+        setPages={props.setPages}
+      />
+    );
   } else {
     return <></>;
   }
 }
 
 function PokemonSearch() {
-  const [filterValue, setFilterValue] = useState("1");
-  const [choice, setChoice] = useState("");
+  const [typeOfSearch, setTypeOfSearch] = useState("1");
+  const [SearchInputValue, setSearchInputValue] = useState("");
+
+  const [pages, setPages] = React.useState(1);
 
   const router = useRouter();
 
   const offset = parseInt((router.query.offset as string) ?? "1");
 
-  function optionChoice(chosen: string): void {
-    setChoice(chosen);
+  function setSearchInput(chosen: string): void {
+    setSearchInputValue(chosen);
   }
 
-  function next() {
-    const currentPage = offset + 1;
-    router.push(`advanced/?offset=${currentPage}`);
+  function forward() {
+    if (offset < pages) {
+      const currentPage = offset + 1;
+      router.push(`advanced/?offset=${currentPage}`);
+    }
   }
 
   function back() {
@@ -81,25 +110,29 @@ function PokemonSearch() {
           bgGradient="linear(to-l,#41295a,#2F0743)"
           style={{ minHeight: "100rem" }}
         >
-          <Navbar goBack={back} goForward={next} />
+          <Navbar goBack={back} goForward={forward} />
           <div className="body" style={{ paddingTop: "2rem", color: "white" }}>
             <Grid templateColumns="repeat(2,1fr)" gap={6}>
               <Select
                 aria-label="Floating label select example"
-                onChange={(e) => setFilterValue(e.target.value)}
-                value={filterValue}
+                onChange={(e) => setTypeOfSearch(e.target.value)}
+                value={typeOfSearch}
               >
                 <option value="1">Search by name</option>
                 <option value="2">Type</option>
                 <option value="3">Ability</option>
                 <option value="4">Egg Group</option>
               </Select>
-              <Dropdown filterValue={filterValue} optionChoice={optionChoice} />
+              <Dropdown
+                typeOfSearch={typeOfSearch}
+                setSearchInput={setSearchInput}
+              />
             </Grid>
             <FilteredPokemonList
-              filterValue={filterValue}
+              typeOfSearch={typeOfSearch}
               offset={offset}
-              choice={choice}
+              searchInputValue={SearchInputValue}
+              setPages={setPages}
             />
           </div>
         </Box>

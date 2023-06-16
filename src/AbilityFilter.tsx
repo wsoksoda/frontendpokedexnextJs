@@ -1,20 +1,20 @@
 import axios from "axios";
 import React, { useEffect } from "react";
-import PokemonCard from "./pokemonList";
+import PokemonCard from "./desktopPokemonList";
 import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "@chakra-ui/react";
 
 interface Props {
   choice: string;
   offset: number;
+
+  setPages: (pages: number) => void;
 }
 
 function AbilityFilter(props: Props) {
-  let pokemons: pokemon[] = [];
+  let pokemonArray: pokemon[] = [];
 
-  const [post, setPost] = React.useState<pokemon[]>(pokemons);
-
-  const [pages, setPages] = React.useState(1);
+  const [pokemon, setPokemon] = React.useState<pokemon[]>(pokemonArray);
 
   const { isLoading, error, data } = useQuery(
     ["ability", props.offset, props.choice],
@@ -29,8 +29,8 @@ function AbilityFilter(props: Props) {
 
   useEffect(() => {
     if (data) {
-      setPost(data.content);
-      setPages(data.totalPages);
+      setPokemon(data.content);
+      props.setPages(data.totalPages);
     }
   }, [data]);
 
@@ -38,7 +38,7 @@ function AbilityFilter(props: Props) {
 
   if (error) return "No Pokemon with that ability";
 
-  return <PokemonCard post={post} />;
+  return <PokemonCard post={pokemon} />;
 }
 
 export default AbilityFilter;

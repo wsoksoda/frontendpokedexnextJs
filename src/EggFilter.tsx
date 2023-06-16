@@ -1,20 +1,19 @@
 import axios from "axios";
 import React, { useEffect } from "react";
-import PokemonCard from "./pokemonList";
+import PokemonCard from "./desktopPokemonList";
 import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "@chakra-ui/react";
 
 interface Props {
   choice: string;
   offset: number;
+  setPages: (pages: number) => void;
 }
 
 function EggFilter(props: Props) {
   let pokemons: pokemon[] = [];
 
-  const [post, setPost] = React.useState<pokemon[]>(pokemons);
-
-  const [pages, setPages] = React.useState(1);
+  const [pokemon, setPokemon] = React.useState<pokemon[]>(pokemons);
 
   const { isLoading, error, data } = useQuery(
     ["eggGroup", props.offset, props.choice],
@@ -29,8 +28,8 @@ function EggFilter(props: Props) {
 
   useEffect(() => {
     if (data) {
-      setPost(data.content);
-      setPages(data.totalPages);
+      setPokemon(data.content);
+      props.setPages(data.totalPages);
     }
   }, [data]);
 
@@ -40,7 +39,7 @@ function EggFilter(props: Props) {
 
   return (
     <div className="body">
-      <PokemonCard post={post} />
+      <PokemonCard post={pokemon} />
     </div>
   );
 }

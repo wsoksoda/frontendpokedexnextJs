@@ -1,20 +1,19 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import PokemonList from "./pokemonList";
+import PokemonList from "./desktopPokemonList";
 import { Spinner } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 
 interface Props {
   choice: string;
   offset: number;
+  setPages: (pages: number) => void;
 }
 
 function SearchFilter(props: Props) {
   let pokemons: pokemon[] = [];
 
-  const [post, setPost] = React.useState<pokemon[]>(pokemons);
-
-  const [pages, setPages] = React.useState(1);
+  const [pokemon, setPokemon] = React.useState<pokemon[]>(pokemons);
 
   const { isLoading, error, data } = useQuery(
     ["ability", props.offset, props.choice],
@@ -29,8 +28,8 @@ function SearchFilter(props: Props) {
 
   useEffect(() => {
     if (data) {
-      setPost(data.content);
-      setPages(data.totalPages);
+      setPokemon(data.content);
+      props.setPages(data.totalPages);
     }
   }, [data]);
 
@@ -38,7 +37,7 @@ function SearchFilter(props: Props) {
 
   if (error) return "No Pokemon with that name";
 
-  return <PokemonList post={post} />;
+  return <PokemonList post={pokemon} />;
 }
 
 export default SearchFilter;
