@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
 import PokemonCard from "./pokemonList";
 import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "@chakra-ui/react";

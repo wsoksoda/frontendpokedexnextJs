@@ -1,17 +1,11 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import PokemonCard from "../src/pokemonList";
 import { useRouter } from "next/router";
 import { Box, ChakraProvider, Spinner } from "@chakra-ui/react";
 import Navbar from "@/navbar";
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-} from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { DesktopOnly, MobileOnly } from "@/breakpointVisibility";
 import MobileFooter from "@/mobileFooter";
-import MobilePokemonCard from "@/mobilePokemonCard";
 import MobilePokemonList from "@/mobilePokemonList";
 import PokemonList from "../src/pokemonList";
 
@@ -30,6 +24,7 @@ function Home() {
     const response = await axios.get(
       `http://localhost:8081/api/pokemon?offset=${offset}&pageSize=24`
     );
+
     const data = await response.data;
     return data;
   });

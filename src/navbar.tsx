@@ -2,19 +2,12 @@ import { ReactNode } from "react";
 import {
   Box,
   Flex,
-  HStack,
   Link,
-  IconButton,
   Button,
   useDisclosure,
   useColorModeValue,
 } from "@chakra-ui/react";
-import {
-  HamburgerIcon,
-  CloseIcon,
-  ChevronRightIcon,
-  ChevronLeftIcon,
-} from "@chakra-ui/icons";
+import { ChevronRightIcon, ChevronLeftIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
 import { DesktopOnly, MobileOnly } from "./breakpointVisibility";
 
@@ -40,9 +33,7 @@ export default function Navbar(props: navbarProp) {
             <Link href="http://localhost:3000/?offset=1">Pokedex</Link>
           </Box>
           <Box>
-            <Link href={"/advanced?previous=" + router.asPath}>
-              Advanced Search
-            </Link>
+            <Link href={"/advanced"}>Advanced Search</Link>
           </Box>
           <DesktopOnly>
             <Button onClick={props.goForward}>
