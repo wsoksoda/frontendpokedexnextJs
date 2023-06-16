@@ -54,6 +54,19 @@ function DesktopPokemonCard(props: Props) {
                 </Button>
               </Box>
               <Box>
+                <HStack spacing={"none"}>
+                  <Box>
+                    <Text fontSize={"2xl"}>{pokemon.name} &nbsp;</Text>
+                  </Box>
+                  <Box>
+                    <Text fontSize={"2xl"} style={{ color: "gray" }}>
+                      {" "}
+                      #{pokemon.id}
+                    </Text>
+                  </Box>
+                </HStack>
+              </Box>
+              <Box>
                 {pokemon.type?.map((type, typeIndex) => (
                   <Text
                     style={{
