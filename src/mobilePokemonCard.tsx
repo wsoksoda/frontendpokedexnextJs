@@ -54,6 +54,10 @@ function MobilePokemonCard(props: Props) {
                 </Button>
               </Box>
               <Box>
+                <h1>{pokemon.name} &nbsp;</h1>
+                <h1 style={{ color: "gray" }}> #{pokemon.id}</h1>
+              </Box>
+              <Box>
                 {pokemon.type?.map((type, typeIndex) => (
                   <Text
                     style={{
