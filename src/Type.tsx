@@ -12,6 +12,7 @@ function Type(props: Prop) {
           props.optionChoice(e.target.value);
         }}
       >
+        <option value="none">Please select a Type</option>
         <option value="Poison">Poison</option>
         <option value="Grass">Grass</option>
         <option value="Fire">Fire</option>

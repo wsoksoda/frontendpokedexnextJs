@@ -12,6 +12,7 @@ function Egg(props: Prop) {
         props.optionChoice(e.target.value);
       }}
     >
+      <option value="none">Please select an Egg Group</option>
       <option value="Plant">Plant</option>
       <option value="Monster">Monster</option>
       <option value="Dragon">Dragon</option>
