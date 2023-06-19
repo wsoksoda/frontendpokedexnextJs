@@ -1,4 +1,4 @@
-export const statColor: {
+export const typeColor: {
   [key in PokemonType]: string;
 } = {
   Normal: "#A8A77A",

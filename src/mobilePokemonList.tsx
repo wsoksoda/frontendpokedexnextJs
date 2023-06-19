@@ -1,6 +1,6 @@
 import { Card, CardHeader, CardBody, Text, Image } from "@chakra-ui/react";
 import Link from "next/link";
-import { statColor } from "./pokemonInterface";
+import { typeColor } from "./pokemonInterface";
 import { useRouter } from "next/router";
 
 interface Props {
@@ -44,7 +44,7 @@ function mobilePokemonList(props: Props) {
                   <Text
                     style={{
                       width: "5rem",
-                      backgroundColor: statColor[type.type],
+                      backgroundColor: typeColor[type.type],
                       display: "block",
                       float: "left",
                       marginLeft: "1rem",
