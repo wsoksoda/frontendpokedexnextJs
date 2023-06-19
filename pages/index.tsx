@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { Box, ChakraProvider, Spinner } from "@chakra-ui/react";
+import { Box, Spinner } from "@chakra-ui/react";
 import Navbar from "@/navbar";
 import { useQuery } from "@tanstack/react-query";
-import { DesktopOnly, MobileOnly } from "@/breakpointVisibility";
 import MobileFooter from "@/mobileFooter";
 import MobilePokemonList from "@/mobilePokemonList";
 import DesktopPokemonList from "@/desktopPokemonList";
@@ -55,21 +54,19 @@ function Index() {
   }
 
   return (
-    <ChakraProvider>
-      <Box
-        bgGradient="linear(to-l,#41295a,#2F0743)"
-        style={{ minHeight: "70rem" }}
-      >
-        <Navbar goBack={back} goForward={forward}></Navbar>
-        <DesktopOnly>
-          <DesktopPokemonList post={pokemon} />
-        </DesktopOnly>
-        <MobileOnly>
-          <MobilePokemonList post={pokemon} />
-          <MobileFooter goBack={back} goForward={forward} />
-        </MobileOnly>
+    <Box
+      bgGradient="linear(to-l,#41295a,#2F0743)"
+      style={{ minHeight: "70rem" }}
+    >
+      <Navbar goBack={back} goForward={forward}></Navbar>
+      <Box display={["none", null, "block"]}>
+        <DesktopPokemonList post={pokemon} />
       </Box>
-    </ChakraProvider>
+      <Box display={["block", null, "none"]}>
+        <MobilePokemonList post={pokemon} />
+        <MobileFooter goBack={back} goForward={forward} />
+      </Box>
+    </Box>
   );
 }
 

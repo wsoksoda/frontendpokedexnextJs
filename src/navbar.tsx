@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { Box, Flex, Link, Button, useColorModeValue } from "@chakra-ui/react";
 import { ChevronRightIcon, ChevronLeftIcon } from "@chakra-ui/icons";
-import { DesktopOnly } from "./breakpointVisibility";
 
 interface navbarProp {
   goBack: () => void;
@@ -13,11 +12,11 @@ export default function Navbar(props: navbarProp) {
     <>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <DesktopOnly>
+          <Box display={["none", null, "block"]}>
             <Button onClick={props.goBack}>
               <ChevronLeftIcon />
             </Button>
-          </DesktopOnly>
+          </Box>
           <Box>
             <Link href="http://localhost:3000/?offset=1">Pokedex</Link>
           </Box>
@@ -27,11 +26,11 @@ export default function Navbar(props: navbarProp) {
           <Box>
             <Link href={"/quiz"}>What Pokemon am I</Link>
           </Box>
-          <DesktopOnly>
+          <Box display={["none", null, "block"]}>
             <Button onClick={props.goForward}>
               <ChevronRightIcon />
             </Button>
-          </DesktopOnly>
+          </Box>
         </Flex>
       </Box>
     </>

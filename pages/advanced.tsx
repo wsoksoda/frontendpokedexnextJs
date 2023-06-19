@@ -7,7 +7,7 @@ import Type from "@/Type";
 import TypeFilter from "@/TypeFilter";
 import Navbar from "@/navbar";
 import Search from "@/search";
-import { Box, ChakraProvider, Grid, Select } from "@chakra-ui/react";
+import { Box, Grid, Select } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
@@ -102,42 +102,38 @@ function Advanced() {
       router.push(`advanced/?offset=${currentPage}`);
     }
   }
-  if (typeof window !== "undefined") {
-    return (
-      <ChakraProvider>
-        <Box
-          bgGradient="linear(to-l,#41295a,#2F0743)"
-          style={{ minHeight: "100rem" }}
-        >
-          <Navbar goBack={back} goForward={forward} />
-          <div className="body" style={{ paddingTop: "2rem", color: "white" }}>
-            <Grid templateColumns="repeat(2,1fr)" gap={6}>
-              <Select
-                aria-label="Floating label select example"
-                onChange={(e) => setTypeOfSearch(e.target.value)}
-                value={typeOfSearch}
-              >
-                <option value="1">Search by name</option>
-                <option value="2">Type</option>
-                <option value="3">Ability</option>
-                <option value="4">Egg Group</option>
-              </Select>
-              <Dropdown
-                typeOfSearch={typeOfSearch}
-                setSearchInput={setSearchInput}
-              />
-            </Grid>
-            <FilteredPokemonList
-              typeOfSearch={typeOfSearch}
-              offset={offset}
-              searchInputValue={SearchInputValue}
-              setPages={setPages}
-            />
-          </div>
-        </Box>
-      </ChakraProvider>
-    );
-  }
+  return (
+    <Box
+      bgGradient="linear(to-l,#41295a,#2F0743)"
+      style={{ minHeight: "100rem" }}
+    >
+      <Navbar goBack={back} goForward={forward} />
+      <div className="body" style={{ paddingTop: "2rem", color: "white" }}>
+        <Grid templateColumns="repeat(2,1fr)" gap={6}>
+          <Select
+            aria-label="Floating label select example"
+            onChange={(e) => setTypeOfSearch(e.target.value)}
+            value={typeOfSearch}
+          >
+            <option value="1">Search by name</option>
+            <option value="2">Type</option>
+            <option value="3">Ability</option>
+            <option value="4">Egg Group</option>
+          </Select>
+          <Dropdown
+            typeOfSearch={typeOfSearch}
+            setSearchInput={setSearchInput}
+          />
+        </Grid>
+        <FilteredPokemonList
+          typeOfSearch={typeOfSearch}
+          offset={offset}
+          searchInputValue={SearchInputValue}
+          setPages={setPages}
+        />
+      </div>
+    </Box>
+  );
 }
 
 export default Advanced;

@@ -1,19 +1,14 @@
-import { DesktopOnly, MobileOnly } from "@/breakpointVisibility";
 import DesktopPokemonCard from "@/desktopPokemonCard";
 import MobilePokemonCard from "@/mobilePokemonCard";
-import Navbar from "@/navbar";
 import {
   Box,
   Button,
-  ChakraProvider,
   Flex,
   FormControl,
   FormLabel,
   HStack,
   Input,
   Link,
-  NumberInput,
-  NumberInputField,
   Radio,
   RadioGroup,
   Slider,
@@ -29,7 +24,7 @@ import {
 } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 function Quiz() {
   const [firstNameValue, setFirstNameValue] = React.useState("");
@@ -62,7 +57,7 @@ function Quiz() {
 
   if (submit == "1") {
     return (
-      <ChakraProvider>
+      <>
         <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
           <Flex h={16} alignItems={"center"} justifyContent={"space-around"}>
             <Box>
@@ -227,11 +222,11 @@ function Quiz() {
             See what Pokemon I am
           </Button>
         </Box>
-      </ChakraProvider>
+      </>
     );
   } else {
     return (
-      <ChakraProvider>
+      <>
         <Button
           onClick={() => setSubmit("1")}
           style={{
@@ -251,13 +246,13 @@ function Quiz() {
         >
           Congrats {firstNameValue} you are:
         </Text>
-        <DesktopOnly>
+        <Box display={["none", null, "block"]}>
           <DesktopPokemonCard data={data} />
-        </DesktopOnly>
-        <MobileOnly>
+        </Box>
+        <Box display={["block", null, "none"]}>
           <MobilePokemonCard data={data} />
-        </MobileOnly>
-      </ChakraProvider>
+        </Box>
+      </>
     );
   }
 }

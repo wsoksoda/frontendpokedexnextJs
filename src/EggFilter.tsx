@@ -37,11 +37,7 @@ function EggFilter(props: Props) {
 
   if (error) return "No Pokemon with that egg group";
 
-  return (
-    <div className="body">
-      <PokemonCard post={pokemon} />
-    </div>
-  );
+  return <PokemonCard post={pokemon} />;
 }
 
 export default EggFilter;

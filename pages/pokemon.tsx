@@ -1,10 +1,9 @@
 import axios from "axios";
 import React from "react";
 import Navbar from "@/navbar";
-import { Box, ChakraProvider, Spinner } from "@chakra-ui/react";
+import { Box, Spinner } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
-import { DesktopOnly, MobileOnly } from "@/breakpointVisibility";
 import MobileFooter from "@/mobileFooter";
 import DesktopPokemonCard from "@/desktopPokemonCard";
 import MobilePokemonCard from "@/mobilePokemonCard";
@@ -13,7 +12,6 @@ function Pokemon() {
   let router = useRouter();
 
   const pokemonId = parseInt((router.query.id as string) ?? "1");
-  const offset = parseInt((router.query.id as string) ?? "1");
 
   const pokemonSize = 553;
 
@@ -44,18 +42,16 @@ function Pokemon() {
   }
 
   return (
-    <ChakraProvider>
-      <Box bgGradient="linear(to-l,#41295a,#2F0743)">
-        <Navbar goBack={back} goForward={forward} />
-        <DesktopOnly>
-          <DesktopPokemonCard data={data} />
-        </DesktopOnly>
-        <MobileOnly>
-          <MobilePokemonCard data={data} />
-          <MobileFooter goBack={back} goForward={forward} />
-        </MobileOnly>
+    <Box bgGradient="linear(to-l,#41295a,#2F0743)">
+      <Navbar goBack={back} goForward={forward} />
+      <Box display={["none", null, "block"]}>
+        <DesktopPokemonCard data={data} />
       </Box>
-    </ChakraProvider>
+      <Box display={["block", null, "none"]}>
+        <MobilePokemonCard data={data} />
+        <MobileFooter goBack={back} goForward={forward} />
+      </Box>
+    </Box>
   );
 }
 
