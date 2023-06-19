@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import PokemonList from "./desktopPokemonList";
+import DesktopPokemonList from "./desktopPokemonList";
 import { Spinner } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 
@@ -37,7 +37,7 @@ function SearchFilter(props: Props) {
 
   if (error) return "No Pokemon with that name";
 
-  return <PokemonList post={pokemon} />;
+  return <DesktopPokemonList post={pokemon} />;
 }
 
 export default SearchFilter;

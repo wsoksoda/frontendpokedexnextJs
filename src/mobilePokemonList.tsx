@@ -1,12 +1,15 @@
 import { Card, CardHeader, CardBody, Text, Image } from "@chakra-ui/react";
 import Link from "next/link";
 import { statColor } from "./pokemonInterface";
+import { useRouter } from "next/router";
 
 interface Props {
   post: pokemon[];
 }
 
-function PokemonList(props: Props) {
+function mobilePokemonList(props: Props) {
+  const router = useRouter();
+
   return (
     <div
       style={{
@@ -29,7 +32,7 @@ function PokemonList(props: Props) {
         >
           <Link
             style={{ color: "black", textDecoration: "none" }}
-            href={`/pokemon?id=${post.id}`}
+            href={`/pokemon?id=${post.id}` + router.asPath}
           >
             <CardBody>
               <CardHeader>{post.name}</CardHeader>
@@ -65,4 +68,4 @@ function PokemonList(props: Props) {
   );
 }
 
-export default PokemonList;
+export default mobilePokemonList;

@@ -13,6 +13,7 @@ function Pokemon() {
   let router = useRouter();
 
   const pokemonId = parseInt((router.query.id as string) ?? "1");
+  const offset = parseInt((router.query.id as string) ?? "1");
 
   const pokemonSize = 553;
 
@@ -31,14 +32,14 @@ function Pokemon() {
   function forward(): void {
     if (pokemonId < pokemonSize) {
       let currentPage = pokemonId + 1;
-      router.push(`/pokemon?id=${currentPage}`);
+      router.replace(`/pokemon?id=${currentPage}`);
     }
   }
 
   function back(): void {
     if (pokemonId > 1) {
       let currentPage = pokemonId - 1;
-      router.push(`/pokemon?id=${currentPage}`);
+      router.replace(`/pokemon?id=${currentPage}`);
     }
   }
 

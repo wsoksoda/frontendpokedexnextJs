@@ -24,6 +24,9 @@ export default function Navbar(props: navbarProp) {
           <Box>
             <Link href={"/advanced"}>Advanced Search</Link>
           </Box>
+          <Box>
+            <Link href={"/quiz"}>What Pokemon am I</Link>
+          </Box>
           <DesktopOnly>
             <Button onClick={props.goForward}>
               <ChevronRightIcon />

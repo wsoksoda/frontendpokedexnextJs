@@ -7,9 +7,9 @@ import { useQuery } from "@tanstack/react-query";
 import { DesktopOnly, MobileOnly } from "@/breakpointVisibility";
 import MobileFooter from "@/mobileFooter";
 import MobilePokemonList from "@/mobilePokemonList";
-import PokemonList from "../src/desktopPokemonList";
+import DesktopPokemonList from "@/desktopPokemonList";
 
-function Home() {
+function Index() {
   let pokemonArray: pokemon[] = [];
 
   const [pokemon, setPokemon] = React.useState<pokemon[]>(pokemonArray);
@@ -62,7 +62,7 @@ function Home() {
       >
         <Navbar goBack={back} goForward={forward}></Navbar>
         <DesktopOnly>
-          <PokemonList post={pokemon} />
+          <DesktopPokemonList post={pokemon} />
         </DesktopOnly>
         <MobileOnly>
           <MobilePokemonList post={pokemon} />
@@ -73,4 +73,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Index;

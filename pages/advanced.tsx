@@ -9,8 +9,7 @@ import Navbar from "@/navbar";
 import Search from "@/search";
 import { Box, ChakraProvider, Grid, Select } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 interface DropdownProp {
   typeOfSearch: string;
@@ -76,7 +75,7 @@ function FilteredPokemonList(props: FilteredPokemonProp) {
   }
 }
 
-function PokemonSearch() {
+function Advanced() {
   const [typeOfSearch, setTypeOfSearch] = useState("1");
   const [SearchInputValue, setSearchInputValue] = useState("");
 
@@ -141,4 +140,4 @@ function PokemonSearch() {
   }
 }
 
-export default PokemonSearch;
+export default Advanced;
