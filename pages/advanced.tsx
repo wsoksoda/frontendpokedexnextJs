@@ -1,15 +1,15 @@
-import Ability from "@/Ability";
-import AbilityFilter from "@/AbilityFilter";
-import Egg from "@/Egg";
-import EggFilter from "@/EggFilter";
-import SearchFilter from "@/SearchFilter";
-import Type from "@/Type";
-import TypeFilter from "@/TypeFilter";
+import Ability from "@/ability";
+import AbilityFilter from "@/abilityFilter";
+import SearchFilter from "@/searchFilter";
+import TypeFilter from "@/typeFilter";
 import Navbar from "@/navbar";
 import Search from "@/search";
 import { Box, Grid, Select } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import Egg from "@/Egg";
+import EggFilter from "@/EggFilter";
+import Type from "@/Type";
 
 interface DropdownProp {
   typeOfSearch: string;
