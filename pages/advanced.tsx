@@ -7,9 +7,9 @@ import Search from "@/search";
 import { Box, Grid, Select } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import Egg from "@/Egg";
-import EggFilter from "@/EggFilter";
-import Type from "@/Type";
+import Egg from "@/egg";
+import EggFilter from "@/eggFilter";
+import Type from "@/type";
 
 interface DropdownProp {
   typeOfSearch: string;
