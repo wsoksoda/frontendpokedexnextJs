@@ -27,7 +27,7 @@ export const AllTheProviders = ({
 }) => (
   <AnimatePresence mode="wait" initial={false}>
     <ChakraProvider>
-      <QueryClientProvider client={queryClient}>...</QueryClientProvider>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     </ChakraProvider>
   </AnimatePresence>
 );
