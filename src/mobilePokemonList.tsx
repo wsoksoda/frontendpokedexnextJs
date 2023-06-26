@@ -10,6 +10,12 @@ interface Props {
 function mobilePokemonList(props: Props) {
   const router = useRouter();
 
+  const offset = parseInt((router.query.offset as string) ?? "1");
+
+  const firstValue = router.query.firstValue as string;
+
+  const secondValue = router.query.secondValue as string;
+
   return (
     <div
       style={{
@@ -32,7 +38,7 @@ function mobilePokemonList(props: Props) {
         >
           <Link
             style={{ color: "black", textDecoration: "none" }}
-            href={`/pokemon?id=${post.id}` + router.asPath}
+            href={`/pokemon?id=${post.id}&offset=${offset}&firstValue=${firstValue}&secondValue=${secondValue}`}
           >
             <CardBody>
               <CardHeader>{post.name}</CardHeader>

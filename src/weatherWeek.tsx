@@ -1,35 +1,13 @@
-import { Spinner, Text, Image, Box, HStack } from "@chakra-ui/react";
-import axios from "axios";
+import { Box, HStack } from "@chakra-ui/react";
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
+import WeatherDayBlock from "./weatherDayBlock";
 
-function WeatherWeek() {
-  const { isLoading, error, data } = useQuery(["week"], async () => {
-    const response = await axios.get(
-      "http://api.weatherapi.com/v1/forecast.json?key=d5559d652c3543a6ab7144421231906&q=fargo&days=7&aqi=no&alerts=no"
-    );
+interface Prop {
+  startDay: number;
+  data: any;
+}
 
-    const data = await response.data;
-    return data;
-  });
-
-  if (isLoading) return <Spinner />;
-
-  if (error) return "An error has occured";
-
-  const dt = new Date();
-  const day = dt.getDay();
-
-  const week = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
+function WeatherWeek(props: Prop) {
   return (
     <>
       <HStack>
@@ -41,78 +19,21 @@ function WeatherWeek() {
             textAlign: "center",
           }}
         >
-          <Box
-            style={{
-              display: "block",
-              marginRight: "auto",
-              marginLeft: "auto",
-              textAlign: "center",
-            }}
-          >
-            <Text fontSize={"2xl"} style={{ marginTop: "3rem" }}>
-              {week[(day + 1) % 7]}
-            </Text>
-            <Image
-              style={{
-                display: "block",
-                marginRight: "auto",
-                marginLeft: "auto",
-              }}
-              src={data.forecast.forecastday[1].day.condition.icon}
-            ></Image>
-            <Text fontSize={"xl"}>
-              Low: {data.forecast.forecastday[1].day.mintemp_f}° High:{" "}
-              {data.forecast.forecastday[1].day.maxtemp_f}°
-            </Text>
-          </Box>
-          <Box
-            style={{
-              display: "block",
-              marginRight: "auto",
-              marginLeft: "auto",
-              textAlign: "center",
-            }}
-          >
-            <Text fontSize={"2xl"} style={{ marginTop: "3rem" }}>
-              {week[(day + 2) % 7]}
-            </Text>
-            <Image
-              style={{
-                display: "block",
-                marginRight: "auto",
-                marginLeft: "auto",
-              }}
-              src={data.forecast.forecastday[2].day.condition.icon}
-            ></Image>
-            <Text fontSize={"xl"}>
-              Low: {data.forecast.forecastday[2].day.mintemp_f}° High:{" "}
-              {data.forecast.forecastday[2].day.maxtemp_f}°
-            </Text>
-          </Box>
-          <Box
-            style={{
-              display: "block",
-              marginRight: "auto",
-              marginLeft: "auto",
-              textAlign: "center",
-            }}
-          >
-            <Text fontSize={"2xl"} style={{ marginTop: "3rem" }}>
-              {week[(day + 3) % 7]}
-            </Text>
-            <Image
-              style={{
-                display: "block",
-                marginRight: "auto",
-                marginLeft: "auto",
-              }}
-              src={data.forecast.forecastday[3].day.condition.icon}
-            ></Image>
-            <Text fontSize={"xl"}>
-              Low: {data.forecast.forecastday[3].day.mintemp_f}° High:{" "}
-              {data.forecast.forecastday[3].day.maxtemp_f}°
-            </Text>
-          </Box>
+          <WeatherDayBlock
+            day={(props.startDay + 1) % 7}
+            position={1}
+            data={props.data}
+          />
+          <WeatherDayBlock
+            day={(props.startDay + 2) % 7}
+            position={2}
+            data={props.data}
+          />
+          <WeatherDayBlock
+            day={(props.startDay + 3) % 7}
+            position={3}
+            data={props.data}
+          />
         </Box>
         <Box
           style={{
@@ -122,78 +43,21 @@ function WeatherWeek() {
             textAlign: "center",
           }}
         >
-          <Box
-            style={{
-              display: "block",
-              marginRight: "auto",
-              marginLeft: "auto",
-              textAlign: "center",
-            }}
-          >
-            <Text fontSize={"2xl"} style={{ marginTop: "3rem" }}>
-              {week[(day + 4) % 7]}
-            </Text>
-            <Image
-              style={{
-                display: "block",
-                marginRight: "auto",
-                marginLeft: "auto",
-              }}
-              src={data.forecast.forecastday[4].day.condition.icon}
-            ></Image>
-            <Text fontSize={"xl"}>
-              Low: {data.forecast.forecastday[4].day.mintemp_f}° High:{" "}
-              {data.forecast.forecastday[4].day.maxtemp_f}°
-            </Text>
-          </Box>
-          <Box
-            style={{
-              display: "block",
-              marginRight: "auto",
-              marginLeft: "auto",
-              textAlign: "center",
-            }}
-          >
-            <Text fontSize={"2xl"} style={{ marginTop: "3rem" }}>
-              {week[(day + 5) % 7]}
-            </Text>
-            <Image
-              style={{
-                display: "block",
-                marginRight: "auto",
-                marginLeft: "auto",
-              }}
-              src={data.forecast.forecastday[5].day.condition.icon}
-            ></Image>
-            <Text fontSize={"xl"}>
-              Low: {data.forecast.forecastday[5].day.mintemp_f}° High:{" "}
-              {data.forecast.forecastday[5].day.maxtemp_f}°
-            </Text>
-          </Box>
-          <Box
-            style={{
-              display: "block",
-              marginRight: "auto",
-              marginLeft: "auto",
-              textAlign: "center",
-            }}
-          >
-            <Text fontSize={"2xl"} style={{ marginTop: "3rem" }}>
-              {week[(day + 6) % 7]}
-            </Text>
-            <Image
-              style={{
-                display: "block",
-                marginRight: "auto",
-                marginLeft: "auto",
-              }}
-              src={data.forecast.forecastday[6].day.condition.icon}
-            ></Image>
-            <Text fontSize={"xl"}>
-              Low: {data.forecast.forecastday[6].day.mintemp_f}° High:{" "}
-              {data.forecast.forecastday[6].day.maxtemp_f}°
-            </Text>
-          </Box>
+          <WeatherDayBlock
+            day={(props.startDay + 4) % 7}
+            position={4}
+            data={props.data}
+          />
+          <WeatherDayBlock
+            day={(props.startDay + 5) % 7}
+            position={5}
+            data={props.data}
+          />
+          <WeatherDayBlock
+            day={(props.startDay + 6) % 7}
+            position={6}
+            data={props.data}
+          />
         </Box>
       </HStack>
     </>

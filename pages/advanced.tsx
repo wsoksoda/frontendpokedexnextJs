@@ -83,6 +83,12 @@ function Advanced() {
 
   const router = useRouter();
 
+  const firstValue = router.query.firstValue as string;
+
+  const secondValue = router.query.secondValue as string;
+
+  const theme = `linear(to-l,#${firstValue},#${secondValue})`;
+
   const offset = parseInt((router.query.offset as string) ?? "1");
 
   function setSearchInput(chosen: string): void {
@@ -92,21 +98,22 @@ function Advanced() {
   function forward() {
     if (offset < pages) {
       const currentPage = offset + 1;
-      router.push(`advanced/?offset=${currentPage}`);
+      router.push(
+        `advanced/?offset=${currentPage}&firstValue=${firstValue}&secondValue=${secondValue}`
+      );
     }
   }
 
   function back() {
     if (offset > 1) {
       const currentPage = offset - 1;
-      router.push(`advanced/?offset=${currentPage}`);
+      router.push(
+        `advanced/?offset=${currentPage}&firstValue=${firstValue}&secondValue=${secondValue}`
+      );
     }
   }
   return (
-    <Box
-      bgGradient="linear(to-l,#41295a,#2F0743)"
-      style={{ minHeight: "100rem" }}
-    >
+    <Box bgGradient={theme} style={{ minHeight: "100rem" }}>
       <Navbar goBack={back} goForward={forward} />
       <div className="body" style={{ paddingTop: "2rem", color: "white" }}>
         <Grid templateColumns="repeat(2,1fr)" gap={6}>

@@ -24,6 +24,8 @@ import {
 } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 import React from "react";
 
 function Quiz() {
@@ -33,6 +35,14 @@ function Quiz() {
   const [colorValue, setColorValue] = React.useState("1");
   const [sliderValue, setSliderValue] = React.useState(1);
   const [submit, setSubmit] = React.useState("1");
+
+  const router = useRouter();
+
+  const firstValue = router.query.firstValue as string;
+
+  const secondValue = router.query.secondValue as string;
+
+  const theme = `linear(to-l,#${firstValue},#${secondValue})`;
 
   const { isLoading, error, data } = useQuery(["quiz", submit], async () => {
     let queryval = String(
@@ -61,20 +71,32 @@ function Quiz() {
         <Box px={4}>
           <Flex h={16} alignItems={"center"} justifyContent={"space-around"}>
             <Box>
-              <Link href="http://localhost:3000/?offset=1">Pokedex</Link>
+              <Link href="http://localhost:3000">Pick a Theme</Link>
             </Box>
             <Box>
-              <Link href={"/advanced"}>Advanced Search</Link>
+              <Link
+                href={`http://localhost:3000/pokedex?firstValue=${firstValue}&secondValue=${secondValue}`}
+              >
+                Pokedex
+              </Link>
             </Box>
             <Box>
-              <Link href={"/quiz"}>What Pokemon am I</Link>
+              <Link
+                href={`/advanced?firstValue=${firstValue}&secondValue=${secondValue}`}
+              >
+                Advanced Search
+              </Link>
+            </Box>
+            <Box>
+              <Link
+                href={`/quiz?firstValue=${firstValue}&secondValue=${secondValue}`}
+              >
+                What Pokemon am I
+              </Link>
             </Box>
           </Flex>
         </Box>
-        <Box
-          bgGradient="linear(to-l,#41295a,#2F0743)"
-          style={{ minHeight: "100rem", color: "white" }}
-        >
+        <Box bgGradient={theme} style={{ minHeight: "100rem", color: "white" }}>
           <Text
             fontSize={"3xl"}
             style={{ textAlign: "center", paddingTop: "2rem" }}
@@ -209,9 +231,31 @@ function Quiz() {
               <Text>Yes</Text>
             </HStack>
           </FormControl>
+          <motion.div whileHover={{ scale: 1.5 }}>
+            <Button
+              onClick={() => setSubmit("2")}
+              style={{
+                display: "block",
+                marginRight: "auto",
+                marginLeft: "auto",
+                marginTop: "2rem",
+              }}
+            >
+              See what Pokemon I am
+            </Button>
+          </motion.div>
+        </Box>
+      </>
+    );
+  } else {
+    return (
+      <Box
+        bgGradient={theme}
+        style={{ minHeight: "60rem", color: "white", paddingTop: "2rem" }}
+      >
+        <motion.div whileHover={{ scale: 1.5 }}>
           <Button
-            onClick={() => setSubmit("2")}
-            colorScheme="blue"
+            onClick={() => setSubmit("1")}
             style={{
               display: "block",
               marginRight: "auto",
@@ -219,25 +263,9 @@ function Quiz() {
               marginTop: "2rem",
             }}
           >
-            See what Pokemon I am
+            Retake Quiz
           </Button>
-        </Box>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <Button
-          onClick={() => setSubmit("1")}
-          style={{
-            display: "block",
-            marginRight: "auto",
-            marginLeft: "auto",
-            marginTop: "2rem",
-          }}
-        >
-          Retake Quiz
-        </Button>
+        </motion.div>
         <Text
           style={{
             marginTop: "2rem",
@@ -252,7 +280,7 @@ function Quiz() {
         <Box display={["block", null, "none"]}>
           <MobilePokemonCard data={data} />
         </Box>
-      </>
+      </Box>
     );
   }
 }

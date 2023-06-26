@@ -13,6 +13,12 @@ function Pokemon() {
 
   const pokemonId = parseInt((router.query.id as string) ?? "1");
 
+  const firstValue = router.query.firstValue as string;
+
+  const secondValue = router.query.secondValue as string;
+
+  const theme = `linear(to-l,#${firstValue},#${secondValue})`;
+
   const pokemonSize = 553;
 
   const { isLoading, error, data } = useQuery(["id", pokemonId], async () => {
@@ -30,19 +36,23 @@ function Pokemon() {
   function forward(): void {
     if (pokemonId < pokemonSize) {
       let currentPage = pokemonId + 1;
-      router.replace(`/pokemon?id=${currentPage}`);
+      router.replace(
+        `/pokemon?id=${currentPage}&firstValue=${firstValue}&secondValue=${secondValue}`
+      );
     }
   }
 
   function back(): void {
     if (pokemonId > 1) {
       let currentPage = pokemonId - 1;
-      router.replace(`/pokemon?id=${currentPage}`);
+      router.replace(
+        `/pokemon?id=${currentPage}&firstValue=${firstValue}&secondValue=${secondValue}`
+      );
     }
   }
 
   return (
-    <Box bgGradient="linear(to-l,#41295a,#2F0743)">
+    <Box bgGradient={theme}>
       <Navbar goBack={back} goForward={forward} />
       <Box display={["none", null, "block"]}>
         <DesktopPokemonCard data={data} />
