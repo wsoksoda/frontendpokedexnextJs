@@ -3,35 +3,28 @@ import {
   screen,
   waitForElementToBeRemoved,
 } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import Weather from "../pages/Weather";
+import Pokemon from "../pages/Pokemon";
 import { AllTheProviders } from "../jest.setup";
+import mockRouter from "next-router-mock";
 
-describe("Weather", () => {
+// Mock the useRouter hook
+jest.mock("next/router", () => require("next-router-mock"));
+
+describe("Index", () => {
   it("renders a heading", async () => {
+    mockRouter.push("/pokemon?id=1");
+
     render(
       <AllTheProviders>
-        <Weather />
+        <Pokemon />
       </AllTheProviders>
     );
 
     await waitForElementToBeRemoved(() => screen.getByText("Loading...")).then(
       () => {
-        const heading = screen.getByText("Fargo");
-
+        const heading = screen.getByText("Bulbasaur");
         expect(heading).toBeInTheDocument();
       }
     );
-  });
-  it("renders the links", async () => {
-    render(
-      <AllTheProviders>
-        <Weather />
-      </AllTheProviders>
-    );
-
-    const links = screen.getAllByRole("link");
-
-    expect(links).toHaveLength(8);
   });
 });

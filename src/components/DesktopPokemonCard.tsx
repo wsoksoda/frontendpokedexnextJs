@@ -9,10 +9,10 @@ import {
   Text,
   Image,
 } from "@chakra-ui/react";
-import React, { useEffect } from "react";
-import { PokemonChart } from "./pokemonChart";
-import { typeColor } from "./pokemonInterface";
+import { useEffect, useState } from "react";
+import { PokemonChart } from "./PokemonChart";
 import { useRouter } from "next/router";
+import { typeColor } from "@/utils/pokemonInterface";
 
 interface Props {
   data: any;
@@ -22,8 +22,8 @@ function DesktopPokemonCard(props: Props) {
   let thisPokemon = {} as pokemon;
   let thisStat = {} as stat;
 
-  const [pokemon, setPokemon] = React.useState(thisPokemon);
-  const [stats, setStats] = React.useState(thisStat);
+  const [pokemon, setPokemon] = useState(thisPokemon);
+  const [stats, setStats] = useState(thisStat);
 
   const router = useRouter();
 
@@ -35,16 +35,8 @@ function DesktopPokemonCard(props: Props) {
   }, [props.data]);
 
   return (
-    <Box style={{ minHeight: "100rem" }}>
-      <Card
-        style={{
-          width: "50rem",
-          display: "block",
-          margin: "auto",
-          marginTop: "2rem",
-          marginBottom: "10rem",
-        }}
-      >
+    <Box minH="100rem">
+      <Card width="50rem" display="block" m="auto" mt="2rem" mb="10rem">
         <CardBody>
           <CardHeader>
             <HStack spacing="1rem">
@@ -54,12 +46,12 @@ function DesktopPokemonCard(props: Props) {
                 </Button>
               </Box>
               <Box>
-                <HStack spacing={"none"}>
+                <HStack spacing="none">
                   <Box>
-                    <Text fontSize={"2xl"}>{pokemon.name} &nbsp;</Text>
+                    <Text fontSize="2xl">{pokemon.name} &nbsp;</Text>
                   </Box>
                   <Box>
-                    <Text fontSize={"2xl"} style={{ color: "gray" }}>
+                    <Text fontSize="2xl" color="gray">
                       {" "}
                       #{pokemon.id}
                     </Text>
@@ -69,18 +61,16 @@ function DesktopPokemonCard(props: Props) {
               <Box>
                 {pokemon.type?.map((type, typeIndex) => (
                   <Text
-                    style={{
-                      width: "5rem",
-                      backgroundColor: typeColor[type.type],
-                      display: "block",
-                      float: "left",
-                      marginLeft: "1rem",
-                      paddingTop: ".25rem",
-                      textAlign: "center",
-                      height: "2rem",
-                      borderRadius: "1rem",
-                      marginTop: ".5rem",
-                    }}
+                    width="5rem"
+                    backgroundColor={typeColor[type.type]}
+                    display="block"
+                    float="left"
+                    ml="1rem"
+                    pt=".25rem"
+                    textAlign="center"
+                    height="2rem"
+                    borderRadius="1rem"
+                    mt=".5rem"
                     key={type.id}
                   >
                     {type.type}
@@ -91,7 +81,7 @@ function DesktopPokemonCard(props: Props) {
           </CardHeader>
           <HStack spacing="1rem">
             <Image
-              style={{ maxWidth: "20rem" }}
+              maxWidth="20rem"
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
             ></Image>
             <div>
@@ -113,7 +103,7 @@ function DesktopPokemonCard(props: Props) {
               ))}
             </div>
           </HStack>
-          <Box style={{ height: "20rem" }}>
+          <Box height="20rem">
             <PokemonChart
               id={stats.id}
               hp={stats.hp}

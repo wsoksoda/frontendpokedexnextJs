@@ -1,5 +1,5 @@
-import DesktopPokemonCard from "@/desktopPokemonCard";
-import MobilePokemonCard from "@/mobilePokemonCard";
+import DesktopPokemonCard from "@/components/DesktopPokemonCard";
+import MobilePokemonCard from "@/components/MobilePokemonCard";
 import {
   Box,
   Button,
@@ -20,21 +20,20 @@ import {
   Stack,
   Switch,
   Text,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
-import React from "react";
+import { useState } from "react";
 
 function Quiz() {
-  const [firstNameValue, setFirstNameValue] = React.useState("");
-  const [pokemonValue, setPokemonValue] = React.useState("1");
-  const [typeValue, setTypeValue] = React.useState("1");
-  const [colorValue, setColorValue] = React.useState("1");
-  const [sliderValue, setSliderValue] = React.useState(1);
-  const [submit, setSubmit] = React.useState("1");
+  const [firstNameValue, setFirstNameValue] = useState("");
+  const [pokemonValue, setPokemonValue] = useState("1");
+  const [typeValue, setTypeValue] = useState("1");
+  const [colorValue, setColorValue] = useState("1");
+  const [sliderValue, setSliderValue] = useState(1);
+  const [submit, setSubmit] = useState("1");
 
   const router = useRouter();
 
@@ -68,8 +67,8 @@ function Quiz() {
   if (submit == "1") {
     return (
       <>
-        <Box px={4}>
-          <Flex h={16} alignItems={"center"} justifyContent={"space-around"}>
+        <Box px="4">
+          <Flex h="16" alignItems="center" justifyContent="space-around">
             <Box>
               <Link href="http://localhost:3000">Pick a Theme</Link>
             </Box>
@@ -96,21 +95,16 @@ function Quiz() {
             </Box>
           </Flex>
         </Box>
-        <Box bgGradient={theme} style={{ minHeight: "100rem", color: "white" }}>
-          <Text
-            fontSize={"3xl"}
-            style={{ textAlign: "center", paddingTop: "2rem" }}
-          >
+        <Box bgGradient={theme} minH="100rem" color="white">
+          <Text fontSize="3xl" textAlign="center" paddingTop="2rem">
             Pokemon Quiz
           </Text>
           <FormControl
-            style={{
-              width: "50rem",
-              display: "block",
-              marginRight: "auto",
-              marginLeft: "auto",
-              marginTop: "2rem",
-            }}
+            width="50rem"
+            display="block"
+            mr="auto"
+            ml="auto"
+            mt="2rem"
           >
             <FormLabel>First name</FormLabel>
             <Input
@@ -121,17 +115,13 @@ function Quiz() {
             />
           </FormControl>
           <FormControl
-            style={{
-              width: "50rem",
-              display: "block",
-              marginRight: "auto",
-              marginLeft: "auto",
-              marginTop: "2rem",
-            }}
+            width="50rem"
+            display="block"
+            mr="auto"
+            ml="auto"
+            mt="2rem"
           >
-            <FormLabel style={{ marginBottom: "2rem" }}>
-              What level Pokemon Trainer are you?
-            </FormLabel>
+            <FormLabel mb="2rem">What level Pokemon Trainer are you?</FormLabel>
             <Slider
               min={0}
               max={120}
@@ -157,13 +147,11 @@ function Quiz() {
             </Slider>
           </FormControl>{" "}
           <FormControl
-            style={{
-              width: "50rem",
-              display: "block",
-              marginRight: "auto",
-              marginLeft: "auto",
-              marginTop: "2rem",
-            }}
+            width="50rem"
+            display="block"
+            mr="auto"
+            ml="auto"
+            mt="2rem"
           >
             <RadioGroup onChange={setColorValue} value={colorValue}>
               <FormLabel>What is your favorite color?</FormLabel>
@@ -176,13 +164,11 @@ function Quiz() {
             </RadioGroup>
           </FormControl>
           <FormControl
-            style={{
-              width: "50rem",
-              display: "block",
-              marginRight: "auto",
-              marginLeft: "auto",
-              marginTop: "2rem",
-            }}
+            width="50rem"
+            display="block"
+            mr="auto"
+            ml="auto"
+            mt="2rem"
           >
             <RadioGroup onChange={setTypeValue} value={typeValue}>
               <FormLabel>What is your favorite Pokemon Type?</FormLabel>
@@ -195,13 +181,11 @@ function Quiz() {
             </RadioGroup>
           </FormControl>
           <FormControl
-            style={{
-              width: "50rem",
-              display: "block",
-              marginRight: "auto",
-              marginLeft: "auto",
-              marginTop: "2rem",
-            }}
+            width="50rem"
+            display="block"
+            mr="auto"
+            ml="auto"
+            mt="2rem"
           >
             <RadioGroup onChange={setPokemonValue} value={pokemonValue}>
               <FormLabel>Who is your favorite Pokemon?</FormLabel>
@@ -214,13 +198,11 @@ function Quiz() {
             </RadioGroup>
           </FormControl>
           <FormControl
-            style={{
-              width: "50rem",
-              display: "block",
-              marginRight: "auto",
-              marginLeft: "auto",
-              marginTop: "2rem",
-            }}
+            width="50rem"
+            display="block"
+            mr="auto"
+            ml="auto"
+            mt="2rem"
           >
             <FormLabel htmlFor="super-cool" mb="0">
               Are you super cool?
@@ -234,12 +216,10 @@ function Quiz() {
           <motion.div whileHover={{ scale: 1.5 }}>
             <Button
               onClick={() => setSubmit("2")}
-              style={{
-                display: "block",
-                marginRight: "auto",
-                marginLeft: "auto",
-                marginTop: "2rem",
-              }}
+              display="block"
+              mr="auto"
+              ml="auto"
+              mt="2rem"
             >
               See what Pokemon I am
             </Button>
@@ -249,29 +229,19 @@ function Quiz() {
     );
   } else {
     return (
-      <Box
-        bgGradient={theme}
-        style={{ minHeight: "60rem", color: "white", paddingTop: "2rem" }}
-      >
+      <Box bgGradient={theme} minH="60rem" color="white" paddingTop="2rem">
         <motion.div whileHover={{ scale: 1.5 }}>
           <Button
             onClick={() => setSubmit("1")}
-            style={{
-              display: "block",
-              marginRight: "auto",
-              marginLeft: "auto",
-              marginTop: "2rem",
-            }}
+            display="block"
+            mr="auto"
+            ml="auto"
+            mt="2rem"
           >
             Retake Quiz
           </Button>
         </motion.div>
-        <Text
-          style={{
-            marginTop: "2rem",
-            textAlign: "center",
-          }}
-        >
+        <Text mt="2rem" textAlign="center">
           Congrats {firstNameValue} you are:
         </Text>
         <Box display={["none", null, "block"]}>

@@ -1,6 +1,11 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from "@tanstack/react-query";
 import { AnimatePresence } from "framer-motion";
+import "@testing-library/jest-dom";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,3 +36,7 @@ export const AllTheProviders = ({
     </ChakraProvider>
   </AnimatePresence>
 );
+
+export function useCustomHook() {
+  return useQuery({ queryKey: ["customHook"], queryFn: () => "Hello" });
+}

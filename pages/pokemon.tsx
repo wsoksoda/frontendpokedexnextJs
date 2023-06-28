@@ -1,12 +1,11 @@
 import axios from "axios";
-import React from "react";
-import Navbar from "@/navbar";
+import Navbar from "@/components/Navbar";
 import { Box, Spinner } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
-import MobileFooter from "@/mobileFooter";
-import DesktopPokemonCard from "@/desktopPokemonCard";
-import MobilePokemonCard from "@/mobilePokemonCard";
+import MobileFooter from "@/components/MobileFooter";
+import DesktopPokemonCard from "@/components/DesktopPokemonCard";
+import MobilePokemonCard from "@/components/MobilePokemonCard";
 
 function Pokemon() {
   let router = useRouter();

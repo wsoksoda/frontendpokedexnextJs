@@ -1,6 +1,5 @@
 import { Box, HStack } from "@chakra-ui/react";
-import React from "react";
-import WeatherDayBlock from "./weatherDayBlock";
+import WeatherDayBlock from "./WeatherDayBlock";
 
 interface Prop {
   startDay: number;
@@ -11,14 +10,7 @@ function WeatherWeek(props: Prop) {
   return (
     <>
       <HStack>
-        <Box
-          style={{
-            display: "block",
-            marginRight: "auto",
-            marginLeft: "auto",
-            textAlign: "center",
-          }}
-        >
+        <Box display="block" mr="auto" ml="auto" textAlign="center">
           <WeatherDayBlock
             day={(props.startDay + 1) % 7}
             position={1}
@@ -35,14 +27,7 @@ function WeatherWeek(props: Prop) {
             data={props.data}
           />
         </Box>
-        <Box
-          style={{
-            display: "block",
-            marginRight: "auto",
-            marginLeft: "auto",
-            textAlign: "center",
-          }}
-        >
+        <Box display="block" mr="auto" ml="auto" textAlign="center">
           <WeatherDayBlock
             day={(props.startDay + 4) % 7}
             position={4}

@@ -4,14 +4,19 @@ import {
   waitForElementToBeRemoved,
 } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Weather from "../pages/Weather";
 import { AllTheProviders } from "../jest.setup";
+import WeatherDetail from "../pages/WeatherDetail";
+import mockRouter from "next-router-mock";
+
+jest.mock("next/router", () => require("next-router-mock"));
 
 describe("Weather", () => {
   it("renders a heading", async () => {
+    mockRouter.push("/weatherDetail?positon=4&day=0");
+
     render(
       <AllTheProviders>
-        <Weather />
+        <WeatherDetail />
       </AllTheProviders>
     );
 
@@ -22,16 +27,5 @@ describe("Weather", () => {
         expect(heading).toBeInTheDocument();
       }
     );
-  });
-  it("renders the links", async () => {
-    render(
-      <AllTheProviders>
-        <Weather />
-      </AllTheProviders>
-    );
-
-    const links = screen.getAllByRole("link");
-
-    expect(links).toHaveLength(8);
   });
 });

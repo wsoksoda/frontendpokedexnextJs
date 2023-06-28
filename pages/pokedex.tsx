@@ -1,19 +1,17 @@
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { Box, Spinner } from "@chakra-ui/react";
-import Navbar from "@/navbar";
-import { useQuery } from "@tanstack/react-query";
-import MobileFooter from "@/mobileFooter";
-import MobilePokemonList from "@/mobilePokemonList";
-import DesktopPokemonList from "@/desktopPokemonList";
+import Navbar from "@/components/Navbar";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import MobileFooter from "@/components/MobileFooter";
+import MobilePokemonList from "@/components/MobilePokemonList";
+import DesktopPokemonList from "@/components/DesktopPokemonList";
 
 function Pokedex() {
-  let pokemonArray: pokemon[] = [];
+  const [pokemon, setPokemon] = useState<pokemon[]>([]);
 
-  const [pokemon, setPokemon] = React.useState<pokemon[]>(pokemonArray);
-
-  const [pages, setPages] = React.useState(1);
+  const [pages, setPages] = useState(1);
 
   const router = useRouter();
 
@@ -25,13 +23,16 @@ function Pokedex() {
 
   let offset = parseInt((router.query.offset as string) ?? "1");
 
-  const { isLoading, error, data } = useQuery(["content", offset], async () => {
-    const response = await axios.get(
-      `http://localhost:8081/api/pokemon?offset=${offset}&pageSize=24`
-    );
-    const data = await response.data;
-    return data;
-  });
+  const { isLoading, error, data } = useInfiniteQuery(
+    ["content", offset],
+    async () => {
+      const response = await axios.get(
+        `http://localhost:8081/api/pokemon?offset=${offset}&pageSize=24`
+      );
+      const data = await response.data;
+      return data;
+    }
+  );
 
   useEffect(() => {
     if (data) {
@@ -63,7 +64,7 @@ function Pokedex() {
   }
 
   return (
-    <Box bgGradient={theme} style={{ minHeight: "70rem" }}>
+    <Box bgGradient={theme} minH="70rem">
       <Navbar goBack={back} goForward={forward}></Navbar>
       <Box display={["none", null, "block"]}>
         <DesktopPokemonList post={pokemon} />

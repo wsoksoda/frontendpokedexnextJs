@@ -1,6 +1,5 @@
 import { HStack, Image, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import React from "react";
 
 interface Props {
   day: number;
@@ -12,7 +11,7 @@ interface Props {
 function WeatherHourBlockWind(props: Props) {
   return (
     <motion.div whileHover={{ scale: 1.2 }}>
-      <Text fontSize={"xl"}>{props.normalHour}</Text>
+      <Text fontSize="xl">{props.normalHour}</Text>
       <Image
         src={
           props.data.forecast.forecastday[props.day].hour[props.militaryHour]
@@ -20,13 +19,13 @@ function WeatherHourBlockWind(props: Props) {
         }
       ></Image>
       <HStack>
-        <Text fontSize={"xl"}>
+        <Text fontSize="xl">
           {
             props.data.forecast.forecastday[props.day].hour[props.militaryHour]
               .wind_mph
           }
         </Text>
-        <Text fontSize={"3xs"}>Mph</Text>
+        <Text fontSize="3xs">Mph</Text>
       </HStack>
     </motion.div>
   );
