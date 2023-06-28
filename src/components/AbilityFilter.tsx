@@ -1,8 +1,8 @@
 import axios from "axios";
-import React, { useEffect } from "react";
-import PokemonCard from "./desktopPokemonList";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "@chakra-ui/react";
+import DesktopPokemonList from "./DesktopPokemonList";
 
 interface Props {
   choice: string;
@@ -11,16 +11,16 @@ interface Props {
   setPages: (pages: number) => void;
 }
 
-function TypeFilter(props: Props) {
-  let pokemons: pokemon[] = [];
+function AbilityFilter(props: Props) {
+  let pokemonArray: pokemon[] = [];
 
-  const [pokemon, setPokemon] = React.useState<pokemon[]>(pokemons);
+  const [pokemon, setPokemon] = useState<pokemon[]>(pokemonArray);
 
   const { isLoading, error, data } = useQuery(
     ["ability", props.offset, props.choice],
     async () => {
       const response = await axios.get(
-        `http://localhost:8081/api/pokemon/type?type=${props.choice}&offset=${props.offset}&pageSize=24`
+        `http://localhost:8081/api/pokemon/ability?ability=${props.choice}&offset=${props.offset}&pageSize=24`
       );
       const data = await response.data;
       return data;
@@ -36,13 +36,9 @@ function TypeFilter(props: Props) {
 
   if (isLoading) return <Spinner />;
 
-  if (error) return "No Pokemon with that type";
+  if (error) return "No Pokemon with that ability";
 
-  return (
-    <div className="body">
-      <PokemonCard post={pokemon} />
-    </div>
-  );
+  return <DesktopPokemonList post={pokemon} />;
 }
 
-export default TypeFilter;
+export default AbilityFilter;

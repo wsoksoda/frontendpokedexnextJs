@@ -1,6 +1,5 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { useColorModeValue, Flex, Box, Button } from "@chakra-ui/react";
-import React from "react";
 
 interface Props {
   goBack: () => void;
@@ -12,8 +11,8 @@ function MobileFooter(props: Props) {
     <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
       <Flex
         h={16}
-        alignItems={"center"}
-        justifyContent={"space-between"}
+        alignItems="center"
+        justifyContent="space-between"
         as="footer"
         position="fixed"
         left="0"
