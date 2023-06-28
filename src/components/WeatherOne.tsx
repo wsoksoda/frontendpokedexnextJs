@@ -1,8 +1,7 @@
-import React from "react";
-import WeatherDetailHumidity from "./weatherDetailHumidity";
-import WeatherDetailRain from "./weatherDetailRain";
-import WeatherDetailTemp from "./weatherDetailTemp";
-import WeatherDetailWind from "./weatherDetailWind";
+import WeatherDetailHumidity from "./WeatherDetailHumidity";
+import WeatherDetailRain from "./WeatherDetailRain";
+import WeatherDetailTemp from "./WeatherDetailTemp";
+import WeatherDetailWind from "./WeatherDetailWind";
 
 interface Prop {
   day: number;

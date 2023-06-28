@@ -1,14 +1,27 @@
-import WeatherDetailBody from "@/weatherDetailBody";
-import WeatherHeader from "@/weatherHeader";
-import WeatherOne from "@/weatherOne";
-import { Box, CloseButton, Link, Spinner, Stack, Text } from "@chakra-ui/react";
+import WeatherDetailBody from "@/components/WeatherDetailBody";
+import WeatherHeader from "@/components/WeatherHeader";
+import WeatherOne from "@/components/WeatherOne";
+import {
+  Box,
+  Center,
+  CloseButton,
+  Link,
+  Spinner,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import { useState } from "react";
 
 function WeatherDetail() {
+  const router = useRouter();
   const [weatherType, setWeatherType] = useState(1);
+
+  const day = parseInt((router.query.day as string) ?? "1");
+
+  const position = parseInt((router.query.position as string) ?? "1");
 
   const { isLoading, error, data } = useQuery(["week"], async () => {
     const response = await axios.get(
@@ -24,12 +37,6 @@ function WeatherDetail() {
 
   if (error) return "An error has occured";
 
-  const router = useRouter();
-
-  const day = parseInt((router.query.day as string) ?? "1");
-
-  const position = parseInt((router.query.position as string) ?? "1");
-
   const week = [
     "Sunday",
     "Monday",
@@ -42,24 +49,23 @@ function WeatherDetail() {
 
   return (
     <Box
-      style={{ minHeight: "100vh", paddingTop: "10rem" }}
+      minH="100vh"
+      pt="10rem"
       bgGradient="linear(to-b,#2980B9 ,#6DD5FA 90%,#FFFFFF )"
     >
-      <Box style={{ textAlign: "center" }}>
+      <Box textAlign="center">
         <Stack
           direction="row"
           spacing={6}
-          style={{
-            textAlign: "center",
-            display: "block",
-            marginRight: "auto",
-            marginLeft: "auto",
-          }}
+          textAlign="center"
+          display="block"
+          marginRight="auto"
+          marginLeft="auto"
         >
           <Link href="/weather">
-            <CloseButton size="lg" style={{ marginLeft: "22rem" }} />
+            <CloseButton size="lg" marginLeft="22rem" />
           </Link>
-          <Text fontSize={"3xl"}>Fargo</Text>
+          <Text fontSize="3xl">Fargo</Text>
         </Stack>
         <WeatherHeader day={week[day]} />
         <WeatherDetailBody
@@ -68,7 +74,9 @@ function WeatherDetail() {
           day={position}
         />
       </Box>
-      <WeatherOne day={position} data={data} choice={weatherType} />
+      <Center>
+        <WeatherOne day={position} data={data} choice={weatherType} />
+      </Center>
     </Box>
   );
 }

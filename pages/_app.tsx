@@ -1,7 +1,7 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AnimatePresence } from "framer-motion";
+import { AppProps } from "next/app";
 
 const queryClient = new QueryClient({
   defaultOptions: {

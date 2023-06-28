@@ -1,6 +1,6 @@
-import { Card, CardHeader, CardBody, Text, Image } from "@chakra-ui/react";
+import { typeColor } from "@/utils/PokemonInterface";
+import { Card, CardHeader, CardBody, Text, Image, Box } from "@chakra-ui/react";
 import Link from "next/link";
-import { typeColor } from "./pokemonInterface";
 import { useRouter } from "next/router";
 
 interface Props {
@@ -17,27 +17,18 @@ function mobilePokemonList(props: Props) {
   const secondValue = router.query.secondValue as string;
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        flexWrap: "wrap",
-        marginRight: "3rem",
-        marginLeft: "3rem",
-      }}
-    >
+    <Box display="flex" flexDirection="row" flexWrap="wrap" mr="3rem" ml="3rem">
       {props.post.map((post) => (
         <Card
           className="m-1 "
-          style={{
-            width: "17rem",
-            height: "25rem",
-            margin: ".5rem",
-          }}
+          width="17rem"
+          height="25rem"
+          margin=".5rem"
           key={post.id}
         >
           <Link
-            style={{ color: "black", textDecoration: "none" }}
+            color="black"
+            style={{ textDecoration: "none" }}
             href={`/pokemon?id=${post.id}&offset=${offset}&firstValue=${firstValue}&secondValue=${secondValue}`}
           >
             <CardBody>
@@ -48,18 +39,16 @@ function mobilePokemonList(props: Props) {
               <div className="display">
                 {post.type.map((type, typeIndex) => (
                   <Text
-                    style={{
-                      width: "5rem",
-                      backgroundColor: typeColor[type.type],
-                      display: "block",
-                      float: "left",
-                      marginLeft: "1rem",
-                      paddingTop: ".25rem",
-                      textAlign: "center",
-                      height: "2rem",
-                      borderRadius: "1rem",
-                      marginTop: ".5rem",
-                    }}
+                    width="5rem"
+                    backgroundColor={typeColor[type.type]}
+                    display="block"
+                    float="left"
+                    ml="1rem"
+                    pt=".25rem"
+                    textAlign="center"
+                    height="2rem"
+                    borderRadius="1rem"
+                    mt=".5rem"
                     key={type.id}
                   >
                     {type.type}
@@ -70,7 +59,7 @@ function mobilePokemonList(props: Props) {
           </Link>
         </Card>
       ))}
-    </div>
+    </Box>
   );
 }
 

@@ -1,6 +1,5 @@
 import { Text, Image, Box, Link } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import React from "react";
 
 interface Props {
   day: number;
@@ -22,28 +21,19 @@ function WeatherDayBlock(props: Props) {
   return (
     <motion.div whileHover={{ scale: 1.2 }}>
       <Link href={`/weatherDetail?position=${props.position}&day=${props.day}`}>
-        <Box
-          style={{
-            display: "block",
-            marginRight: "auto",
-            marginLeft: "auto",
-            textAlign: "center",
-          }}
-        >
-          <Text fontSize={"2xl"} style={{ marginTop: "3rem" }}>
+        <Box display="block" mr="auto" ml="auto" textAlign="center">
+          <Text fontSize="2xl" mt="3rem">
             {week[props.day]}
           </Text>
           <Image
-            style={{
-              display: "block",
-              marginRight: "auto",
-              marginLeft: "auto",
-            }}
+            display="block"
+            mr="auto"
+            ml="auto"
             src={
               props.data.forecast.forecastday[props.position].day.condition.icon
             }
           ></Image>
-          <Text fontSize={"xl"}>
+          <Text fontSize="xl">
             Low: {props.data.forecast.forecastday[props.position].day.mintemp_f}
             ° High:{" "}
             {props.data.forecast.forecastday[props.position].day.maxtemp_f}°

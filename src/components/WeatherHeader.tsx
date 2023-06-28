@@ -1,5 +1,4 @@
 import { Text } from "@chakra-ui/react";
-import React from "react";
 
 interface Prop {
   day: string;
@@ -8,10 +7,7 @@ interface Prop {
 function WeatherHeader(props: Prop) {
   return (
     <>
-      <Text
-        fontSize={"2xl"}
-        style={{ marginTop: "2rem", marginBottom: "1rem" }}
-      >
+      <Text fontSize="2xl" mt="2rem" mb="1rem">
         {props.day}
       </Text>
     </>

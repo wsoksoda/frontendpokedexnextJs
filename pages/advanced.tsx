@@ -1,15 +1,15 @@
-import Ability from "@/ability";
-import AbilityFilter from "@/abilityFilter";
-import SearchFilter from "@/searchFilter";
-import TypeFilter from "@/typeFilter";
-import Navbar from "@/navbar";
-import Search from "@/search";
+import Ability from "@/components/Ability";
+import AbilityFilter from "@/components/AbilityFilter";
+import SearchFilter from "@/components/SearchFilter";
+import TypeFilter from "@/components/TypeFilter";
+import Navbar from "@/components/Navbar";
+import Search from "@/components/Search";
 import { Box, Grid, Select } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
-import Egg from "@/egg";
-import EggFilter from "@/eggFilter";
-import Type from "@/type";
+import { useState } from "react";
+import Egg from "@/components/Egg";
+import EggFilter from "@/components/EggFilter";
+import Type from "@/components/Type";
 
 interface DropdownProp {
   typeOfSearch: string;
@@ -76,20 +76,14 @@ function FilteredPokemonList(props: FilteredPokemonProp) {
 }
 
 function Advanced() {
+  const router = useRouter();
+  const offset = parseInt((router.query.offset as string) ?? "1");
+  const firstValue = router.query.firstValue as string;
+  const secondValue = router.query.secondValue as string;
+  const theme = `linear(to-l,#${firstValue},#${secondValue})`;
   const [typeOfSearch, setTypeOfSearch] = useState("1");
   const [SearchInputValue, setSearchInputValue] = useState("");
-
-  const [pages, setPages] = React.useState(1);
-
-  const router = useRouter();
-
-  const firstValue = router.query.firstValue as string;
-
-  const secondValue = router.query.secondValue as string;
-
-  const theme = `linear(to-l,#${firstValue},#${secondValue})`;
-
-  const offset = parseInt((router.query.offset as string) ?? "1");
+  const [pages, setPages] = useState(1);
 
   function setSearchInput(chosen: string): void {
     setSearchInputValue(chosen);
@@ -113,10 +107,10 @@ function Advanced() {
     }
   }
   return (
-    <Box bgGradient={theme} style={{ minHeight: "100rem" }}>
+    <Box bgGradient={theme} minH="100rem">
       <Navbar goBack={back} goForward={forward} />
-      <div className="body" style={{ paddingTop: "2rem", color: "white" }}>
-        <Grid templateColumns="repeat(2,1fr)" gap={6}>
+      <Box color="white" pt="2rem">
+        <Grid templateColumns="repeat(2,1fr)" gap="6">
           <Select
             aria-label="Floating label select example"
             onChange={(e) => setTypeOfSearch(e.target.value)}
@@ -138,7 +132,7 @@ function Advanced() {
           searchInputValue={SearchInputValue}
           setPages={setPages}
         />
-      </div>
+      </Box>
     </Box>
   );
 }

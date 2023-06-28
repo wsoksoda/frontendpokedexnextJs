@@ -18,7 +18,7 @@ export default function Navbar(props: Prop) {
 
   return (
     <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
-      <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+      <Flex h={16} alignItems="center" justifyContent="space-between">
         <motion.div whileHover={{ scale: 1.2 }}>
           <Box display={["none", null, "block"]}>
             <Button onClick={props.goBack}>

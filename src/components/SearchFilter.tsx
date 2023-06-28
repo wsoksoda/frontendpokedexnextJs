@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import DesktopPokemonList from "./desktopPokemonList";
 import { Spinner } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
+import DesktopPokemonList from "./DesktopPokemonList";
 
 interface Props {
   choice: string;
@@ -13,7 +13,7 @@ interface Props {
 function SearchFilter(props: Props) {
   let pokemons: pokemon[] = [];
 
-  const [pokemon, setPokemon] = React.useState<pokemon[]>(pokemons);
+  const [pokemon, setPokemon] = useState<pokemon[]>(pokemons);
 
   const { isLoading, error, data } = useQuery(
     ["ability", props.offset, props.choice],

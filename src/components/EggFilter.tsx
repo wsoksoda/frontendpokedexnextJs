@@ -1,26 +1,25 @@
 import axios from "axios";
-import React, { useEffect } from "react";
-import PokemonCard from "./desktopPokemonList";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "@chakra-ui/react";
+import DesktopPokemonList from "./DesktopPokemonList";
 
 interface Props {
   choice: string;
   offset: number;
-
   setPages: (pages: number) => void;
 }
 
-function AbilityFilter(props: Props) {
-  let pokemonArray: pokemon[] = [];
+function EggFilter(props: Props) {
+  let pokemons: pokemon[] = [];
 
-  const [pokemon, setPokemon] = React.useState<pokemon[]>(pokemonArray);
+  const [pokemon, setPokemon] = useState<pokemon[]>(pokemons);
 
   const { isLoading, error, data } = useQuery(
-    ["ability", props.offset, props.choice],
+    ["eggGroup", props.offset, props.choice],
     async () => {
       const response = await axios.get(
-        `http://localhost:8081/api/pokemon/ability?ability=${props.choice}&offset=${props.offset}&pageSize=24`
+        `http://localhost:8081/api/pokemon/egg?eggGroup=${props.choice}&offset=${props.offset}&pageSize=24`
       );
       const data = await response.data;
       return data;
@@ -36,9 +35,9 @@ function AbilityFilter(props: Props) {
 
   if (isLoading) return <Spinner />;
 
-  if (error) return "No Pokemon with that ability";
+  if (error) return "No Pokemon with that egg group";
 
-  return <PokemonCard post={pokemon} />;
+  return <DesktopPokemonList post={pokemon} />;
 }
 
-export default AbilityFilter;
+export default EggFilter;

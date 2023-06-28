@@ -9,10 +9,10 @@ import {
   Text,
   Image,
 } from "@chakra-ui/react";
-import React, { useEffect } from "react";
-import { PokemonChart } from "./pokemonChart";
-import { typeColor } from "./pokemonInterface";
+import { useState, useEffect } from "react";
+import { PokemonChart } from "./PokemonChart";
 import { useRouter } from "next/router";
+import { typeColor } from "@/utils/PokemonInterface";
 
 interface Props {
   data: any;
@@ -22,8 +22,8 @@ function MobilePokemonCard(props: Props) {
   let thisPokemon = {} as pokemon;
   let thisStat = {} as stat;
 
-  const [pokemon, setPokemon] = React.useState(thisPokemon);
-  const [stats, setStats] = React.useState(thisStat);
+  const [pokemon, setPokemon] = useState(thisPokemon);
+  const [stats, setStats] = useState(thisStat);
 
   const router = useRouter();
 
@@ -35,16 +35,8 @@ function MobilePokemonCard(props: Props) {
   }, [props.data]);
 
   return (
-    <Box style={{ minHeight: "70rem" }}>
-      <Card
-        style={{
-          width: "18rem",
-          display: "block",
-          margin: "auto",
-          marginTop: "2rem",
-          marginBottom: "10rem",
-        }}
-      >
+    <Box minHeight="70rem">
+      <Card width="18rem" display="block" m="auto" mt="2rem" mb="10rem">
         <CardBody>
           <CardHeader>
             <HStack spacing="1rem">
@@ -54,24 +46,31 @@ function MobilePokemonCard(props: Props) {
                 </Button>
               </Box>
               <Box>
-                <h1>{pokemon.name} &nbsp;</h1>
-                <h1 style={{ color: "gray" }}> #{pokemon.id}</h1>
+                <HStack spacing="none">
+                  <Box>
+                    <Text fontSize="m">{pokemon.name} </Text>
+                  </Box>
+                  <Box>
+                    <Text fontSize="m" color="gray">
+                      {" "}
+                      #{pokemon.id}
+                    </Text>
+                  </Box>
+                </HStack>
               </Box>
               <Box>
                 {pokemon.type?.map((type, typeIndex) => (
                   <Text
-                    style={{
-                      width: "5rem",
-                      backgroundColor: typeColor[type.type],
-                      display: "block",
-                      float: "left",
-                      marginLeft: "1rem",
-                      paddingTop: ".25rem",
-                      textAlign: "center",
-                      height: "2rem",
-                      borderRadius: "1rem",
-                      marginTop: ".5rem",
-                    }}
+                    width="5rem"
+                    backgroundColor={typeColor[type.type]}
+                    display="block"
+                    float="left"
+                    ml="1rem"
+                    pt=".25rem"
+                    textAlign="center"
+                    height="2rem"
+                    borderRadius="1rem"
+                    mt=".5rem"
                     key={type.id}
                   >
                     {type.type}
@@ -81,7 +80,7 @@ function MobilePokemonCard(props: Props) {
             </HStack>
           </CardHeader>
           <Image
-            style={{ maxWidth: "10rem" }}
+            maxWidth="10rem"
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
           ></Image>
           <div>
@@ -102,7 +101,7 @@ function MobilePokemonCard(props: Props) {
               <Text key={eggGroup.id}>&emsp;{eggGroup.eggGroup}</Text>
             ))}
           </div>
-          <Box style={{ height: "16rem" }}>
+          <Box height="16rem">
             <PokemonChart
               id={stats.id}
               hp={stats.hp}
