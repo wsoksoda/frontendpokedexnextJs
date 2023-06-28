@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { Box, Spinner } from "@chakra-ui/react";
 import Navbar from "@/components/Navbar";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import MobileFooter from "@/components/MobileFooter";
 import MobilePokemonList from "@/components/MobilePokemonList";
 import DesktopPokemonList from "@/components/DesktopPokemonList";
@@ -23,16 +23,13 @@ function Pokedex() {
 
   let offset = parseInt((router.query.offset as string) ?? "1");
 
-  const { isLoading, error, data } = useInfiniteQuery(
-    ["content", offset],
-    async () => {
-      const response = await axios.get(
-        `http://localhost:8081/api/pokemon?offset=${offset}&pageSize=24`
-      );
-      const data = await response.data;
-      return data;
-    }
-  );
+  const { isLoading, error, data } = useQuery(["content", offset], async () => {
+    const response = await axios.get(
+      `http://localhost:8081/api/pokemon?offset=${offset}&pageSize=24`
+    );
+    const data = await response.data;
+    return data;
+  });
 
   useEffect(() => {
     if (data) {
