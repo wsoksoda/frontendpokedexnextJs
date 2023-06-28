@@ -1,4 +1,4 @@
-import { Center, Box, HStack, Spinner } from "@chakra-ui/react";
+import { Center, HStack } from "@chakra-ui/react";
 import WeatherHourBlockRain from "./WeatherHourBlockRain";
 
 interface Prop {

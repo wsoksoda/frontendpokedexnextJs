@@ -28,8 +28,8 @@ function Index() {
   const [firstColor, setFirstColor] = useState("#000000");
   const [secondColor, setSecondColor] = useState("#000000");
 
-  var firstValue = "";
-  var secondValue = "";
+  let firstValue = "";
+  let secondValue = "";
 
   if (value == `linear(to-l,${theme.red[0]},${theme.red[1]})`) {
     firstValue = "ED213A";
