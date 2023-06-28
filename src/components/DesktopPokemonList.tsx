@@ -1,4 +1,4 @@
-import { typeColor } from "@/utils/pokemonInterface";
+import { typeColor } from "@/utils/PokemonInterface";
 import { Card, CardHeader, CardBody, Text, Image, Box } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import Link from "next/link";

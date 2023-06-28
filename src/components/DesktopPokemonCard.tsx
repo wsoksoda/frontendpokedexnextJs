@@ -12,7 +12,7 @@ import {
 import { useEffect, useState } from "react";
 import { PokemonChart } from "./PokemonChart";
 import { useRouter } from "next/router";
-import { typeColor } from "@/utils/pokemonInterface";
+import { typeColor } from "@/utils/PokemonInterface";
 
 interface Props {
   data: any;
