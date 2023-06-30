@@ -19,8 +19,6 @@ function CsvDownload(props: Props) {
       "description",
     ];
 
-    let key: string;
-
     const id = props.data.id;
     const name = props.data.name;
     let types = [];
