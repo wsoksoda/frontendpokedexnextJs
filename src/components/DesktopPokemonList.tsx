@@ -48,7 +48,7 @@ function DesktopPokemonList(props: Props) {
               <Link
                 color="black"
                 style={{ textDecoration: "none" }}
-                href={`/pokemon?id=${post.id}&offset=${offset}&firstValue=${firstValue}&secondValue=${secondValue}`}
+                href={`/Pokemon?id=${post.id}&offset=${offset}&firstValue=${firstValue}&secondValue=${secondValue}`}
               >
                 <motion.div whileHover={{ scale: 1.2 }}>
                   <CardBody>

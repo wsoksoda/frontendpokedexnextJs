@@ -62,7 +62,7 @@ function WeatherDetail() {
           marginRight="auto"
           marginLeft="auto"
         >
-          <Link href="/weather">
+          <Link href="/Weather">
             <CloseButton size="lg" marginLeft="22rem" />
           </Link>
           <Text fontSize="3xl">Fargo</Text>

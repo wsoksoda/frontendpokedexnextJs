@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { AllTheProviders } from "../jest.setup";
-import Index from "../pages/Index";
+import Index from "../pages";
 
 describe("Index", () => {
   it("renders a heading", () => {

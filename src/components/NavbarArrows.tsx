@@ -33,7 +33,7 @@ export default function NavbarArrows(props: Prop) {
         <motion.div whileHover={{ scale: 1.2 }}>
           <Box>
             <Link
-              href={`http://localhost:3000/pokedex?firstValue=${firstValue}&secondValue=${secondValue}`}
+              href={`http://localhost:3000/Pokedex?firstValue=${firstValue}&secondValue=${secondValue}`}
             >
               Pokedex
             </Link>
@@ -42,7 +42,7 @@ export default function NavbarArrows(props: Prop) {
         <motion.div whileHover={{ scale: 1.2 }}>
           <Box>
             <Link
-              href={`/advanced?firstValue=${firstValue}&secondValue=${secondValue}`}
+              href={`/Advanced?firstValue=${firstValue}&secondValue=${secondValue}`}
             >
               Advanced Search
             </Link>
@@ -51,7 +51,7 @@ export default function NavbarArrows(props: Prop) {
         <motion.div whileHover={{ scale: 1.2 }}>
           <Box>
             <Link
-              href={`/quiz?firstValue=${firstValue}&secondValue=${secondValue}`}
+              href={`/Quiz?firstValue=${firstValue}&secondValue=${secondValue}`}
             >
               What Pokemon am I
             </Link>
