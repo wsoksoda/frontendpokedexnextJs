@@ -5,7 +5,7 @@ import {
 } from "@testing-library/react";
 import { AllTheProviders } from "../jest.setup";
 import mockRouter from "next-router-mock";
-import Pokemon from "../pages/pokemon";
+import Pokemon from "../pages/Pokemon";
 
 // Mock the useRouter hook
 jest.mock("next/router", () => require("next-router-mock"));
