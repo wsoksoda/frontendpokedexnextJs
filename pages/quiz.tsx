@@ -1,14 +1,13 @@
 import DesktopPokemonCard from "@/components/DesktopPokemonCard";
 import MobilePokemonCard from "@/components/MobilePokemonCard";
+import Navbar from "@/components/Navbar";
 import {
   Box,
   Button,
-  Flex,
   FormControl,
   FormLabel,
   HStack,
   Input,
-  Link,
   Radio,
   RadioGroup,
   Slider,
@@ -66,41 +65,14 @@ function Quiz() {
 
   if (submit == "1") {
     return (
-      <>
-        <Box px="4">
-          <Flex h="16" alignItems="center" justifyContent="space-around">
-            <Box>
-              <Link href="http://localhost:3000">Pick a Theme</Link>
-            </Box>
-            <Box>
-              <Link
-                href={`http://localhost:3000/pokedex?firstValue=${firstValue}&secondValue=${secondValue}`}
-              >
-                Pokedex
-              </Link>
-            </Box>
-            <Box>
-              <Link
-                href={`/advanced?firstValue=${firstValue}&secondValue=${secondValue}`}
-              >
-                Advanced Search
-              </Link>
-            </Box>
-            <Box>
-              <Link
-                href={`/quiz?firstValue=${firstValue}&secondValue=${secondValue}`}
-              >
-                What Pokemon am I
-              </Link>
-            </Box>
-          </Flex>
-        </Box>
+      <Box px="4">
+        <Navbar />
         <Box bgGradient={theme} minH="100rem" color="white">
           <Text fontSize="3xl" textAlign="center" paddingTop="2rem">
             Pokemon Quiz
           </Text>
           <FormControl
-            width="50rem"
+            width="100%"
             display="block"
             mr="auto"
             ml="auto"
@@ -115,7 +87,7 @@ function Quiz() {
             />
           </FormControl>
           <FormControl
-            width="50rem"
+            width="90%"
             display="block"
             mr="auto"
             ml="auto"
@@ -225,7 +197,7 @@ function Quiz() {
             </Button>
           </motion.div>
         </Box>
-      </>
+      </Box>
     );
   } else {
     return (

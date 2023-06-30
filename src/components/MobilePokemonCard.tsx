@@ -39,7 +39,7 @@ function MobilePokemonCard(props: Props) {
       <Card width="18rem" display="block" m="auto" mt="2rem" mb="10rem">
         <CardBody>
           <CardHeader>
-            <HStack spacing="1rem">
+            <HStack>
               <Box>
                 <Button onClick={() => router.back()}>
                   <ArrowBackIcon />
@@ -65,7 +65,6 @@ function MobilePokemonCard(props: Props) {
                     backgroundColor={typeColor[type.type]}
                     display="block"
                     float="left"
-                    ml="1rem"
                     pt=".25rem"
                     textAlign="center"
                     height="2rem"

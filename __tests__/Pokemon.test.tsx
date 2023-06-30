@@ -3,9 +3,9 @@ import {
   screen,
   waitForElementToBeRemoved,
 } from "@testing-library/react";
-import Pokemon from "../pages/Pokemon";
 import { AllTheProviders } from "../jest.setup";
 import mockRouter from "next-router-mock";
+import Pokemon from "../pages/pokemon";
 
 // Mock the useRouter hook
 jest.mock("next/router", () => require("next-router-mock"));

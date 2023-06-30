@@ -1,10 +1,20 @@
 import { typeColor } from "@/utils/PokemonInterface";
-import { Card, CardHeader, CardBody, Text, Image, Box } from "@chakra-ui/react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Text,
+  Image,
+  Box,
+  Button,
+  Center,
+} from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 interface Props {
   post: pokemon[];
+  morePokemon: () => void;
 }
 
 function mobilePokemonList(props: Props) {
@@ -59,6 +69,11 @@ function mobilePokemonList(props: Props) {
           </Link>
         </Card>
       ))}
+      <Center>
+        <Box mt="2rem">
+          <Button onClick={props.morePokemon}>Load More</Button>
+        </Box>
+      </Center>
     </Box>
   );
 }

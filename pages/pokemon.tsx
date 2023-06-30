@@ -1,11 +1,11 @@
 import axios from "axios";
-import Navbar from "@/components/Navbar";
 import { Box, Spinner } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
 import MobileFooter from "@/components/MobileFooter";
 import DesktopPokemonCard from "@/components/DesktopPokemonCard";
 import MobilePokemonCard from "@/components/MobilePokemonCard";
+import NavbarArrows from "@/components/NavbarArrows";
 
 function Pokemon() {
   let router = useRouter();
@@ -52,7 +52,7 @@ function Pokemon() {
 
   return (
     <Box bgGradient={theme}>
-      <Navbar goBack={back} goForward={forward} />
+      <NavbarArrows goBack={back} goForward={forward} />
       <Box display={["none", null, "block"]}>
         <DesktopPokemonCard data={data} />
       </Box>
