@@ -1,7 +1,6 @@
 import { Box, Flex, Link, Button, useColorModeValue } from "@chakra-ui/react";
 import { ChevronRightIcon, ChevronLeftIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
-
 import { motion } from "framer-motion";
 
 interface Prop {

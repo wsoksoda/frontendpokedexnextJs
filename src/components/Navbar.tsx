@@ -13,8 +13,6 @@ function Navbar(props: Props) {
 
   const secondValue = router.query.secondValue as string;
 
-  const theme = `linear(to-l,#${firstValue},#${secondValue})`;
-
   return (
     <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
       <Flex h="16" alignItems="center" justifyContent="space-around">

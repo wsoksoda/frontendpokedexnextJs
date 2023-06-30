@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { Box, Spinner } from "@chakra-ui/react";
 import Navbar from "@/components/Navbar";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import MobileFooter from "@/components/MobileFooter";
 import MobilePokemonList from "@/components/MobilePokemonList";
 import DesktopPokemonList from "@/components/DesktopPokemonList";
 
