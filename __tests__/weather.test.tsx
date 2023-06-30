@@ -4,8 +4,8 @@ import {
   waitForElementToBeRemoved,
 } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Weather from "../pages/Weather";
 import { AllTheProviders } from "../jest.setup";
+import Weather from "../pages/Weather";
 
 describe("Weather", () => {
   it("renders a heading", async () => {
