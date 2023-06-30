@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 import { PokemonChart } from "./PokemonChart";
 import { useRouter } from "next/router";
 import { typeColor } from "@/utils/PokemonInterface";
+import CsvDownload from "./CsvDownload";
 
 interface Props {
   data: any;
@@ -114,6 +115,7 @@ function MobilePokemonCard(props: Props) {
           </Box>
           <Text fontSize="3xl">{pokemon.genus}</Text>
           <Text>{pokemon.description}</Text>
+          <CsvDownload data={props.data} />
         </CardBody>
       </Card>
     </Box>
