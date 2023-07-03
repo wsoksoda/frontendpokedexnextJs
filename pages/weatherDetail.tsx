@@ -25,7 +25,7 @@ function WeatherDetail() {
 
   const { isLoading, error, data } = useQuery(["week"], async () => {
     const response = await axios.get(
-      "http://api.weatherapi.com/v1/forecast.json?key=d5559d652c3543a6ab7144421231906&q=fargo&days=7&aqi=no&alerts=no"
+      `http://api.weatherapi.com/v1/forecast.json?key=${process.env.NEXT_PUBLIC_WEATHER_KEY}&q=fargo&days=7&aqi=no&alerts=no`
     );
 
     const data = await response.data;
