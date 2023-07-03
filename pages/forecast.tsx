@@ -15,7 +15,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-function WeatherDetail() {
+function Forecast() {
   const router = useRouter();
   const [weatherType, setWeatherType] = useState(1);
 
@@ -62,7 +62,7 @@ function WeatherDetail() {
           marginRight="auto"
           marginLeft="auto"
         >
-          <Link href="/Weather">
+          <Link href="/weather">
             <CloseButton size="lg" marginLeft="22rem" />
           </Link>
           <Text fontSize="3xl">Fargo</Text>
@@ -81,4 +81,4 @@ function WeatherDetail() {
   );
 }
 
-export default WeatherDetail;
+export default Forecast;

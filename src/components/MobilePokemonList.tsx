@@ -39,7 +39,7 @@ function mobilePokemonList(props: Props) {
           <Link
             color="black"
             style={{ textDecoration: "none" }}
-            href={`/Pokemon?id=${post.id}&offset=${offset}&firstValue=${firstValue}&secondValue=${secondValue}`}
+            href={`/pokemon?id=${post.id}&offset=${offset}&firstValue=${firstValue}&secondValue=${secondValue}`}
           >
             <CardBody>
               <CardHeader>{post.name}</CardHeader>

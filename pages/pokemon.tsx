@@ -36,7 +36,7 @@ function Pokemon() {
     if (pokemonId < pokemonSize) {
       let currentPage = pokemonId + 1;
       router.replace(
-        `/Pokemon?id=${currentPage}&firstValue=${firstValue}&secondValue=${secondValue}`
+        `/pokemon?id=${currentPage}&firstValue=${firstValue}&secondValue=${secondValue}`
       );
     }
   }
@@ -45,7 +45,7 @@ function Pokemon() {
     if (pokemonId > 1) {
       let currentPage = pokemonId - 1;
       router.replace(
-        `/Pokemon?id=${currentPage}&firstValue=${firstValue}&secondValue=${secondValue}`
+        `/pokemon?id=${currentPage}&firstValue=${firstValue}&secondValue=${secondValue}`
       );
     }
   }

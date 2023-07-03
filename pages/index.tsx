@@ -1,3 +1,4 @@
+import { MotionBig } from "@/components/motion";
 import {
   Box,
   Button,
@@ -9,7 +10,6 @@ import {
   Image,
   Input,
 } from "@chakra-ui/react";
-import { motion } from "framer-motion";
 import { useState } from "react";
 
 const theme = {
@@ -122,13 +122,13 @@ function Index() {
         />
       </Stack>
 
-      <motion.div whileHover={{ scale: 1.5 }}>
+      <MotionBig>
         <Link
-          href={`/Pokedex?firstValue=${firstValue}&secondValue=${secondValue}`}
+          href={`/pokedex?firstValue=${firstValue}&secondValue=${secondValue}`}
         >
           <Button mt="2rem">Continue to Pokedex</Button>
         </Link>
-      </motion.div>
+      </MotionBig>
       <Image
         m="2rem"
         display="block"
@@ -137,15 +137,15 @@ function Index() {
         src="https://gifdb.com/images/high/pokemon-funny-pikachu-palpitating-eye-twitching-yhwpxv8qqozoungs.gif"
       />
 
-      <motion.div whileHover={{ scale: 1.5 }}>
-        <Link href={`/Weather`}>
+      <MotionBig>
+        <Link href={`/weather`}>
           <Button mt="2rem" height="3.5rem">
             Check if it's safe to
             <br />
             go Pokemon hunting
           </Button>
         </Link>
-      </motion.div>
+      </MotionBig>
     </Box>
   );
 }

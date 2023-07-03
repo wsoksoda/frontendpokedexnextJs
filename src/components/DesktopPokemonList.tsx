@@ -9,9 +9,9 @@ import {
   Button,
   Center,
 } from "@chakra-ui/react";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { MotionBig, MotionSmall } from "./motion";
 
 interface Props {
   post: pokemon[];
@@ -48,9 +48,9 @@ function DesktopPokemonList(props: Props) {
               <Link
                 color="black"
                 style={{ textDecoration: "none" }}
-                href={`/Pokemon?id=${post.id}&offset=${offset}&firstValue=${firstValue}&secondValue=${secondValue}`}
+                href={`/pokemon?id=${post.id}&offset=${offset}&firstValue=${firstValue}&secondValue=${secondValue}`}
               >
-                <motion.div whileHover={{ scale: 1.2 }}>
+                <MotionSmall>
                   <CardBody>
                     <CardHeader>{post.name}</CardHeader>
                     <Image
@@ -76,18 +76,18 @@ function DesktopPokemonList(props: Props) {
                       ))}
                     </div>
                   </CardBody>
-                </motion.div>
+                </MotionSmall>
               </Link>
             </Card>
           ))}
         </Box>
       </Center>
       <Center>
-        <motion.div whileHover={{ scale: 1.5 }}>
+        <MotionBig>
           <Box m="2rem">
             <Button onClick={props.fetchNextPokemonPage}>Load More</Button>
           </Box>
-        </motion.div>
+        </MotionBig>
       </Center>
     </>
   );

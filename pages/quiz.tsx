@@ -1,6 +1,7 @@
 import DesktopPokemonCard from "@/components/DesktopPokemonCard";
 import MobilePokemonCard from "@/components/MobilePokemonCard";
 import Navbar from "@/components/Navbar";
+import { MotionBig } from "@/components/motion";
 import {
   Box,
   Button,
@@ -183,7 +184,7 @@ function Quiz() {
               <Text>Yes</Text>
             </HStack>
           </FormControl>
-          <motion.div whileHover={{ scale: 1.5 }}>
+          <MotionBig>
             <Button
               onClick={() => setSubmit("2")}
               display="block"
@@ -193,14 +194,14 @@ function Quiz() {
             >
               See what Pokemon I am
             </Button>
-          </motion.div>
+          </MotionBig>
         </Box>
       </Box>
     );
   } else {
     return (
       <Box bgGradient={theme} minH="60rem" color="white" paddingTop="2rem">
-        <motion.div whileHover={{ scale: 1.5 }}>
+        <MotionBig>
           <Button
             onClick={() => setSubmit("1")}
             display="block"
@@ -210,7 +211,7 @@ function Quiz() {
           >
             Retake Quiz
           </Button>
-        </motion.div>
+        </MotionBig>
         <Text mt="2rem" textAlign="center">
           Congrats {firstNameValue} you are:
         </Text>

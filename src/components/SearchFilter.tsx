@@ -18,10 +18,10 @@ function SearchFilter(props: Props) {
     fetch,
     {
       getNextPageParam: (lastPage, pages) => {
-        if (!lastPage.data.last) {
-          return lastPage.data.pageable.pageNumber + 2;
+        if (lastPage.data.last) {
+          return undefined;
         }
-        return undefined;
+        return lastPage.data.pageable.pageNumber + 2;
       },
       keepPreviousData: true,
     }

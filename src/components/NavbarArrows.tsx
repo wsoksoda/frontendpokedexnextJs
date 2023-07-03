@@ -1,7 +1,7 @@
 import { Box, Flex, Link, Button, useColorModeValue } from "@chakra-ui/react";
 import { ChevronRightIcon, ChevronLeftIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
-import { motion } from "framer-motion";
+import { MotionSmall } from "./motion";
 
 interface Prop {
   goBack: () => void;
@@ -18,52 +18,52 @@ export default function NavbarArrows(props: Prop) {
   return (
     <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
       <Flex h={16} alignItems="center" justifyContent="space-between">
-        <motion.div whileHover={{ scale: 1.2 }}>
+        <MotionSmall>
           <Box display={["none", null, "block"]}>
             <Button onClick={props.goBack}>
               <ChevronLeftIcon />
             </Button>
           </Box>
-        </motion.div>
-        <motion.div whileHover={{ scale: 1.2 }}>
+        </MotionSmall>
+        <MotionSmall>
           <Box>
-            <Link href="http://localhost:3000">Pick a Theme</Link>
+            <Link href="/">Pick a Theme</Link>
           </Box>
-        </motion.div>
-        <motion.div whileHover={{ scale: 1.2 }}>
+        </MotionSmall>
+        <MotionSmall>
           <Box>
             <Link
-              href={`http://localhost:3000/Pokedex?firstValue=${firstValue}&secondValue=${secondValue}`}
+              href={`/pokedex?firstValue=${firstValue}&secondValue=${secondValue}`}
             >
               Pokedex
             </Link>
           </Box>
-        </motion.div>
-        <motion.div whileHover={{ scale: 1.2 }}>
+        </MotionSmall>
+        <MotionSmall>
           <Box>
             <Link
-              href={`/Advanced?firstValue=${firstValue}&secondValue=${secondValue}`}
+              href={`/advanced?firstValue=${firstValue}&secondValue=${secondValue}`}
             >
               Advanced Search
             </Link>
           </Box>
-        </motion.div>
-        <motion.div whileHover={{ scale: 1.2 }}>
+        </MotionSmall>
+        <MotionSmall>
           <Box>
             <Link
-              href={`/Quiz?firstValue=${firstValue}&secondValue=${secondValue}`}
+              href={`/quiz?firstValue=${firstValue}&secondValue=${secondValue}`}
             >
               What Pokemon am I
             </Link>
           </Box>
-        </motion.div>
-        <motion.div whileHover={{ scale: 1.2 }}>
+        </MotionSmall>
+        <MotionSmall>
           <Box display={["none", null, "block"]}>
             <Button onClick={props.goForward}>
               <ChevronRightIcon />
             </Button>
           </Box>
-        </motion.div>
+        </MotionSmall>
       </Flex>
     </Box>
   );

@@ -1,5 +1,5 @@
 import { Text, Image, Box, Link } from "@chakra-ui/react";
-import { motion } from "framer-motion";
+import { MotionSmall } from "./motion";
 
 interface Props {
   day: number;
@@ -19,8 +19,8 @@ function WeatherDayBlock(props: Props) {
   ];
 
   return (
-    <motion.div whileHover={{ scale: 1.2 }}>
-      <Link href={`/weatherDetail?position=${props.position}&day=${props.day}`}>
+    <MotionSmall>
+      <Link href={`/forecast?position=${props.position}&day=${props.day}`}>
         <Box display="block" mr="auto" ml="auto" textAlign="center">
           <Text fontSize="2xl" mt="3rem">
             {week[props.day]}
@@ -40,7 +40,7 @@ function WeatherDayBlock(props: Props) {
           </Text>
         </Box>
       </Link>
-    </motion.div>
+    </MotionSmall>
   );
 }
 

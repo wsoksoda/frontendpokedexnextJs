@@ -2,6 +2,7 @@ import WeatherBody from "@/components/WeatherBody";
 import WeatherHeader from "@/components/WeatherHeader";
 import WeatherOne from "@/components/WeatherOne";
 import WeatherWeek from "@/components/WeatherWeek";
+import { MotionSmall } from "@/components/motion";
 import {
   Center,
   Box,
@@ -12,7 +13,6 @@ import {
 } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { motion } from "framer-motion";
 
 function Weather() {
   const { isLoading, error, data } = useQuery(["weather"], async () => {
@@ -53,17 +53,17 @@ function Weather() {
       <Box textAlign="center">
         <Text fontSize="3xl">Fargo</Text>
 
-        <motion.div whileHover={{ scale: 1.1 }}>
-          <Link href={`/weatherDetail?position=0&day=${day}`}>
+        <MotionSmall>
+          <Link href={`/forecast?position=0&day=${day}`}>
             <WeatherHeader day={week[day]} />
             <WeatherBody data={data} />
           </Link>
-        </motion.div>
+        </MotionSmall>
       </Box>
       <Center>
         <WeatherOne day={0} data={data} choice={1} />
       </Center>
-      <WeatherWeek startDay={day} data={data} />
+      {/* <WeatherWeek startDay={day} data={data} /> */}
     </Box>
   );
 }

@@ -1,5 +1,5 @@
 import { HStack, Image, Text } from "@chakra-ui/react";
-import { motion } from "framer-motion";
+import { MotionSmall } from "./motion";
 
 interface Props {
   day: number;
@@ -10,7 +10,7 @@ interface Props {
 
 function WeatherHourBlockWind(props: Props) {
   return (
-    <motion.div whileHover={{ scale: 1.2 }}>
+    <MotionSmall>
       <Text fontSize="xl">{props.normalHour}</Text>
       <Image
         src={
@@ -27,7 +27,7 @@ function WeatherHourBlockWind(props: Props) {
         </Text>
         <Text fontSize="3xs">Mph</Text>
       </HStack>
-    </motion.div>
+    </MotionSmall>
   );
 }
 
