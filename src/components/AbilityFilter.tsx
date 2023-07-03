@@ -33,7 +33,9 @@ function AbilityFilter(props: Props) {
 
   if (error) return "An error has occured";
 
-  return <DesktopPokemonList post={pokemon} morePokemon={fetchNextPage} />;
+  return (
+    <DesktopPokemonList post={pokemon} fetchNextPokemonPage={fetchNextPage} />
+  );
 }
 
 export default AbilityFilter;

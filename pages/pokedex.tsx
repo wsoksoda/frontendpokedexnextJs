@@ -43,10 +43,16 @@ function Pokedex() {
       <Navbar />
       <Box mt="2rem">
         <Box display={["none", null, "block"]}>
-          <DesktopPokemonList post={pokemon} morePokemon={fetchNextPage} />
+          <DesktopPokemonList
+            post={pokemon}
+            fetchNextPokemonPage={fetchNextPage}
+          />
         </Box>
         <Box display={["block", null, "none"]}>
-          <MobilePokemonList post={pokemon} morePokemon={fetchNextPage} />
+          <MobilePokemonList
+            post={pokemon}
+            fetchNextPokemonPage={fetchNextPage}
+          />
         </Box>
       </Box>
     </Box>

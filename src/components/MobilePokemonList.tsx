@@ -14,7 +14,7 @@ import { useRouter } from "next/router";
 
 interface Props {
   post: pokemon[];
-  morePokemon: () => void;
+  fetchNextPokemonPage: () => void;
 }
 
 function mobilePokemonList(props: Props) {
@@ -71,7 +71,7 @@ function mobilePokemonList(props: Props) {
       ))}
       <Center>
         <Box mt="2rem">
-          <Button onClick={props.morePokemon}>Load More</Button>
+          <Button onClick={props.fetchNextPokemonPage}>Load More</Button>
         </Box>
       </Center>
     </Box>

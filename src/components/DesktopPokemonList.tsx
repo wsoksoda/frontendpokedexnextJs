@@ -15,7 +15,7 @@ import { useRouter } from "next/router";
 
 interface Props {
   post: pokemon[];
-  morePokemon: () => void;
+  fetchNextPokemonPage: () => void;
 }
 
 function DesktopPokemonList(props: Props) {
@@ -85,7 +85,7 @@ function DesktopPokemonList(props: Props) {
       <Center>
         <motion.div whileHover={{ scale: 1.5 }}>
           <Box m="2rem">
-            <Button onClick={props.morePokemon}>Load More</Button>
+            <Button onClick={props.fetchNextPokemonPage}>Load More</Button>
           </Box>
         </motion.div>
       </Center>

@@ -33,11 +33,9 @@ function EggFilter(props: Props) {
 
   if (error) return "An error has occured";
 
-  function morePokemon() {
-    fetchNextPage();
-  }
-
-  return <DesktopPokemonList post={pokemon} morePokemon={morePokemon} />;
+  return (
+    <DesktopPokemonList post={pokemon} fetchNextPokemonPage={fetchNextPage} />
+  );
 }
 
 export default EggFilter;
