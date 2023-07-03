@@ -46,4 +46,24 @@ describe("Weather Body", () => {
 
     expect(day).toBeInTheDocument;
   });
+  it("renders a max temp", () => {
+    render(
+      <AllTheProviders>
+        <WeatherDayBlock data={data} day={0} position={0} />
+      </AllTheProviders>
+    );
+    const high = screen.queryByText("88.7");
+
+    expect(high).toBeInTheDocument;
+  });
+  it("renders a min temp", () => {
+    render(
+      <AllTheProviders>
+        <WeatherDayBlock data={data} day={0} position={0} />
+      </AllTheProviders>
+    );
+    const low = screen.queryByText("64.4");
+
+    expect(low).toBeInTheDocument;
+  });
 });
