@@ -25,29 +25,33 @@ interface FilteredPokemonProp {
 function Dropdown(props: DropdownProp) {
   if (props.typeOfSearch == "1") {
     return <Search optionChoice={props.setSearchInput} />;
-  } else if (props.typeOfSearch == "2") {
-    return <Type optionChoice={props.setSearchInput} />;
-  } else if (props.typeOfSearch == "3") {
-    return <Ability optionChoice={props.setSearchInput} />;
-  } else if (props.typeOfSearch == "4") {
-    return <Egg optionChoice={props.setSearchInput} />;
-  } else {
-    return <></>;
   }
+  if (props.typeOfSearch == "2") {
+    return <Type optionChoice={props.setSearchInput} />;
+  }
+  if (props.typeOfSearch == "3") {
+    return <Ability optionChoice={props.setSearchInput} />;
+  }
+  if (props.typeOfSearch == "4") {
+    return <Egg optionChoice={props.setSearchInput} />;
+  }
+  return <></>;
 }
 
 function FilteredPokemonList(props: FilteredPokemonProp) {
   if (props.typeOfSearch == "1") {
     return <SearchFilter choice={props.searchInputValue} />;
-  } else if (props.typeOfSearch == "2") {
-    return <TypeFilter choice={props.searchInputValue} />;
-  } else if (props.typeOfSearch == "3") {
-    return <AbilityFilter choice={props.searchInputValue} />;
-  } else if (props.typeOfSearch == "4") {
-    return <EggFilter choice={props.searchInputValue} />;
-  } else {
-    return <></>;
   }
+  if (props.typeOfSearch == "2") {
+    return <TypeFilter choice={props.searchInputValue} />;
+  }
+  if (props.typeOfSearch == "3") {
+    return <AbilityFilter choice={props.searchInputValue} />;
+  }
+  if (props.typeOfSearch == "4") {
+    return <EggFilter choice={props.searchInputValue} />;
+  }
+  return <></>;
 }
 
 function Advanced() {

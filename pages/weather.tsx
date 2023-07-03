@@ -15,7 +15,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 
 function Weather() {
-  const { isLoading, error, data } = useQuery(["week"], async () => {
+  const { isLoading, error, data } = useQuery(["weather"], async () => {
     const response = await axios.get(
       "http://api.weatherapi.com/v1/forecast.json?key=d5559d652c3543a6ab7144421231906&q=fargo&days=7&aqi=no&alerts=no"
     );

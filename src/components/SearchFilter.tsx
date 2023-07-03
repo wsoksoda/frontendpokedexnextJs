@@ -8,11 +8,10 @@ interface Props {
 }
 
 function SearchFilter(props: Props) {
-  const fetch = ({ pageParam: offset = 1 }) => {
-    return axios.get(
+  const fetch = ({ pageParam: offset = 1 }) =>
+    axios.get(
       `http://localhost:8081/api/pokemon/name?name=${props.choice}&offset=${offset}&pageSize=24`
     );
-  };
 
   const { isLoading, error, data, fetchNextPage } = useInfiniteQuery(
     ["content", props.choice],
@@ -21,9 +20,8 @@ function SearchFilter(props: Props) {
       getNextPageParam: (lastPage, pages) => {
         if (!lastPage.data.last) {
           return lastPage.data.pageable.pageNumber + 2;
-        } else {
-          return undefined;
         }
+        return undefined;
       },
       keepPreviousData: true,
     }

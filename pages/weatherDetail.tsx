@@ -23,7 +23,7 @@ function WeatherDetail() {
 
   const position = parseInt((router.query.position as string) ?? "1");
 
-  const { isLoading, error, data } = useQuery(["week"], async () => {
+  const { isLoading, error, data } = useQuery(["Weather"], async () => {
     const response = await axios.get(
       "http://api.weatherapi.com/v1/forecast.json?key=d5559d652c3543a6ab7144421231906&q=fargo&days=7&aqi=no&alerts=no"
     );

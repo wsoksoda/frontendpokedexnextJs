@@ -15,22 +15,18 @@ function Pokedex() {
 
   const theme = `linear(to-l,#${firstValue},#${secondValue})`;
 
-  const fetch = ({ pageParam: offset = 1 }) => {
-    return axios.get(
-      `http://localhost:8081/api/pokemon?offset=${offset}&pageSize=24`
-    );
-  };
+  const fetch = ({ pageParam: offset = 1 }) =>
+    axios.get(`http://localhost:8081/api/pokemon?offset=${offset}&pageSize=24`);
 
   const { isLoading, error, data, fetchNextPage } = useInfiniteQuery(
-    ["content"],
+    ["Pokemon"],
     fetch,
     {
-      getNextPageParam: (lastPage, pages) => {
+      getNextPageParam: (lastPage) => {
         if (!lastPage.data.last) {
           return lastPage.data.pageable.pageNumber + 2;
-        } else {
-          return undefined;
         }
+        return undefined;
       },
       keepPreviousData: true,
     }
@@ -42,20 +38,15 @@ function Pokedex() {
 
   if (error) return "An error has occured";
 
-  function morePokemon() {
-    fetchNextPage();
-    console.log("clicked");
-  }
-
   return (
     <Box bgGradient={theme} minH="70rem">
       <Navbar />
       <Box mt="2rem">
         <Box display={["none", null, "block"]}>
-          <DesktopPokemonList post={pokemon} morePokemon={morePokemon} />
+          <DesktopPokemonList post={pokemon} morePokemon={fetchNextPage} />
         </Box>
         <Box display={["block", null, "none"]}>
-          <MobilePokemonList post={pokemon} morePokemon={morePokemon} />
+          <MobilePokemonList post={pokemon} morePokemon={fetchNextPage} />
         </Box>
       </Box>
     </Box>

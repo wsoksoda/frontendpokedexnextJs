@@ -50,8 +50,6 @@ function Quiz() {
         Number(colorValue)) %
         553
     );
-    console.log(pokemonValue);
-    console.log(typeValue);
     const response = await axios.get(
       `http://localhost:8081/api/pokemon/${queryval}`
     );

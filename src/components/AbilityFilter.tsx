@@ -8,11 +8,10 @@ interface Props {
 }
 
 function AbilityFilter(props: Props) {
-  const fetch = ({ pageParam: offset = 1 }) => {
-    return axios.get(
+  const fetch = ({ pageParam: offset = 1 }) =>
+    axios.get(
       `http://localhost:8081/api/pokemon/ability?ability=${props.choice}&offset=${offset}&pageSize=24`
     );
-  };
 
   const { isLoading, error, data, fetchNextPage } = useInfiniteQuery(
     ["content", props.choice],
@@ -21,9 +20,8 @@ function AbilityFilter(props: Props) {
       getNextPageParam: (lastPage, pages) => {
         if (!lastPage.data.last) {
           return lastPage.data.pageable.pageNumber + 2;
-        } else {
-          return undefined;
         }
+        return undefined;
       },
       keepPreviousData: true,
     }
@@ -35,11 +33,7 @@ function AbilityFilter(props: Props) {
 
   if (error) return "An error has occured";
 
-  function morePokemon() {
-    fetchNextPage();
-  }
-
-  return <DesktopPokemonList post={pokemon} morePokemon={morePokemon} />;
+  return <DesktopPokemonList post={pokemon} morePokemon={fetchNextPage} />;
 }
 
 export default AbilityFilter;
