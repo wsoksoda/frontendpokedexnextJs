@@ -9,6 +9,9 @@ import {
   Text,
   Image,
   Input,
+  InputGroup,
+  InputLeftAddon,
+  Center,
 } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -98,29 +101,35 @@ function Index() {
             Pink
           </Radio>
         </Stack>
-        <Radio value="custom">Customize</Radio>
+        <Radio value="custom">Customize(Hex)</Radio>
       </RadioGroup>
-      <Stack direction="row" m="1rem" display="block" mr="auto" ml="auto">
-        <Input
-          width="10rem"
-          mr=".5rem"
-          placeholder="First color"
-          _placeholder={{ color: "white" }}
-          size="sm"
-          onChange={(e) => {
-            setFirstColor(e.target.value);
-          }}
-        />
-        <Input
-          width="10rem"
-          placeholder="Second color"
-          _placeholder={{ color: "white" }}
-          size="sm"
-          onChange={(e) => {
-            setSecondColor(e.target.value);
-          }}
-        />
-      </Stack>
+      <Center>
+        <Stack direction="row" m="1rem">
+          <InputGroup size="sm">
+            <InputLeftAddon children="#" />
+            <Input
+              width="10rem"
+              mr=".5rem"
+              placeholder="First color"
+              _placeholder={{ color: "white" }}
+              size="sm"
+              onChange={(e) => {
+                setFirstColor(e.target.value);
+              }}
+            />
+            <InputLeftAddon children="#" />
+            <Input
+              width="10rem"
+              placeholder="Second color"
+              _placeholder={{ color: "white" }}
+              size="sm"
+              onChange={(e) => {
+                setSecondColor(e.target.value);
+              }}
+            />
+          </InputGroup>
+        </Stack>
+      </Center>
 
       <MotionBig>
         <Link
