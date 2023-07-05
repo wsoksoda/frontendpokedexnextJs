@@ -6,7 +6,7 @@ import {
 import "@testing-library/jest-dom";
 import { AllTheProviders } from "../jest.setup";
 import mockRouter from "next-router-mock";
-import WeatherDetail from "../pages/forecast";
+import WeatherDetail from "../pages/weather/forecast";
 
 jest.mock("next/router", () => require("next-router-mock"));
 

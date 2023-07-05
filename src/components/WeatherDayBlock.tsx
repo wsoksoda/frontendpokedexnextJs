@@ -20,7 +20,9 @@ function WeatherDayBlock(props: Props) {
 
   return (
     <MotionSmall>
-      <Link href={`/forecast?position=${props.position}&day=${props.day}`}>
+      <Link
+        href={`/weather/forecast?position=${props.position}&day=${props.day}`}
+      >
         <Box display="block" mr="auto" ml="auto" textAlign="center">
           <Text fontSize="2xl" mt="3rem">
             {week[props.day]}

@@ -11,61 +11,27 @@ import Egg from "@/components/Egg";
 import EggFilter from "@/components/EggFilter";
 import Type from "@/components/Type";
 
-interface DropdownProp {
-  typeOfSearch: string;
-  setSearchInput: (chosen: string) => void;
-}
-
-interface FilteredPokemonProp {
-  typeOfSearch: string;
-  searchInputValue: string;
-  offset: number;
-}
-
-function Dropdown(props: DropdownProp) {
-  if (props.typeOfSearch == "1") {
-    return <Search optionChoice={props.setSearchInput} />;
-  }
-  if (props.typeOfSearch == "2") {
-    return <Type optionChoice={props.setSearchInput} />;
-  }
-  if (props.typeOfSearch == "3") {
-    return <Ability optionChoice={props.setSearchInput} />;
-  }
-  if (props.typeOfSearch == "4") {
-    return <Egg optionChoice={props.setSearchInput} />;
-  }
-  return <></>;
-}
-
-function FilteredPokemonList(props: FilteredPokemonProp) {
-  if (props.typeOfSearch == "1") {
-    return <SearchFilter choice={props.searchInputValue} />;
-  }
-  if (props.typeOfSearch == "2") {
-    return <TypeFilter choice={props.searchInputValue} />;
-  }
-  if (props.typeOfSearch == "3") {
-    return <AbilityFilter choice={props.searchInputValue} />;
-  }
-  if (props.typeOfSearch == "4") {
-    return <EggFilter choice={props.searchInputValue} />;
-  }
-  return <></>;
-}
-
 function Advanced() {
   const router = useRouter();
-  const offset = parseInt((router.query.offset as string) ?? "1");
   const firstValue = router.query.firstValue as string;
   const secondValue = router.query.secondValue as string;
   const theme = `linear(to-l,#${firstValue},#${secondValue})`;
-  const [typeOfSearch, setTypeOfSearch] = useState("1");
   const [SearchInputValue, setSearchInputValue] = useState("");
+  const [typeOfSearch, setTypeOfSearch] = useState("1");
 
-  function setSearchInput(chosen: string): void {
-    setSearchInputValue(chosen);
-  }
+  const typeOfDropdown = {
+    "1": <Search optionChoice={setSearchInputValue} />,
+    "2": <Type optionChoice={setSearchInputValue} />,
+    "3": <Ability optionChoice={setSearchInputValue} />,
+    "4": <Egg optionChoice={setSearchInputValue} />,
+  };
+
+  const pokemonList = {
+    "1": <SearchFilter choice={SearchInputValue} />,
+    "2": <TypeFilter choice={SearchInputValue} />,
+    "3": <AbilityFilter choice={SearchInputValue} />,
+    "4": <EggFilter choice={SearchInputValue} />,
+  };
 
   return (
     <Box bgGradient={theme} minH="100rem">
@@ -82,16 +48,15 @@ function Advanced() {
             <option value="3">Ability</option>
             <option value="4">Egg Group</option>
           </Select>
-          <Dropdown
-            typeOfSearch={typeOfSearch}
-            setSearchInput={setSearchInput}
-          />
+          {typeOfSearch == "1" && typeOfDropdown["1"]}
+          {typeOfSearch == "2" && typeOfDropdown["2"]}
+          {typeOfSearch == "3" && typeOfDropdown["3"]}
+          {typeOfSearch == "4" && typeOfDropdown["4"]}
         </Grid>
-        <FilteredPokemonList
-          typeOfSearch={typeOfSearch}
-          offset={offset}
-          searchInputValue={SearchInputValue}
-        />
+        {typeOfSearch == "1" && pokemonList["1"]}
+        {typeOfSearch == "2" && pokemonList["2"]}
+        {typeOfSearch == "3" && pokemonList["3"]}
+        {typeOfSearch == "4" && pokemonList["4"]}
       </Box>
     </Box>
   );

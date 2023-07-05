@@ -5,7 +5,7 @@ import {
 } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { AllTheProviders } from "../jest.setup";
-import Weather from "../pages/Weather";
+import Weather from "../pages/weather";
 
 describe("Weather", () => {
   it("renders a heading", async () => {

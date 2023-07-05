@@ -14,7 +14,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-function Weather() {
+function WeatherIndex() {
   const { isLoading, error, data } = useQuery(["weather"], async () => {
     const response = await axios.get(
       "http://api.weatherapi.com/v1/forecast.json?key=d5559d652c3543a6ab7144421231906&q=fargo&days=7&aqi=no&alerts=no"
@@ -54,7 +54,7 @@ function Weather() {
         <Text fontSize="3xl">Fargo</Text>
 
         <MotionSmall>
-          <Link href={`/forecast?position=0&day=${day}`}>
+          <Link href={`/weather/forecast?position=0&day=${day}`}>
             <WeatherHeader day={week[day]} />
             <WeatherBody data={data} />
           </Link>
@@ -68,4 +68,4 @@ function Weather() {
   );
 }
 
-export default Weather;
+export default WeatherIndex;
