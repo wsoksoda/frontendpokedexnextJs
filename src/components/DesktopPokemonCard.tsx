@@ -18,7 +18,7 @@ interface Props {
   data: any;
 }
 
-function DesktopPokemonCard(props: Props) {
+function DesktopPokemonCard({ data }: Props) {
   let thisPokemon = {} as pokemon;
   let thisStat = {} as stat;
 
@@ -28,11 +28,11 @@ function DesktopPokemonCard(props: Props) {
   const router = useRouter();
 
   useEffect(() => {
-    if (props.data) {
-      setPokemon(props.data);
-      setStats(props.data.stats);
+    if (data) {
+      setPokemon(data);
+      setStats(data.stats);
     }
-  }, [props.data]);
+  }, [data]);
 
   return (
     <Box minH="100rem">

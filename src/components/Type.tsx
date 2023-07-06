@@ -3,13 +3,13 @@ interface Prop {
   optionChoice: (chosen: string) => void;
 }
 
-function Type(props: Prop) {
+function Type({ optionChoice }: Prop) {
   return (
     <>
       <Select
         aria-label="select type"
         onChange={(e) => {
-          props.optionChoice(e.target.value);
+          optionChoice(e.target.value);
         }}
       >
         <option value="none">Please select a Type</option>

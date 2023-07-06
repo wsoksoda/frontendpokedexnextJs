@@ -17,7 +17,7 @@ interface Props {
   fetchNextPokemonPage: () => void;
 }
 
-function mobilePokemonList(props: Props) {
+function mobilePokemonList({ post, fetchNextPokemonPage }: Props) {
   const router = useRouter();
 
   const offset = parseInt((router.query.offset as string) ?? "1");
@@ -28,7 +28,7 @@ function mobilePokemonList(props: Props) {
 
   return (
     <Box display="flex" flexDirection="row" flexWrap="wrap" mr="3rem" ml="3rem">
-      {props.post.map((post) => (
+      {post.map((post) => (
         <Card
           className="m-1 "
           width="17rem"
@@ -71,7 +71,7 @@ function mobilePokemonList(props: Props) {
       ))}
       <Center>
         <Box mt="2rem">
-          <Button onClick={props.fetchNextPokemonPage}>Load More</Button>
+          <Button onClick={fetchNextPokemonPage}>Load More</Button>
         </Box>
       </Center>
     </Box>

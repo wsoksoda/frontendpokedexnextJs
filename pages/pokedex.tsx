@@ -1,10 +1,9 @@
-import axios from "axios";
 import { useRouter } from "next/router";
 import { Box, Spinner } from "@chakra-ui/react";
 import Navbar from "@/components/Navbar";
-import { useInfiniteQuery } from "@tanstack/react-query";
 import MobilePokemonList from "@/components/MobilePokemonList";
 import DesktopPokemonList from "@/components/DesktopPokemonList";
+import { usePokemonInfiniteQuery } from "@/utils/APICalls";
 
 function Pokedex() {
   const router = useRouter();
@@ -15,22 +14,7 @@ function Pokedex() {
 
   const theme = `linear(to-l,#${firstValue},#${secondValue})`;
 
-  const fetch = ({ pageParam: offset = 1 }) =>
-    axios.get(`http://localhost:8081/api/pokemon?offset=${offset}&pageSize=24`);
-
-  const { isLoading, error, data, fetchNextPage } = useInfiniteQuery(
-    ["Pokemon"],
-    fetch,
-    {
-      getNextPageParam: (lastPage) => {
-        if (!lastPage.data.last) {
-          return lastPage.data.pageable.pageNumber + 2;
-        }
-        return undefined;
-      },
-      keepPreviousData: true,
-    }
-  );
+  const { isLoading, error, data, fetchNextPage } = usePokemonInfiniteQuery();
 
   const pokemon = data?.pages.flatMap(({ data }) => data.content) ?? [];
 

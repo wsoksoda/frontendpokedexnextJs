@@ -1,8 +1,5 @@
 import { Flex, Box, Link, useColorModeValue } from "@chakra-ui/react";
-import { motion } from "framer-motion";
 import { useRouter } from "next/router";
-
-import React from "react";
 import { MotionSmall } from "./motion";
 
 function Navbar() {

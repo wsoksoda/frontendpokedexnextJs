@@ -18,7 +18,7 @@ interface Props {
   data: any;
 }
 
-function MobilePokemonCard(props: Props) {
+function MobilePokemonCard({ data }: Props) {
   let thisPokemon = {} as pokemon;
   let thisStat = {} as stat;
 
@@ -28,11 +28,11 @@ function MobilePokemonCard(props: Props) {
   const router = useRouter();
 
   useEffect(() => {
-    if (props.data) {
-      setPokemon(props.data);
-      setStats(props.data.stats);
+    if (data) {
+      setPokemon(data);
+      setStats(data.stats);
     }
-  }, [props.data]);
+  }, [data]);
 
   return (
     <Box minHeight="70rem">

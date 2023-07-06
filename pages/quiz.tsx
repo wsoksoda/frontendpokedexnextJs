@@ -2,6 +2,7 @@ import DesktopPokemonCard from "@/components/DesktopPokemonCard";
 import MobilePokemonCard from "@/components/MobilePokemonCard";
 import Navbar from "@/components/Navbar";
 import { MotionBig } from "@/components/motion";
+import { useSinglePokemonQuery } from "@/utils/APICalls";
 import {
   Box,
   Button,
@@ -21,9 +22,6 @@ import {
   Switch,
   Text,
 } from "@chakra-ui/react";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -43,20 +41,15 @@ function Quiz() {
 
   const theme = `linear(to-l,#${firstValue},#${secondValue})`;
 
-  const { isLoading, error, data } = useQuery(["quiz", submit], async () => {
-    let queryval = String(
-      (Number(pokemonValue) +
-        Number(typeValue) +
-        sliderValue +
-        Number(colorValue)) %
-        553
-    );
-    const response = await axios.get(
-      `http://localhost:8081/api/pokemon/${queryval}`
-    );
-    const data = await response.data;
-    return data;
-  });
+  let pokemonId = String(
+    (Number(pokemonValue) +
+      Number(typeValue) +
+      sliderValue +
+      Number(colorValue)) %
+      553
+  );
+
+  const { isLoading, error, data } = useSinglePokemonQuery(pokemonId);
 
   if (isLoading) return <Spinner />;
 

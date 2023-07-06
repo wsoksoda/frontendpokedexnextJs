@@ -3,31 +3,21 @@ import WeatherHeader from "@/components/WeatherHeader";
 import WeatherOne from "@/components/WeatherOne";
 import WeatherWeek from "@/components/WeatherWeek";
 import { MotionSmall } from "@/components/motion";
+import { useWeather } from "@/utils/APICalls";
 import {
   Center,
   Box,
   CloseButton,
   Link,
-  Spinner,
   Text,
+  Spinner,
 } from "@chakra-ui/react";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 
 function WeatherIndex() {
-  const { isLoading, error, data } = useQuery(["weather"], async () => {
-    const response = await axios.get(
-      "http://api.weatherapi.com/v1/forecast.json?key=d5559d652c3543a6ab7144421231906&q=fargo&days=7&aqi=no&alerts=no"
-    );
-
-    const data = await response.data;
-
-    return data;
-  });
+  const { isLoading, error, data } = useWeather();
 
   if (isLoading) return <Spinner />;
-
-  if (error) return "An error has occured";
+  if (error) return "Error ....";
 
   const dt = new Date();
   const day = dt.getDay();
@@ -41,6 +31,8 @@ function WeatherIndex() {
     "Friday",
     "Saturday",
   ];
+
+  console.log(data);
   return (
     <Box
       minH="100vh"
@@ -63,7 +55,7 @@ function WeatherIndex() {
       <Center>
         <WeatherOne day={0} data={data} choice={1} />
       </Center>
-      {/* <WeatherWeek startDay={day} data={data} /> */}
+      <WeatherWeek startDay={day} data={data} />
     </Box>
   );
 }

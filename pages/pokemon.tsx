@@ -6,6 +6,7 @@ import MobileFooter from "@/components/MobileFooter";
 import DesktopPokemonCard from "@/components/DesktopPokemonCard";
 import MobilePokemonCard from "@/components/MobilePokemonCard";
 import NavbarArrows from "@/components/NavbarArrows";
+import { useSinglePokemonQuery } from "@/utils/APICalls";
 
 function Pokemon() {
   let router = useRouter();
@@ -20,13 +21,7 @@ function Pokemon() {
 
   const pokemonSize = 553;
 
-  const { isLoading, error, data } = useQuery(["id", pokemonId], async () => {
-    const response = await axios.get(
-      `http://localhost:8081/api/pokemon/${pokemonId}`
-    );
-    const data = await response.data;
-    return data;
-  });
+  const { isLoading, error, data } = useSinglePokemonQuery(String(pokemonId));
 
   if (isLoading) return <Spinner />;
 

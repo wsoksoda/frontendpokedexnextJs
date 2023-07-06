@@ -4,12 +4,12 @@ interface Prop {
   optionChoice: (chosen: string) => void;
 }
 
-function Egg(props: Prop) {
+function Egg({ optionChoice }: Prop) {
   return (
     <Select
       aria-label="select type"
       onChange={(e) => {
-        props.optionChoice(e.target.value);
+        optionChoice(e.target.value);
       }}
     >
       <option value="none">Please select an Egg Group</option>

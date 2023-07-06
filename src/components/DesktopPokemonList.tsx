@@ -18,7 +18,7 @@ interface Props {
   fetchNextPokemonPage: () => void;
 }
 
-function DesktopPokemonList(props: Props) {
+function DesktopPokemonList({ post, fetchNextPokemonPage }: Props) {
   const router = useRouter();
 
   const offset = parseInt((router.query.offset as string) ?? "1");
@@ -37,7 +37,7 @@ function DesktopPokemonList(props: Props) {
           alignItems="center"
           justifyContent="center"
         >
-          {props.post.map((post) => (
+          {post.map((post) => (
             <Card
               className="m-1 "
               width="17rem"
@@ -85,7 +85,7 @@ function DesktopPokemonList(props: Props) {
       <Center>
         <MotionBig>
           <Box m="2rem">
-            <Button onClick={props.fetchNextPokemonPage}>Load More</Button>
+            <Button onClick={fetchNextPokemonPage}>Load More</Button>
           </Box>
         </MotionBig>
       </Center>

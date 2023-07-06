@@ -8,7 +8,7 @@ interface Prop {
   goForward: () => void;
 }
 
-export default function NavbarArrows(props: Prop) {
+export default function NavbarArrows({ goBack, goForward }: Prop) {
   let router = useRouter();
 
   const firstValue = router.query.firstValue as string;
@@ -18,53 +18,53 @@ export default function NavbarArrows(props: Prop) {
   return (
     <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
       <Flex h={16} alignItems="center" justifyContent="space-between">
-        <MotionSmall>
-          <Box display={["none", null, "block"]}>
-            <Button onClick={props.goBack}>
-              <ChevronLeftIcon />
-            </Button>
-          </Box>
-        </MotionSmall>
-        <MotionSmall>
-          <Box>
-            <Link href="/">Pick a Theme</Link>
-          </Box>
-        </MotionSmall>
-        <MotionSmall>
-          <Box>
-            <Link
-              href={`/pokedex?firstValue=${firstValue}&secondValue=${secondValue}`}
-            >
-              Pokedex
-            </Link>
-          </Box>
-        </MotionSmall>
-        <MotionSmall>
-          <Box>
-            <Link
-              href={`/advanced?firstValue=${firstValue}&secondValue=${secondValue}`}
-            >
-              Advanced Search
-            </Link>
-          </Box>
-        </MotionSmall>
-        <MotionSmall>
-          <Box>
-            <Link
-              href={`/quiz?firstValue=${firstValue}&secondValue=${secondValue}`}
-            >
-              What Pokemon am I
-            </Link>
-          </Box>
-        </MotionSmall>
-        <MotionSmall>
-          <Box display={["none", null, "block"]}>
-            <Button onClick={props.goForward}>
-              <ChevronRightIcon />
-            </Button>
-          </Box>
-        </MotionSmall>
+        <MotionSmallBoxButton>
+          <Button onClick={goBack}>
+            <ChevronLeftIcon />
+          </Button>
+        </MotionSmallBoxButton>
+        <MotionSmallBox>
+          <Link href="/">Pick a Theme</Link>
+        </MotionSmallBox>
+        <MotionSmallBox>
+          <Link
+            href={`/pokedex?firstValue=${firstValue}&secondValue=${secondValue}`}
+          >
+            Pokedex
+          </Link>
+        </MotionSmallBox>
+        <MotionSmallBox>
+          <Link
+            href={`/advanced?firstValue=${firstValue}&secondValue=${secondValue}`}
+          >
+            Advanced Search
+          </Link>
+        </MotionSmallBox>
+        <MotionSmallBox>
+          <Link
+            href={`/quiz?firstValue=${firstValue}&secondValue=${secondValue}`}
+          >
+            What Pokemon am I
+          </Link>
+        </MotionSmallBox>
+        <MotionSmallBoxButton>
+          <Button onClick={goForward}>
+            <ChevronRightIcon />
+          </Button>
+        </MotionSmallBoxButton>
       </Flex>
     </Box>
   );
 }
+
+const MotionSmallBox = ({ children }: { children?: React.ReactNode }) => (
+  <MotionSmall>
+    <Box>{children}</Box>
+  </MotionSmall>
+);
+
+const MotionSmallBoxButton = ({ children }: { children?: React.ReactNode }) => (
+  <MotionSmall>
+    <Box display={["none", null, "block"]}>{children}</Box>
+  </MotionSmall>
+);

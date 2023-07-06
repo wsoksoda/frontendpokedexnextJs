@@ -8,22 +8,15 @@ interface Props {
   data: any;
 }
 
-function WeatherHourBlockRain(props: Props) {
+function WeatherHourBlockRain({ day, militaryHour, normalHour, data }: Props) {
   return (
     <MotionSmall>
-      <Text fontSize="xl">{props.normalHour}</Text>
+      <Text fontSize="xl">{normalHour}</Text>
       <Image
-        src={
-          props.data.forecast.forecastday[props.day].hour[props.militaryHour]
-            .condition.icon
-        }
+        src={data.forecast.forecastday[day].hour[militaryHour].condition.icon}
       ></Image>
       <Text fontSize="xl">
-        {
-          props.data.forecast.forecastday[props.day].hour[props.militaryHour]
-            .chance_of_rain
-        }
-        %
+        {data.forecast.forecastday[day].hour[militaryHour].chance_of_rain}%
       </Text>
     </MotionSmall>
   );
