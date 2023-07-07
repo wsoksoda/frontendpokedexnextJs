@@ -1,11 +1,11 @@
 import axios from "axios";
-import Navbar from "@/components/Navbar";
 import { Box, Spinner } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
 import MobileFooter from "@/components/MobileFooter";
 import DesktopPokemonCard from "@/components/DesktopPokemonCard";
 import MobilePokemonCard from "@/components/MobilePokemonCard";
+import NavbarArrows from "@/components/NavbarArrows";
 
 function Pokemon() {
   let router = useRouter();
@@ -36,7 +36,7 @@ function Pokemon() {
     if (pokemonId < pokemonSize) {
       let currentPage = pokemonId + 1;
       router.replace(
-        `/pokemon?id=${currentPage}&firstValue=${firstValue}&secondValue=${secondValue}`
+        `/Pokemon?id=${currentPage}&firstValue=${firstValue}&secondValue=${secondValue}`
       );
     }
   }
@@ -45,14 +45,14 @@ function Pokemon() {
     if (pokemonId > 1) {
       let currentPage = pokemonId - 1;
       router.replace(
-        `/pokemon?id=${currentPage}&firstValue=${firstValue}&secondValue=${secondValue}`
+        `/Pokemon?id=${currentPage}&firstValue=${firstValue}&secondValue=${secondValue}`
       );
     }
   }
 
   return (
     <Box bgGradient={theme}>
-      <Navbar goBack={back} goForward={forward} />
+      <NavbarArrows goBack={back} goForward={forward} />
       <Box display={["none", null, "block"]}>
         <DesktopPokemonCard data={data} />
       </Box>

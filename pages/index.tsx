@@ -124,7 +124,7 @@ function Index() {
 
       <motion.div whileHover={{ scale: 1.5 }}>
         <Link
-          href={`/pokedex?firstValue=${firstValue}&secondValue=${secondValue}`}
+          href={`/Pokedex?firstValue=${firstValue}&secondValue=${secondValue}`}
         >
           <Button mt="2rem">Continue to Pokedex</Button>
         </Link>
@@ -138,7 +138,7 @@ function Index() {
       />
 
       <motion.div whileHover={{ scale: 1.5 }}>
-        <Link href={`/weather`}>
+        <Link href={`/Weather`}>
           <Button mt="2rem" height="3.5rem">
             Check if it's safe to
             <br />

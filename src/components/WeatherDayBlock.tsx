@@ -20,7 +20,7 @@ function WeatherDayBlock(props: Props) {
 
   return (
     <motion.div whileHover={{ scale: 1.2 }}>
-      <Link href={`/weatherDetail?position=${props.position}&day=${props.day}`}>
+      <Link href={`/WeatherDetail?position=${props.position}&day=${props.day}`}>
         <Box display="block" mr="auto" ml="auto" textAlign="center">
           <Text fontSize="2xl" mt="3rem">
             {week[props.day]}

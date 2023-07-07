@@ -1,6 +1,3 @@
-import WeatherDetailBody from "@/components/WeatherDetailBody";
-import WeatherHeader from "@/components/WeatherHeader";
-import WeatherOne from "@/components/WeatherOne";
 import {
   Box,
   Center,
@@ -13,9 +10,8 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useState } from "react";
 
-function WeatherDetail() {
+function Forecast() {
   const router = useRouter();
   const [weatherType, setWeatherType] = useState(1);
 
@@ -23,9 +19,9 @@ function WeatherDetail() {
 
   const position = parseInt((router.query.position as string) ?? "1");
 
-  const { isLoading, error, data } = useQuery(["week"], async () => {
+  const { isLoading, error, data } = useQuery(["Weather"], async () => {
     const response = await axios.get(
-      `http://api.weatherapi.com/v1/forecast.json?key=${process.env.NEXT_PUBLIC_WEATHER_KEY}&q=fargo&days=7&aqi=no&alerts=no`
+      "http://api.weatherapi.com/v1/forecast.json?key=d5559d652c3543a6ab7144421231906&q=fargo&days=7&aqi=no&alerts=no"
     );
 
     const data = await response.data;
@@ -62,7 +58,7 @@ function WeatherDetail() {
           marginRight="auto"
           marginLeft="auto"
         >
-          <Link href="/Weather">
+          <Link href="/weather">
             <CloseButton size="lg" marginLeft="22rem" />
           </Link>
           <Text fontSize="3xl">Fargo</Text>
@@ -81,4 +77,4 @@ function WeatherDetail() {
   );
 }
 
-export default WeatherDetail;
+export default Forecast;

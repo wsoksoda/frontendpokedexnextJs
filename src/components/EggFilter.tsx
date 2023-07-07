@@ -1,43 +1,45 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "@chakra-ui/react";
 import DesktopPokemonList from "./DesktopPokemonList";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 interface Props {
   choice: string;
-  offset: number;
-  setPages: (pages: number) => void;
 }
 
 function EggFilter(props: Props) {
-  let pokemons: pokemon[] = [];
+  const fetch = ({ pageParam: offset = 1 }) => {
+    return axios.get(
+      `http://localhost:8081/api/pokemon/egg?eggGroup=${props.choice}&offset=${offset}&pageSize=24`
+    );
+  };
 
-  const [pokemon, setPokemon] = useState<pokemon[]>(pokemons);
-
-  const { isLoading, error, data } = useQuery(
-    ["eggGroup", props.offset, props.choice],
-    async () => {
-      const response = await axios.get(
-        `http://localhost:8081/api/pokemon/egg?eggGroup=${props.choice}&offset=${props.offset}&pageSize=24`
-      );
-      const data = await response.data;
-      return data;
+  const { isLoading, error, data, fetchNextPage } = useInfiniteQuery(
+    ["content", props.choice],
+    fetch,
+    {
+      getNextPageParam: (lastPage, pages) => {
+        if (!lastPage.data.last) {
+          return lastPage.data.pageable.pageNumber + 2;
+        } else {
+          return undefined;
+        }
+      },
+      keepPreviousData: true,
     }
   );
 
-  useEffect(() => {
-    if (data) {
-      setPokemon(data.content);
-      props.setPages(data.totalPages);
-    }
-  }, [data]);
+  const pokemon = data?.pages.flatMap(({ data }) => data.content) ?? [];
 
   if (isLoading) return <Spinner />;
 
-  if (error) return "No Pokemon with that egg group";
+  if (error) return "An error has occured";
 
-  return <DesktopPokemonList post={pokemon} />;
+  function morePokemon() {
+    fetchNextPage();
+  }
+
+  return <DesktopPokemonList post={pokemon} morePokemon={morePokemon} />;
 }
 
 export default EggFilter;

@@ -20,7 +20,6 @@ interface FilteredPokemonProp {
   typeOfSearch: string;
   searchInputValue: string;
   offset: number;
-  setPages: (pages: number) => void;
 }
 
 function Dropdown(props: DropdownProp) {
@@ -39,37 +38,13 @@ function Dropdown(props: DropdownProp) {
 
 function FilteredPokemonList(props: FilteredPokemonProp) {
   if (props.typeOfSearch == "1") {
-    return (
-      <SearchFilter
-        choice={props.searchInputValue}
-        offset={props.offset}
-        setPages={props.setPages}
-      />
-    );
+    return <SearchFilter choice={props.searchInputValue} />;
   } else if (props.typeOfSearch == "2") {
-    return (
-      <TypeFilter
-        choice={props.searchInputValue}
-        offset={props.offset}
-        setPages={props.setPages}
-      />
-    );
+    return <TypeFilter choice={props.searchInputValue} />;
   } else if (props.typeOfSearch == "3") {
-    return (
-      <AbilityFilter
-        choice={props.searchInputValue}
-        offset={props.offset}
-        setPages={props.setPages}
-      />
-    );
+    return <AbilityFilter choice={props.searchInputValue} />;
   } else if (props.typeOfSearch == "4") {
-    return (
-      <EggFilter
-        choice={props.searchInputValue}
-        offset={props.offset}
-        setPages={props.setPages}
-      />
-    );
+    return <EggFilter choice={props.searchInputValue} />;
   } else {
     return <></>;
   }
@@ -83,34 +58,16 @@ function Advanced() {
   const theme = `linear(to-l,#${firstValue},#${secondValue})`;
   const [typeOfSearch, setTypeOfSearch] = useState("1");
   const [SearchInputValue, setSearchInputValue] = useState("");
-  const [pages, setPages] = useState(1);
 
   function setSearchInput(chosen: string): void {
     setSearchInputValue(chosen);
   }
 
-  function forward() {
-    if (offset < pages) {
-      const currentPage = offset + 1;
-      router.push(
-        `advanced/?offset=${currentPage}&firstValue=${firstValue}&secondValue=${secondValue}`
-      );
-    }
-  }
-
-  function back() {
-    if (offset > 1) {
-      const currentPage = offset - 1;
-      router.push(
-        `advanced/?offset=${currentPage}&firstValue=${firstValue}&secondValue=${secondValue}`
-      );
-    }
-  }
   return (
     <Box bgGradient={theme} minH="100rem">
-      <Navbar goBack={back} goForward={forward} />
+      <Navbar />
       <Box color="white" pt="2rem">
-        <Grid templateColumns="repeat(2,1fr)" gap="6">
+        <Grid templateColumns="repeat(2,1fr)" gap="6" mb="2rem">
           <Select
             aria-label="Floating label select example"
             onChange={(e) => setTypeOfSearch(e.target.value)}
@@ -130,7 +87,6 @@ function Advanced() {
           typeOfSearch={typeOfSearch}
           offset={offset}
           searchInputValue={SearchInputValue}
-          setPages={setPages}
         />
       </Box>
     </Box>

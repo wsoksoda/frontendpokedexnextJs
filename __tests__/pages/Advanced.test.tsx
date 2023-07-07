@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import { AllTheProviders } from "../jest.setup";
-import Advanced from "../pages/Advanced";
+import { AllTheProviders } from "../../jest.setup";
 import mockRouter from "next-router-mock";
+import Advanced from "../../pages/Advanced";
 
 // Mock the useRouter hook
 jest.mock("next/router", () => require("next-router-mock"));
