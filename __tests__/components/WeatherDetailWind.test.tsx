@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { AllTheProviders } from "../../jest.setup";
-import WeatherDetailRain from "@/components/WeatherDetailRain";
+import WeatherDetailWind from "@/components/WeatherDetailWind";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
@@ -851,11 +851,11 @@ const data = {
 
 function testFunction(): void {}
 
-describe("Rain", () => {
+describe("Wind", () => {
   it("renders the time for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
     const day = screen.queryAllByText("12:00");
@@ -865,7 +865,7 @@ describe("Rain", () => {
   it("renders the time for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
     const day = screen.queryAllByText("1:00");
@@ -875,7 +875,7 @@ describe("Rain", () => {
   it("renders the time for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
     const day = screen.queryAllByText("2:00");
@@ -885,7 +885,7 @@ describe("Rain", () => {
   it("renders the time for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
     const day = screen.queryAllByText("3:00");
@@ -895,7 +895,7 @@ describe("Rain", () => {
   it("renders the time for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
     const day = screen.queryAllByText("4:00");
@@ -905,7 +905,7 @@ describe("Rain", () => {
   it("renders the time for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
     const day = screen.queryAllByText("5:00");
@@ -915,7 +915,7 @@ describe("Rain", () => {
   it("renders the time for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
     const day = screen.queryAllByText("6:00");
@@ -925,7 +925,7 @@ describe("Rain", () => {
   it("renders the time for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
     const day = screen.queryAllByText("7:00");
@@ -935,7 +935,7 @@ describe("Rain", () => {
   it("renders the time for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
     const day = screen.queryAllByText("8:00");
@@ -945,7 +945,7 @@ describe("Rain", () => {
   it("renders the time for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
     const day = screen.queryAllByText("9:00");
@@ -955,7 +955,7 @@ describe("Rain", () => {
   it("renders the time for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
     const day = screen.queryAllByText("10:00");
@@ -965,7 +965,7 @@ describe("Rain", () => {
   it("renders the time for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
     const day = screen.queryAllByText("11:00");
@@ -975,250 +975,249 @@ describe("Rain", () => {
   it("renders the rain chance for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
     const day = screen.queryByText("70");
   });
-
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("20");
+    const day = screen.queryByText("70");
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("21");
+    const day = screen.queryByText("71");
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("22");
+    const day = screen.queryByText("72");
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("23");
+    const day = screen.queryByText("73");
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("24");
+    const day = screen.queryByText("74");
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("25");
+    const day = screen.queryByText("75");
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("26");
+    const day = screen.queryByText("76");
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("27");
+    const day = screen.queryByText("77");
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("28");
+    const day = screen.queryByText("78");
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("29");
+    const day = screen.queryByText("79");
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("30");
+    const day = screen.queryByText("80");
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("31");
+    const day = screen.queryByText("81");
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("32");
+    const day = screen.queryByText("82");
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("33");
+    const day = screen.queryByText("83");
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("34");
+    const day = screen.queryByText("84");
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("35");
+    const day = screen.queryByText("85");
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("36");
+    const day = screen.queryByText("86");
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("37");
+    const day = screen.queryByText("87");
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("38");
+    const wind = screen.queryByText("88mph");
+
+    expect(wind).toBeInTheDocument;
+  });
+  it("renders the temp for that block", () => {
+    render(
+      <AllTheProviders>
+        <WeatherDetailWind day={0} data={data} />
+      </AllTheProviders>
+    );
+    const day = screen.queryByText("l");
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("39");
+    const day = screen.queryByText("9mph");
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("40");
+    const day = screen.queryByText("91");
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("41");
-
-    expect(day).toBeInTheDocument;
-  });
-  it("renders the rain for that block", () => {
-    render(
-      <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
-      </AllTheProviders>
-    );
-    const day = screen.queryByText("42");
+    const day = screen.queryByText("92");
 
     expect(day).toBeInTheDocument;
   });
 
-  it("renders the rain for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
-        <WeatherDetailRain day={0} data={data} />
+        <WeatherDetailWind day={0} data={data} />
       </AllTheProviders>
     );
-    const day = screen.queryByText("43");
+    const day = screen.queryByText("1000847");
 
     expect(day).toBeInTheDocument;
   });
