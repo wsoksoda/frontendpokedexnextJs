@@ -40,3 +40,7 @@ export const AllTheProviders = ({
 export function useCustomHook() {
   return useQuery({ queryKey: ["customHook"], queryFn: () => "Hello" });
 }
+
+jest.mock("react-chartjs-2", () => ({
+  Bar: () => null,
+}));
