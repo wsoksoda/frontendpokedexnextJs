@@ -849,8 +849,6 @@ const data = {
   },
 };
 
-function testFunction(): void {}
-
 describe("Wind", () => {
   it("renders the time for that block", () => {
     render(
