@@ -144,6 +144,7 @@ function Index() {
         mr="auto"
         ml="auto"
         src="https://gifdb.com/images/high/pokemon-funny-pikachu-palpitating-eye-twitching-yhwpxv8qqozoungs.gif"
+        alt="funny Pikachu image"
       />
 
       <MotionBig>

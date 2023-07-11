@@ -45,6 +45,7 @@ function mobilePokemonList({ post, fetchNextPokemonPage }: Props) {
               <CardHeader>{post.name}</CardHeader>
               <Image
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${post.id}.png`}
+                alt={`An image of${post.name}`}
               ></Image>
               <div className="display">
                 {post.type.map((type, typeIndex) => (

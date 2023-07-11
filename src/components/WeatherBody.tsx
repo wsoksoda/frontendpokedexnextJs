@@ -13,6 +13,7 @@ function WeatherBody({ data }: Prop) {
         mr="auto"
         ml="auto"
         src={data.current.condition.icon}
+        alt={data.current.condition.text}
       />
       <Text fontSize="xl">
         Low: {data.forecast.forecastday[0].day.mintemp_f}° High:{" "}

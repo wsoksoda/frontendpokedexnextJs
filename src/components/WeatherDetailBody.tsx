@@ -17,6 +17,7 @@ function WeatherDetailBody({ day, data, setWeatherType }: Props) {
         mr="auto"
         ml="auto"
         src={data.forecast.forecastday[day].day.condition.icon}
+        alt={data.forecast.forecastday[day].day.condition.text}
       />
       <Text fontSize="xl">
         Low: {data.forecast.forecastday[day].day.mintemp_f}° High:{" "}

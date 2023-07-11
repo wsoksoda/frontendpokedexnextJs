@@ -81,6 +81,7 @@ function MobilePokemonCard({ data }: Props) {
           <Image
             maxWidth="10rem"
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
+            alt={`An image of ${pokemon.name}`}
           ></Image>
           <div>
             <HStack>

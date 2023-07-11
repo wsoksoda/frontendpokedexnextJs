@@ -14,7 +14,8 @@ function WeatherHourBlockTemp({ day, militaryHour, normalHour, data }: Props) {
       <Text fontSize="xl">{normalHour}</Text>
       <Image
         src={data.forecast.forecastday[day].hour[militaryHour].condition.icon}
-      ></Image>
+        alt={data.forecast.forecastday[day].hour[militaryHour].condition.text}
+      />
       <Text fontSize="xl">
         {data.forecast.forecastday[day].hour[militaryHour].temp_f}°
       </Text>
