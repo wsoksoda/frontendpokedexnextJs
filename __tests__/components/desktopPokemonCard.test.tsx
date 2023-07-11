@@ -62,7 +62,7 @@ describe("DesktopPokemonCard", () => {
       </AllTheProviders>
     );
     const bulbasaur = screen.queryAllByText("Bulbasaur");
-    expect(bulbasaur).toHaveLength(2);
+    expect(bulbasaur).toHaveLength(1);
   });
   it("renders Bulbasaur id", async () => {
     render(
