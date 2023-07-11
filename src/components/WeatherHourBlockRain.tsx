@@ -14,7 +14,7 @@ function WeatherHourBlockRain({ day, militaryHour, normalHour, data }: Props) {
       <Text fontSize="xl">{normalHour}</Text>
       <Image
         src={data.forecast.forecastday[day].hour[militaryHour].condition.icon}
-        alt={data.forecast.forecastday[day].hour[militaryHour].condition.text}
+        alt={`${data.forecast.forecastday[day].hour[militaryHour].condition.text} weather image`}
       />
       <Text fontSize="xl">
         {data.forecast.forecastday[day].hour[militaryHour].chance_of_rain}%

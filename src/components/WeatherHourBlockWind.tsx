@@ -14,7 +14,7 @@ function WeatherHourBlockWind({ day, militaryHour, normalHour, data }: Props) {
       <Text fontSize="xl">{normalHour}</Text>
       <Image
         src={data.forecast.forecastday[day].hour[militaryHour].condition.icon}
-        alt={data.forecast.forecastday[day].hour[militaryHour].condition.text}
+        alt={`${data.forecast.forecastday[day].hour[militaryHour].condition.text} weather image`}
       />
       <HStack>
         <Text fontSize="xl">

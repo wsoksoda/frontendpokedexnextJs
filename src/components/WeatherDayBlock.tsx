@@ -30,7 +30,7 @@ function WeatherDayBlock({ day, position, data }: Props) {
             mr="auto"
             ml="auto"
             src={data.forecast.forecastday[position].day.condition.icon}
-            alt={data.forecast.forecastday[position].day.condition.text}
+            alt={`${data.forecast.forecastday[position].day.condition.text} weather image`}
           ></Image>
           <Text fontSize="xl">
             Low: {data.forecast.forecastday[position].day.mintemp_f}° High:{" "}
