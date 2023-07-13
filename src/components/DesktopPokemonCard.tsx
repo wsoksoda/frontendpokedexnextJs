@@ -120,7 +120,7 @@ function DesktopPokemonCard({ data }: Props) {
           <Text fontSize="3xl">{pokemon.genus}</Text>
           <Text>{pokemon.description}</Text>
           <Center>
-            <CsvDownload data={props.data} />
+            <CsvDownload data={data} />
           </Center>
         </CardBody>
       </Card>
