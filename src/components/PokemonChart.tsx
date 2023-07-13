@@ -49,20 +49,20 @@ export const options = {
 
 const labels = ["HP", "Attack", "Defense", "Speed", "Sp Attack", "Sp Defense"];
 
-export function PokemonChart(Props: stat) {
-  const hp = Props.hp;
-  const attack = Props.attack;
-  const defense = Props.defense;
-  const speed = Props.speed;
-  const spAttack = Props.specialAttack;
-  const spDefense = Props.specialDefense;
-
+export function PokemonChart({
+  hp,
+  attack,
+  defense,
+  speed,
+  specialAttack,
+  specialDefense,
+}: stat) {
   const data = {
     labels,
     datasets: [
       {
         label: "",
-        data: [hp, attack, defense, speed, spAttack, spDefense],
+        data: [hp, attack, defense, speed, specialAttack, specialDefense],
         borderColor: "2F0743",
         backgroundColor: "#41295a",
       },

@@ -20,7 +20,7 @@ interface Props {
   data: any;
 }
 
-function DesktopPokemonCard(props: Props) {
+function DesktopPokemonCard({ data }: Props) {
   let thisPokemon = {} as pokemon;
   let thisStat = {} as stat;
 
@@ -30,11 +30,11 @@ function DesktopPokemonCard(props: Props) {
   const router = useRouter();
 
   useEffect(() => {
-    if (props.data) {
-      setPokemon(props.data);
-      setStats(props.data.stats);
+    if (data) {
+      setPokemon(data);
+      setStats(data.stats);
     }
-  }, [props.data]);
+  }, [data]);
 
   return (
     <Box minH="100rem">
@@ -85,6 +85,7 @@ function DesktopPokemonCard(props: Props) {
             <Image
               maxWidth="20rem"
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
+              alt={`An image of ${pokemon.name}`}
             ></Image>
             <div>
               <HStack>

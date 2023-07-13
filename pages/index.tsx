@@ -1,3 +1,4 @@
+import { MotionBig } from "@/components/motion";
 import {
   Box,
   Button,
@@ -8,8 +9,10 @@ import {
   Text,
   Image,
   Input,
+  InputGroup,
+  InputLeftAddon,
+  Center,
 } from "@chakra-ui/react";
-import { motion } from "framer-motion";
 import { useState } from "react";
 
 const theme = {
@@ -98,46 +101,53 @@ function Index() {
             Pink
           </Radio>
         </Stack>
-        <Radio value="custom">Customize</Radio>
+        <Radio value="custom">Customize(Hex)</Radio>
       </RadioGroup>
-      <Stack direction="row" m="1rem" display="block" mr="auto" ml="auto">
-        <Input
-          width="10rem"
-          mr=".5rem"
-          placeholder="First color"
-          _placeholder={{ color: "white" }}
-          size="sm"
-          onChange={(e) => {
-            setFirstColor(e.target.value);
-          }}
-        />
-        <Input
-          width="10rem"
-          placeholder="Second color"
-          _placeholder={{ color: "white" }}
-          size="sm"
-          onChange={(e) => {
-            setSecondColor(e.target.value);
-          }}
-        />
-      </Stack>
+      <Center>
+        <Stack direction="row" m="1rem">
+          <InputGroup size="sm">
+            <InputLeftAddon children="#" />
+            <Input
+              width="10rem"
+              mr=".5rem"
+              placeholder="First color"
+              _placeholder={{ color: "white" }}
+              size="sm"
+              onChange={(e) => {
+                setFirstColor(e.target.value);
+              }}
+            />
+            <InputLeftAddon children="#" />
+            <Input
+              width="10rem"
+              placeholder="Second color"
+              _placeholder={{ color: "white" }}
+              size="sm"
+              onChange={(e) => {
+                setSecondColor(e.target.value);
+              }}
+            />
+          </InputGroup>
+        </Stack>
+      </Center>
 
-      <motion.div whileHover={{ scale: 1.5 }}>
+      <MotionBig>
         <Link
           href={`/pokedex?firstValue=${firstValue}&secondValue=${secondValue}`}
         >
           <Button mt="2rem">Continue to Pokedex</Button>
         </Link>
-      </motion.div>
+      </MotionBig>
       <Image
         m="2rem"
         display="block"
         mr="auto"
         ml="auto"
         src="https://gifdb.com/images/high/pokemon-funny-pikachu-palpitating-eye-twitching-yhwpxv8qqozoungs.gif"
+        alt="funny Pikachu image"
       />
 
-      <motion.div whileHover={{ scale: 1.5 }}>
+      <MotionBig>
         <Link href={`/weather`}>
           <Button mt="2rem" height="3.5rem">
             Check if it's safe to
@@ -145,7 +155,7 @@ function Index() {
             go Pokemon hunting
           </Button>
         </Link>
-      </motion.div>
+      </MotionBig>
     </Box>
   );
 }

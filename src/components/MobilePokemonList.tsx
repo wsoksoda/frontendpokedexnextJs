@@ -1,13 +1,23 @@
 import { typeColor } from "@/utils/PokemonInterface";
-import { Card, CardHeader, CardBody, Text, Image, Box } from "@chakra-ui/react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Text,
+  Image,
+  Box,
+  Button,
+  Center,
+} from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 interface Props {
   post: pokemon[];
+  fetchNextPokemonPage: () => void;
 }
 
-function mobilePokemonList(props: Props) {
+function mobilePokemonList({ post, fetchNextPokemonPage }: Props) {
   const router = useRouter();
 
   const offset = parseInt((router.query.offset as string) ?? "1");
@@ -18,7 +28,7 @@ function mobilePokemonList(props: Props) {
 
   return (
     <Box display="flex" flexDirection="row" flexWrap="wrap" mr="3rem" ml="3rem">
-      {props.post.map((post) => (
+      {post.map((post) => (
         <Card
           className="m-1 "
           width="17rem"
@@ -35,6 +45,7 @@ function mobilePokemonList(props: Props) {
               <CardHeader>{post.name}</CardHeader>
               <Image
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${post.id}.png`}
+                alt={`An image of ${post.name}`}
               ></Image>
               <div className="display">
                 {post.type.map((type, typeIndex) => (
@@ -59,6 +70,11 @@ function mobilePokemonList(props: Props) {
           </Link>
         </Card>
       ))}
+      <Center>
+        <Box mt="2rem">
+          <Button onClick={fetchNextPokemonPage}>Load More</Button>
+        </Box>
+      </Center>
     </Box>
   );
 }

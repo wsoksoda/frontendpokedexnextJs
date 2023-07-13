@@ -2,32 +2,22 @@ import WeatherBody from "@/components/WeatherBody";
 import WeatherHeader from "@/components/WeatherHeader";
 import WeatherOne from "@/components/WeatherOne";
 import WeatherWeek from "@/components/WeatherWeek";
+import { MotionSmall } from "@/components/motion";
+import { useWeather } from "@/utils/APICalls";
 import {
   Center,
   Box,
   CloseButton,
   Link,
-  Spinner,
   Text,
+  Spinner,
 } from "@chakra-ui/react";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { motion } from "framer-motion";
 
-function Weather() {
-  const { isLoading, error, data } = useQuery(["week"], async () => {
-    const response = await axios.get(
-      "http://api.weatherapi.com/v1/forecast.json?key=d5559d652c3543a6ab7144421231906&q=fargo&days=7&aqi=no&alerts=no"
-    );
-
-    const data = await response.data;
-
-    return data;
-  });
+function WeatherIndex() {
+  const { isLoading, error, data } = useWeather();
 
   if (isLoading) return <Spinner />;
-
-  if (error) return "An error has occured";
+  if (error) return "Error ....";
 
   const dt = new Date();
   const day = dt.getDay();
@@ -41,6 +31,8 @@ function Weather() {
     "Friday",
     "Saturday",
   ];
+
+  console.log(data);
   return (
     <Box
       minH="100vh"
@@ -53,12 +45,12 @@ function Weather() {
       <Box textAlign="center">
         <Text fontSize="3xl">Fargo</Text>
 
-        <motion.div whileHover={{ scale: 1.1 }}>
-          <Link href={`/weatherDetail?position=0&day=${day}`}>
+        <MotionSmall>
+          <Link href={`/weather/forecast?position=0&day=${day}`}>
             <WeatherHeader day={week[day]} />
             <WeatherBody data={data} />
           </Link>
-        </motion.div>
+        </MotionSmall>
       </Box>
       <Center>
         <WeatherOne day={0} data={data} choice={1} />
@@ -68,4 +60,4 @@ function Weather() {
   );
 }
 
-export default Weather;
+export default WeatherIndex;

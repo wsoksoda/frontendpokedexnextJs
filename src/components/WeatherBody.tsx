@@ -3,20 +3,21 @@ import { Text, Image } from "@chakra-ui/react";
 interface Prop {
   data: any;
 }
-function WeatherBody(props: Prop) {
+function WeatherBody({ data }: Prop) {
   return (
     <>
-      <Text fontSize="xl">{props.data.current.temp_f}°</Text>
-      <Text fontSize="xl">{props.data.current.condition.text}</Text>
+      <Text fontSize="xl">{data.current.temp_f}°</Text>
+      <Text fontSize="xl">{data.current.condition.text}</Text>
       <Image
         display="block"
         mr="auto"
         ml="auto"
-        src={props.data.current.condition.icon}
+        src={data.current.condition.icon}
+        alt={`${data.current.condition.text} weather image`}
       />
       <Text fontSize="xl">
-        Low: {props.data.forecast.forecastday[0].day.mintemp_f}° High:{" "}
-        {props.data.forecast.forecastday[0].day.maxtemp_f}°
+        Low: {data.forecast.forecastday[0].day.mintemp_f}° High:{" "}
+        {data.forecast.forecastday[0].day.maxtemp_f}°
       </Text>
     </>
   );
