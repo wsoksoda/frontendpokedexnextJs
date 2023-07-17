@@ -57,9 +57,9 @@ describe("Pokemon", () => {
       </AllTheProviders>
     );
     const buttons = screen.getAllByRole("button");
-    expect(buttons).toHaveLength(3);
+    expect(buttons).toHaveLength(4);
   });
-  it("renders Bulbasaur id", async () => {
+  it("renders four links", async () => {
     mockRouter.push(
       "/pokemon?id=1&offset=1&firstValue=ED213A&secondValue=93291E"
     );

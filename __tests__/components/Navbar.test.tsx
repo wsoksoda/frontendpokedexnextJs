@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar";
 jest.mock("next/router", () => require("next-router-mock"));
 
 describe("Navbar", () => {
-  it("renders a heading", () => {
+  it("renders four links", () => {
     render(
       <AllTheProviders>
         <Navbar />

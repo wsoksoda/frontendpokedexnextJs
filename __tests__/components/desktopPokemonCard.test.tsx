@@ -55,7 +55,7 @@ const data = {
 jest.mock("next/router", () => require("next-router-mock"));
 
 describe("DesktopPokemonCard", () => {
-  it("renders a head", async () => {
+  it("renders a header", async () => {
     render(
       <AllTheProviders>
         <DesktopPokemonCard data={data} />

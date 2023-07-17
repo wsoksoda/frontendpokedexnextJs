@@ -970,7 +970,7 @@ describe("Temp", () => {
 
     expect(day).toHaveLength(2);
   });
-  it("renders the temp chance for that block", () => {
+  it("renders the temp for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailTemp day={0} data={data} />

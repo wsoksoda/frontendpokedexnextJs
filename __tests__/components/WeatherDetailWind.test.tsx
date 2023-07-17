@@ -970,7 +970,7 @@ describe("Wind", () => {
 
     expect(day).toHaveLength(2);
   });
-  it("renders the rain chance for that block", () => {
+  it("renders the wind for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -978,7 +978,7 @@ describe("Wind", () => {
     );
     const day = screen.queryByText("70");
   });
-  it("renders the temp for that block", () => {
+  it("renders the wind  for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -998,7 +998,7 @@ describe("Wind", () => {
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the temp for that block", () => {
+  it("renders the wind for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -1008,7 +1008,7 @@ describe("Wind", () => {
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the temp for that block", () => {
+  it("renders the wind  for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -1018,7 +1018,7 @@ describe("Wind", () => {
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the temp for that block", () => {
+  it("renders the wind for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -1028,7 +1028,7 @@ describe("Wind", () => {
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the temp for that block", () => {
+  it("renders the wind  for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -1038,7 +1038,7 @@ describe("Wind", () => {
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the temp for that block", () => {
+  it("renders the wind  for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -1048,7 +1048,7 @@ describe("Wind", () => {
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the temp for that block", () => {
+  it("renders the wind  for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -1058,7 +1058,7 @@ describe("Wind", () => {
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the temp for that block", () => {
+  it("renders the wind  for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -1068,7 +1068,7 @@ describe("Wind", () => {
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the temp for that block", () => {
+  it("renders the wind  for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -1078,7 +1078,7 @@ describe("Wind", () => {
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the temp for that block", () => {
+  it("renders the wind  for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -1088,7 +1088,7 @@ describe("Wind", () => {
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the temp for that block", () => {
+  it("renders the wind  for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -1098,7 +1098,7 @@ describe("Wind", () => {
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the temp for that block", () => {
+  it("renders the wind  for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -1108,7 +1108,7 @@ describe("Wind", () => {
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the temp for that block", () => {
+  it("renders the wind  for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -1118,7 +1118,7 @@ describe("Wind", () => {
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the temp for that block", () => {
+  it("renders the wind  for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -1128,7 +1128,7 @@ describe("Wind", () => {
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the temp for that block", () => {
+  it("renders the wind  for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -1138,7 +1138,7 @@ describe("Wind", () => {
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the temp for that block", () => {
+  it("renders the wind for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -1148,7 +1148,7 @@ describe("Wind", () => {
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the temp for that block", () => {
+  it("renders the wind for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -1158,7 +1158,7 @@ describe("Wind", () => {
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the temp for that block", () => {
+  it("renders the wind for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -1168,7 +1168,7 @@ describe("Wind", () => {
 
     expect(wind).toBeInTheDocument;
   });
-  it("renders the temp for that block", () => {
+  it("renders the wind for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -1178,7 +1178,7 @@ describe("Wind", () => {
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the temp for that block", () => {
+  it("renders the wind for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -1188,7 +1188,7 @@ describe("Wind", () => {
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the temp for that block", () => {
+  it("renders the wind for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -1198,7 +1198,7 @@ describe("Wind", () => {
 
     expect(day).toBeInTheDocument;
   });
-  it("renders the temp for that block", () => {
+  it("renders the wind for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
@@ -1209,7 +1209,7 @@ describe("Wind", () => {
     expect(day).toBeInTheDocument;
   });
 
-  it("renders the temp for that block", () => {
+  it("renders the wind for that block", () => {
     render(
       <AllTheProviders>
         <WeatherDetailWind day={0} data={data} />
