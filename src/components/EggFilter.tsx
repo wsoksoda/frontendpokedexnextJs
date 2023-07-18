@@ -7,7 +7,8 @@ interface Props {
 }
 
 function EggFilter({ choice }: Props) {
-  const { isLoading, error, data, fetchNextPage } = useEggInfiniteQuery(choice);
+  const { isLoading, error, data, fetchNextPage, hasNextPage } =
+    useEggInfiniteQuery(choice);
 
   const pokemon = data?.pages.flatMap(({ data }) => data.content) ?? [];
 
@@ -16,7 +17,11 @@ function EggFilter({ choice }: Props) {
   if (error) return "An error has occured";
 
   return (
-    <DesktopPokemonList post={pokemon} fetchNextPokemonPage={fetchNextPage} />
+    <DesktopPokemonList
+      post={pokemon}
+      fetchNextPokemonPage={fetchNextPage}
+      morePokemon={hasNextPage}
+    />
   );
 }
 

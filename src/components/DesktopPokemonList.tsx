@@ -11,14 +11,20 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { MotionBig, MotionSmall } from "./motion";
+import { MotionSmall } from "./motion";
+import LoadMoreButton from "./LoadMoreButton";
 
 interface Props {
   post: pokemon[];
   fetchNextPokemonPage: () => void;
+  morePokemon: boolean | undefined;
 }
 
-function DesktopPokemonList({ post, fetchNextPokemonPage }: Props) {
+function DesktopPokemonList({
+  post,
+  fetchNextPokemonPage,
+  morePokemon,
+}: Props) {
   const router = useRouter();
 
   const offset = parseInt((router.query.offset as string) ?? "1");
@@ -84,11 +90,10 @@ function DesktopPokemonList({ post, fetchNextPokemonPage }: Props) {
         </Box>
       </Center>
       <Center>
-        <MotionBig>
-          <Box m="2rem">
-            <Button onClick={fetchNextPokemonPage}>Load More</Button>
-          </Box>
-        </MotionBig>
+        <LoadMoreButton
+          morePokemon={morePokemon}
+          fetchNextPokemonPage={fetchNextPokemonPage}
+        />
       </Center>
     </>
   );

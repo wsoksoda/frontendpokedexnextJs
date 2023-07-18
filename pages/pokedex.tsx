@@ -14,7 +14,8 @@ function Pokedex() {
 
   const theme = `linear(to-l,#${firstValue},#${secondValue})`;
 
-  const { isLoading, error, data, fetchNextPage } = usePokemonInfiniteQuery();
+  const { isLoading, error, data, fetchNextPage, hasNextPage } =
+    usePokemonInfiniteQuery();
 
   const pokemon = data?.pages.flatMap(({ data }) => data.content) ?? [];
 
@@ -30,12 +31,14 @@ function Pokedex() {
           <DesktopPokemonList
             post={pokemon}
             fetchNextPokemonPage={fetchNextPage}
+            morePokemon={hasNextPage}
           />
         </Box>
         <Box display={["block", null, "none"]}>
           <MobilePokemonList
             post={pokemon}
             fetchNextPokemonPage={fetchNextPage}
+            morePokemon={hasNextPage}
           />
         </Box>
       </Box>
