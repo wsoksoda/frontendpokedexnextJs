@@ -1,7 +1,5 @@
-import axios from "axios";
 import { Box, Spinner } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { useQuery } from "@tanstack/react-query";
 import MobileFooter from "@/components/MobileFooter";
 import DesktopPokemonCard from "@/components/DesktopPokemonCard";
 import MobilePokemonCard from "@/components/MobilePokemonCard";
