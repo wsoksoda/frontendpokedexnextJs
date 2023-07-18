@@ -1,6 +1,8 @@
 import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
 
+axios.defaults.baseURL = "http://localhost:8081";
+
 export const useWeather = () => {
   return useQuery(
     ["Weather"],
@@ -21,9 +23,7 @@ export const usePokemonInfiniteQuery = () => {
   return useInfiniteQuery(
     ["Pokemon"],
     ({ pageParam: offset = 1 }) =>
-      axios.get(
-        `http://localhost:8081/api/pokemon?offset=${offset}&pageSize=24`
-      ),
+      axios.get(`/api/pokemon?offset=${offset}&pageSize=24`),
     {
       getNextPageParam: (lastPage) => {
         if (!lastPage.data.last) {
@@ -38,9 +38,7 @@ export const usePokemonInfiniteQuery = () => {
 
 export const useSinglePokemonQuery = (pokemonId: string) => {
   return useQuery(["id", pokemonId], async () => {
-    const response = await axios.get(
-      `http://localhost:8081/api/pokemon/${pokemonId}`
-    );
+    const response = await axios.get(`/api/pokemon/${pokemonId}`);
     const data = await response.data;
     return data;
   });
@@ -51,7 +49,7 @@ export const useAbilityInfiniteQuery = (choice: string) => {
     ["content", choice],
     ({ pageParam: offset = 1 }) =>
       axios.get(
-        `http://localhost:8081/api/pokemon/ability?ability=${choice}&offset=${offset}&pageSize=24`
+        `/api/pokemon/ability?ability=${choice}&offset=${offset}&pageSize=24`
       ),
     {
       getNextPageParam: (lastPage, pages) => {
@@ -70,7 +68,7 @@ export const useEggInfiniteQuery = (choice: string) => {
     ["content", choice],
     ({ pageParam: offset = 1 }) =>
       axios.get(
-        `http://localhost:8081/api/pokemon/egg?eggGroup=${choice}&offset=${offset}&pageSize=24`
+        `/api/pokemon/egg?eggGroup=${choice}&offset=${offset}&pageSize=24`
       ),
     {
       getNextPageParam: (lastPage, pages) => {
@@ -89,7 +87,7 @@ export const useSearchInfiniteQuery = (choice: string) => {
     ["content", choice],
     ({ pageParam: offset = 1 }) =>
       axios.get(
-        `http://localhost:8081/api/pokemon/name?name=${choice}&offset=${offset}&pageSize=24`
+        `/api/pokemon/name?name=${choice}&offset=${offset}&pageSize=24`
       ),
     {
       getNextPageParam: (lastPage, pages) => {
@@ -108,7 +106,7 @@ export const useTypeInfiniteQuery = (choice: string) => {
     ["content", choice],
     ({ pageParam: offset = 1 }) =>
       axios.get(
-        `http://localhost:8081/api/pokemon/type?type=${choice}&offset=${offset}&pageSize=24`
+        `/api/pokemon/type?type=${choice}&offset=${offset}&pageSize=24`
       ),
     {
       getNextPageParam: (lastPage) => {
