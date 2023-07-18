@@ -46,7 +46,7 @@ export const useSinglePokemonQuery = (pokemonId: string) => {
 
 export const useAbilityInfiniteQuery = (choice: string) => {
   return useInfiniteQuery(
-    ["content", choice],
+    ["Ability", choice],
     ({ pageParam: offset = 1 }) =>
       axios.get(
         `/api/pokemon/ability?ability=${choice}&offset=${offset}&pageSize=24`
@@ -65,7 +65,7 @@ export const useAbilityInfiniteQuery = (choice: string) => {
 
 export const useEggInfiniteQuery = (choice: string) => {
   return useInfiniteQuery(
-    ["content", choice],
+    ["EggGroup", choice],
     ({ pageParam: offset = 1 }) =>
       axios.get(
         `/api/pokemon/egg?eggGroup=${choice}&offset=${offset}&pageSize=24`
@@ -84,7 +84,7 @@ export const useEggInfiniteQuery = (choice: string) => {
 
 export const useSearchInfiniteQuery = (choice: string) => {
   return useInfiniteQuery(
-    ["content", choice],
+    ["Search", choice],
     ({ pageParam: offset = 1 }) =>
       axios.get(
         `/api/pokemon/name?name=${choice}&offset=${offset}&pageSize=24`
@@ -103,7 +103,7 @@ export const useSearchInfiniteQuery = (choice: string) => {
 
 export const useTypeInfiniteQuery = (choice: string) => {
   return useInfiniteQuery(
-    ["content", choice],
+    ["Type", choice],
     ({ pageParam: offset = 1 }) =>
       axios.get(
         `/api/pokemon/type?type=${choice}&offset=${offset}&pageSize=24`
