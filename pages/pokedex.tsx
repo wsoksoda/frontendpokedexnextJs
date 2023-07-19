@@ -1,18 +1,12 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { Box, Spinner } from "@chakra-ui/react";
 import Navbar from "@/components/Navbar";
-import { useQuery } from "@tanstack/react-query";
-import MobileFooter from "@/components/MobileFooter";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import MobilePokemonList from "@/components/MobilePokemonList";
 import DesktopPokemonList from "@/components/DesktopPokemonList";
 
 function Pokedex() {
-  const [pokemon, setPokemon] = useState<pokemon[]>([]);
-
-  const [pages, setPages] = useState(1);
-
   const router = useRouter();
 
   const firstValue = router.query.firstValue as string;
@@ -21,54 +15,48 @@ function Pokedex() {
 
   const theme = `linear(to-l,#${firstValue},#${secondValue})`;
 
-  let offset = parseInt((router.query.offset as string) ?? "1");
-
-  const { isLoading, error, data } = useQuery(["content", offset], async () => {
-    const response = await axios.get(
+  const fetch = ({ pageParam: offset = 1 }) => {
+    return axios.get(
       `http://localhost:8081/api/pokemon?offset=${offset}&pageSize=24`
     );
-    const data = await response.data;
-    return data;
-  });
+  };
 
-  useEffect(() => {
-    if (data) {
-      setPokemon(data.content);
-      setPages(data.totalPages);
+  const { isLoading, error, data, fetchNextPage } = useInfiniteQuery(
+    ["content"],
+    fetch,
+    {
+      getNextPageParam: (lastPage, pages) => {
+        if (!lastPage.data.last) {
+          return lastPage.data.pageable.pageNumber + 2;
+        } else {
+          return undefined;
+        }
+      },
+      keepPreviousData: true,
     }
-  }, [offset, data]);
+  );
+
+  const pokemon = data?.pages.flatMap(({ data }) => data.content) ?? [];
 
   if (isLoading) return <Spinner />;
 
   if (error) return "An error has occured";
 
-  function forward() {
-    if (offset < pages) {
-      const currentPage = offset + 1;
-      router.push(
-        `/pokedex?offset=${currentPage}&firstValue=${firstValue}&secondValue=${secondValue}`
-      );
-    }
-  }
-
-  function back() {
-    if (offset > 1) {
-      const currentPage = offset - 1;
-      router.push(
-        `/pokedex?offset=${currentPage}&firstValue=${firstValue}&secondValue=${secondValue}`
-      );
-    }
+  function morePokemon() {
+    fetchNextPage();
+    console.log("clicked");
   }
 
   return (
     <Box bgGradient={theme} minH="70rem">
-      <Navbar goBack={back} goForward={forward}></Navbar>
-      <Box display={["none", null, "block"]}>
-        <DesktopPokemonList post={pokemon} />
-      </Box>
-      <Box display={["block", null, "none"]}>
-        <MobilePokemonList post={pokemon} />
-        <MobileFooter goBack={back} goForward={forward} />
+      <Navbar />
+      <Box mt="2rem">
+        <Box display={["none", null, "block"]}>
+          <DesktopPokemonList post={pokemon} morePokemon={morePokemon} />
+        </Box>
+        <Box display={["block", null, "none"]}>
+          <MobilePokemonList post={pokemon} morePokemon={morePokemon} />
+        </Box>
       </Box>
     </Box>
   );

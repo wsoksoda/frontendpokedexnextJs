@@ -16,9 +16,9 @@ const queryClient = new QueryClient({
   },
 });
 
-const customJestConfig = {
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.tsx"],
-};
+// const customJestConfig = {
+//   setupFilesAfterEnv: ["<rootDir>/jest.setup.tsx"],
+// };
 /**
  * All the *base* providers that are used in the app, not that some providers
  * are nested inside of other components down the tree.
@@ -40,3 +40,7 @@ export const AllTheProviders = ({
 export function useCustomHook() {
   return useQuery({ queryKey: ["customHook"], queryFn: () => "Hello" });
 }
+
+jest.mock("react-chartjs-2", () => ({
+  Bar: () => null,
+}));

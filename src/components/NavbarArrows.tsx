@@ -1,13 +1,15 @@
-import { Flex, Box, Link, useColorModeValue } from "@chakra-ui/react";
-import { motion } from "framer-motion";
+import { Box, Flex, Link, Button, useColorModeValue } from "@chakra-ui/react";
+import { ChevronRightIcon, ChevronLeftIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 
-import React from "react";
+interface Prop {
+  goBack: () => void;
+  goForward: () => void;
+}
 
-interface Props {}
-
-function Navbar(props: Props) {
-  const router = useRouter();
+export default function NavbarArrows(props: Prop) {
+  let router = useRouter();
 
   const firstValue = router.query.firstValue as string;
 
@@ -15,7 +17,14 @@ function Navbar(props: Props) {
 
   return (
     <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
-      <Flex h="16" alignItems="center" justifyContent="space-around">
+      <Flex h={16} alignItems="center" justifyContent="space-between">
+        <motion.div whileHover={{ scale: 1.2 }}>
+          <Box display={["none", null, "block"]}>
+            <Button onClick={props.goBack}>
+              <ChevronLeftIcon />
+            </Button>
+          </Box>
+        </motion.div>
         <motion.div whileHover={{ scale: 1.2 }}>
           <Box>
             <Link href="http://localhost:3000">Pick a Theme</Link>
@@ -48,9 +57,14 @@ function Navbar(props: Props) {
             </Link>
           </Box>
         </motion.div>
+        <motion.div whileHover={{ scale: 1.2 }}>
+          <Box display={["none", null, "block"]}>
+            <Button onClick={props.goForward}>
+              <ChevronRightIcon />
+            </Button>
+          </Box>
+        </motion.div>
       </Flex>
     </Box>
   );
 }
-
-export default Navbar;
