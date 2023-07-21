@@ -35,13 +35,6 @@ export default function NavbarArrows({ goBack, goForward }: Prop) {
         </MotionSmallBox>
         <MotionSmallBox>
           <Link
-            href={`/advanced?firstValue=${firstValue}&secondValue=${secondValue}`}
-          >
-            Advanced Search
-          </Link>
-        </MotionSmallBox>
-        <MotionSmallBox>
-          <Link
             href={`/quiz?firstValue=${firstValue}&secondValue=${secondValue}`}
           >
             What Pokemon am I

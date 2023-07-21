@@ -6,8 +6,8 @@ import {
   Text,
   Image,
   Box,
-  Button,
   Center,
+  HStack,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -49,25 +49,26 @@ function mobilePokemonList({ post, fetchNextPokemonPage, morePokemon }: Props) {
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${post.id}.png`}
                 alt={`An image of ${post.name}`}
               ></Image>
-              <div className="display">
-                {post.type.map((type, typeIndex) => (
-                  <Text
-                    width="5rem"
-                    backgroundColor={typeColor[type.type]}
-                    display="block"
-                    float="left"
-                    ml="1rem"
-                    pt=".25rem"
-                    textAlign="center"
-                    height="2rem"
-                    borderRadius="1rem"
-                    mt=".5rem"
-                    key={type.id}
-                  >
-                    {type.type}
-                  </Text>
-                ))}
-              </div>
+              <Center>
+                <HStack gap="4">
+                  {post.type.map((type) => (
+                    <Text
+                      width="5rem"
+                      backgroundColor={typeColor[type.type]}
+                      display="block"
+                      float="left"
+                      pt=".25rem"
+                      textAlign="center"
+                      height="2rem"
+                      borderRadius="1rem"
+                      mt=".5rem"
+                      key={type.id}
+                    >
+                      {type.type}
+                    </Text>
+                  ))}
+                </HStack>
+              </Center>
             </CardBody>
           </Link>
         </Card>

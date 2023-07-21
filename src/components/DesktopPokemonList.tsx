@@ -8,11 +8,13 @@ import {
   Box,
   Button,
   Center,
+  HStack,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { MotionSmall } from "./motion";
 import LoadMoreButton from "./LoadMoreButton";
+import { useInView } from "react-intersection-observer";
 
 interface Props {
   post: pokemon[];
@@ -32,6 +34,12 @@ function DesktopPokemonList({
   const firstValue = router.query.firstValue as string;
 
   const secondValue = router.query.secondValue as string;
+
+  const { ref: LoadMoreButtonRef, inView: ElementVisible } = useInView();
+
+  if (ElementVisible) {
+    fetchNextPokemonPage();
+  }
 
   return (
     <>
@@ -63,25 +71,26 @@ function DesktopPokemonList({
                       src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${post.id}.png`}
                       alt={`An image of ${post.name}`}
                     ></Image>
-                    <div className="display">
-                      {post.type.map((type) => (
-                        <Text
-                          width="5rem"
-                          backgroundColor={typeColor[type.type]}
-                          display="block"
-                          float="left"
-                          ml="1rem"
-                          pt=".25rem"
-                          textAlign="center"
-                          height="2rem"
-                          borderRadius="1rem"
-                          mt=".5rem"
-                          key={type.id}
-                        >
-                          {type.type}
-                        </Text>
-                      ))}
-                    </div>
+                    <Center>
+                      <HStack gap="4">
+                        {post.type.map((type) => (
+                          <Text
+                            width="5rem"
+                            backgroundColor={typeColor[type.type]}
+                            display="block"
+                            float="left"
+                            pt=".25rem"
+                            textAlign="center"
+                            height="2rem"
+                            borderRadius="1rem"
+                            mt=".5rem"
+                            key={type.id}
+                          >
+                            {type.type}
+                          </Text>
+                        ))}
+                      </HStack>
+                    </Center>
                   </CardBody>
                 </MotionSmall>
               </Link>
@@ -89,7 +98,7 @@ function DesktopPokemonList({
           ))}
         </Box>
       </Center>
-      <Center>
+      <Center ref={LoadMoreButtonRef}>
         <LoadMoreButton
           morePokemon={morePokemon}
           fetchNextPokemonPage={fetchNextPokemonPage}

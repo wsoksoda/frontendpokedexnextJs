@@ -7,7 +7,7 @@ interface Props {
 }
 
 function SearchFilter({ choice }: Props) {
-  const { isLoading, error, data, fetchNextPage } =
+  const { isLoading, error, data, fetchNextPage, hasNextPage } =
     useSearchInfiniteQuery(choice);
 
   const pokemon = data?.pages.flatMap(({ data }) => data.content) ?? [];
@@ -17,7 +17,11 @@ function SearchFilter({ choice }: Props) {
   if (error) return "An error has occured";
 
   return (
-    <DesktopPokemonList post={pokemon} fetchNextPokemonPage={fetchNextPage} />
+    <DesktopPokemonList
+      post={pokemon}
+      fetchNextPokemonPage={fetchNextPage}
+      morePokemon={hasNextPage}
+    />
   );
 }
 

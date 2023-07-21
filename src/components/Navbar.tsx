@@ -1,4 +1,4 @@
-import { Flex, Box, Link, useColorModeValue } from "@chakra-ui/react";
+import { Flex, Box, Link, useColorModeValue, Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { MotionSmall } from "./motion";
 
@@ -29,18 +29,9 @@ function Navbar() {
         <MotionSmall>
           <Box>
             <Link
-              href={`/advanced?firstValue=${firstValue}&secondValue=${secondValue}`}
-            >
-              Advanced Search
-            </Link>
-          </Box>
-        </MotionSmall>
-        <MotionSmall>
-          <Box>
-            <Link
               href={`/quiz?firstValue=${firstValue}&secondValue=${secondValue}`}
             >
-              What Pokemon am I
+              <Button colorScheme="blue">What Pokemon am I</Button>
             </Link>
           </Box>
         </MotionSmall>
