@@ -1,13 +1,25 @@
 import { typeColor } from "@/utils/PokemonInterface";
-import { Card, CardHeader, CardBody, Text, Image, Box } from "@chakra-ui/react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Text,
+  Image,
+  Box,
+  Center,
+  HStack,
+} from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import LoadMoreButton from "./LoadMoreButton";
 
 interface Props {
   post: pokemon[];
+  fetchNextPokemonPage: () => void;
+  morePokemon: boolean | undefined;
 }
 
-function mobilePokemonList(props: Props) {
+function mobilePokemonList({ post, fetchNextPokemonPage, morePokemon }: Props) {
   const router = useRouter();
 
   const offset = parseInt((router.query.offset as string) ?? "1");
@@ -18,7 +30,7 @@ function mobilePokemonList(props: Props) {
 
   return (
     <Box display="flex" flexDirection="row" flexWrap="wrap" mr="3rem" ml="3rem">
-      {props.post.map((post) => (
+      {post.map((post) => (
         <Card
           className="m-1 "
           width="17rem"
@@ -35,30 +47,38 @@ function mobilePokemonList(props: Props) {
               <CardHeader>{post.name}</CardHeader>
               <Image
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${post.id}.png`}
+                alt={`An image of ${post.name}`}
               ></Image>
-              <div className="display">
-                {post.type.map((type, typeIndex) => (
-                  <Text
-                    width="5rem"
-                    backgroundColor={typeColor[type.type]}
-                    display="block"
-                    float="left"
-                    ml="1rem"
-                    pt=".25rem"
-                    textAlign="center"
-                    height="2rem"
-                    borderRadius="1rem"
-                    mt=".5rem"
-                    key={type.id}
-                  >
-                    {type.type}
-                  </Text>
-                ))}
-              </div>
+              <Center>
+                <HStack gap="4">
+                  {post.type.map((type) => (
+                    <Text
+                      width="5rem"
+                      backgroundColor={typeColor[type.type]}
+                      display="block"
+                      float="left"
+                      pt=".25rem"
+                      textAlign="center"
+                      height="2rem"
+                      borderRadius="1rem"
+                      mt=".5rem"
+                      key={type.id}
+                    >
+                      {type.type}
+                    </Text>
+                  ))}
+                </HStack>
+              </Center>
             </CardBody>
           </Link>
         </Card>
       ))}
+      <Center>
+        <LoadMoreButton
+          morePokemon={morePokemon}
+          fetchNextPokemonPage={fetchNextPokemonPage}
+        />
+      </Center>
     </Box>
   );
 }

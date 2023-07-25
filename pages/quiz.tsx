@@ -1,14 +1,15 @@
 import DesktopPokemonCard from "@/components/DesktopPokemonCard";
 import MobilePokemonCard from "@/components/MobilePokemonCard";
+import Navbar from "@/components/Navbar";
+import { MotionBig } from "@/components/motion";
+import { useSinglePokemonQuery } from "@/utils/APICalls";
 import {
   Box,
   Button,
-  Flex,
   FormControl,
   FormLabel,
   HStack,
   Input,
-  Link,
   Radio,
   RadioGroup,
   Slider,
@@ -21,9 +22,6 @@ import {
   Switch,
   Text,
 } from "@chakra-ui/react";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -43,22 +41,15 @@ function Quiz() {
 
   const theme = `linear(to-l,#${firstValue},#${secondValue})`;
 
-  const { isLoading, error, data } = useQuery(["quiz", submit], async () => {
-    let queryval = String(
-      (Number(pokemonValue) +
-        Number(typeValue) +
-        sliderValue +
-        Number(colorValue)) %
-        553
-    );
-    console.log(pokemonValue);
-    console.log(typeValue);
-    const response = await axios.get(
-      `http://localhost:8081/api/pokemon/${queryval}`
-    );
-    const data = await response.data;
-    return data;
-  });
+  let pokemonId = String(
+    (Number(pokemonValue) +
+      Number(typeValue) +
+      sliderValue +
+      Number(colorValue)) %
+      553
+  );
+
+  const { isLoading, error, data } = useSinglePokemonQuery(pokemonId);
 
   if (isLoading) return <Spinner />;
 
@@ -66,41 +57,14 @@ function Quiz() {
 
   if (submit == "1") {
     return (
-      <>
-        <Box px="4">
-          <Flex h="16" alignItems="center" justifyContent="space-around">
-            <Box>
-              <Link href="http://localhost:3000">Pick a Theme</Link>
-            </Box>
-            <Box>
-              <Link
-                href={`http://localhost:3000/pokedex?firstValue=${firstValue}&secondValue=${secondValue}`}
-              >
-                Pokedex
-              </Link>
-            </Box>
-            <Box>
-              <Link
-                href={`/advanced?firstValue=${firstValue}&secondValue=${secondValue}`}
-              >
-                Advanced Search
-              </Link>
-            </Box>
-            <Box>
-              <Link
-                href={`/quiz?firstValue=${firstValue}&secondValue=${secondValue}`}
-              >
-                What Pokemon am I
-              </Link>
-            </Box>
-          </Flex>
-        </Box>
+      <Box px="4">
+        <Navbar />
         <Box bgGradient={theme} minH="100rem" color="white">
           <Text fontSize="3xl" textAlign="center" paddingTop="2rem">
             Pokemon Quiz
           </Text>
           <FormControl
-            width="50rem"
+            width="100%"
             display="block"
             mr="auto"
             ml="auto"
@@ -115,7 +79,7 @@ function Quiz() {
             />
           </FormControl>
           <FormControl
-            width="50rem"
+            width="90%"
             display="block"
             mr="auto"
             ml="auto"
@@ -213,7 +177,7 @@ function Quiz() {
               <Text>Yes</Text>
             </HStack>
           </FormControl>
-          <motion.div whileHover={{ scale: 1.5 }}>
+          <MotionBig>
             <Button
               onClick={() => setSubmit("2")}
               display="block"
@@ -223,14 +187,14 @@ function Quiz() {
             >
               See what Pokemon I am
             </Button>
-          </motion.div>
+          </MotionBig>
         </Box>
-      </>
+      </Box>
     );
   } else {
     return (
       <Box bgGradient={theme} minH="60rem" color="white" paddingTop="2rem">
-        <motion.div whileHover={{ scale: 1.5 }}>
+        <MotionBig>
           <Button
             onClick={() => setSubmit("1")}
             display="block"
@@ -240,7 +204,7 @@ function Quiz() {
           >
             Retake Quiz
           </Button>
-        </motion.div>
+        </MotionBig>
         <Text mt="2rem" textAlign="center">
           Congrats {firstNameValue} you are:
         </Text>

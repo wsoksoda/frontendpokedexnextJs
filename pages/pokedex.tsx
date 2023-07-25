@@ -1,74 +1,62 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { useRouter } from "next/router";
-import { Box, Spinner } from "@chakra-ui/react";
+import Ability from "@/components/Ability";
+import AbilityFilter from "@/components/AbilityFilter";
+import SearchFilter from "@/components/SearchFilter";
+import TypeFilter from "@/components/TypeFilter";
 import Navbar from "@/components/Navbar";
-import { useQuery } from "@tanstack/react-query";
-import MobileFooter from "@/components/MobileFooter";
-import MobilePokemonList from "@/components/MobilePokemonList";
-import DesktopPokemonList from "@/components/DesktopPokemonList";
+import Search from "@/components/Search";
+import { Box, Grid, Select } from "@chakra-ui/react";
+import { useState } from "react";
+import Egg from "@/components/Egg";
+import EggFilter from "@/components/EggFilter";
+import Type from "@/components/Type";
+import useLocalStorage from "use-local-storage";
+import useTheme from "@/hooks/useTheme";
 
 function Pokedex() {
-  const [pokemon, setPokemon] = useState<pokemon[]>([]);
+  const { backgroundGradient } = useTheme();
+  console.log(backgroundGradient);
 
-  const [pages, setPages] = useState(1);
+  const [SearchInputValue, setSearchInputValue] = useState("");
+  const [typeOfSearch, setTypeOfSearch] = useState("1");
 
-  const router = useRouter();
+  const typeOfDropdown = {
+    "1": <Search optionChoice={setSearchInputValue} />,
+    "2": <Type optionChoice={setSearchInputValue} />,
+    "3": <Ability optionChoice={setSearchInputValue} />,
+    "4": <Egg optionChoice={setSearchInputValue} />,
+  };
 
-  const firstValue = router.query.firstValue as string;
-
-  const secondValue = router.query.secondValue as string;
-
-  const theme = `linear(to-l,#${firstValue},#${secondValue})`;
-
-  let offset = parseInt((router.query.offset as string) ?? "1");
-
-  const { isLoading, error, data } = useQuery(["content", offset], async () => {
-    const response = await axios.get(
-      `http://localhost:8081/api/pokemon?offset=${offset}&pageSize=24`
-    );
-    const data = await response.data;
-    return data;
-  });
-
-  useEffect(() => {
-    if (data) {
-      setPokemon(data.content);
-      setPages(data.totalPages);
-    }
-  }, [offset, data]);
-
-  if (isLoading) return <Spinner />;
-
-  if (error) return "An error has occured";
-
-  function forward() {
-    if (offset < pages) {
-      const currentPage = offset + 1;
-      router.push(
-        `/pokedex?offset=${currentPage}&firstValue=${firstValue}&secondValue=${secondValue}`
-      );
-    }
-  }
-
-  function back() {
-    if (offset > 1) {
-      const currentPage = offset - 1;
-      router.push(
-        `/pokedex?offset=${currentPage}&firstValue=${firstValue}&secondValue=${secondValue}`
-      );
-    }
-  }
+  const pokemonList = {
+    "1": <SearchFilter choice={SearchInputValue} />,
+    "2": <TypeFilter choice={SearchInputValue} />,
+    "3": <AbilityFilter choice={SearchInputValue} />,
+    "4": <EggFilter choice={SearchInputValue} />,
+  };
 
   return (
-    <Box bgGradient={theme} minH="70rem">
-      <Navbar goBack={back} goForward={forward}></Navbar>
-      <Box display={["none", null, "block"]}>
-        <DesktopPokemonList post={pokemon} />
-      </Box>
-      <Box display={["block", null, "none"]}>
-        <MobilePokemonList post={pokemon} />
-        <MobileFooter goBack={back} goForward={forward} />
+    <Box bgGradient={backgroundGradient} minH="100rem">
+      <Navbar />
+      <Box color="white" pt="2rem">
+        <Grid templateColumns="repeat(2,1fr)" gap="6" mb="2rem" mx="2rem">
+          <Select
+            aria-label="Floating label select example"
+            onChange={(e) => setTypeOfSearch(e.target.value)}
+            value={typeOfSearch}
+          >
+            <option value="1">Search by name</option>
+            <option value="2">Type</option>
+            <option value="3">Ability</option>
+            <option value="4">Egg Group</option>
+          </Select>
+          {typeOfSearch == "1" && typeOfDropdown["1"]}
+          {typeOfSearch == "2" && typeOfDropdown["2"]}
+          {typeOfSearch == "3" && typeOfDropdown["3"]}
+          {typeOfSearch == "4" && typeOfDropdown["4"]}
+        </Grid>
+        {typeOfSearch == "1" && pokemonList["1"]}
+        {typeOfSearch == "2" && pokemonList["2"]}
+        {typeOfSearch == "3" && pokemonList["3"]}
+        {typeOfSearch == "4" && pokemonList["4"]}
       </Box>
     </Box>
   );

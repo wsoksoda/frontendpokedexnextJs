@@ -20,7 +20,7 @@ interface Props {
   data: any;
 }
 
-function MobilePokemonCard(props: Props) {
+function MobilePokemonCard({ data }: Props) {
   let thisPokemon = {} as pokemon;
   let thisStat = {} as stat;
 
@@ -30,18 +30,18 @@ function MobilePokemonCard(props: Props) {
   const router = useRouter();
 
   useEffect(() => {
-    if (props.data) {
-      setPokemon(props.data);
-      setStats(props.data.stats);
+    if (data) {
+      setPokemon(data);
+      setStats(data.stats);
     }
-  }, [props.data]);
+  }, [data]);
 
   return (
     <Box minHeight="70rem">
       <Card width="18rem" display="block" m="auto" mt="2rem" mb="10rem">
         <CardBody>
           <CardHeader>
-            <HStack spacing="1rem">
+            <HStack>
               <Box>
                 <Button onClick={() => router.back()}>
                   <ArrowBackIcon />
@@ -67,7 +67,6 @@ function MobilePokemonCard(props: Props) {
                     backgroundColor={typeColor[type.type]}
                     display="block"
                     float="left"
-                    ml="1rem"
                     pt=".25rem"
                     textAlign="center"
                     height="2rem"
@@ -84,6 +83,7 @@ function MobilePokemonCard(props: Props) {
           <Image
             maxWidth="10rem"
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
+            alt={`An image of ${pokemon.name}`}
           ></Image>
           <div>
             <HStack>
@@ -117,7 +117,7 @@ function MobilePokemonCard(props: Props) {
           <Text fontSize="3xl">{pokemon.genus}</Text>
           <Text>{pokemon.description}</Text>
           <Center>
-            <CsvDownload data={props.data} />
+            <CsvDownload data={data} />
           </Center>
         </CardBody>
       </Card>

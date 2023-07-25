@@ -1,3 +1,4 @@
+import { ThemeProvider } from "@/hooks/useTheme";
 import { ChakraProvider } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AnimatePresence } from "framer-motion";
@@ -17,7 +18,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <AnimatePresence mode="wait" initial={false}>
       <ChakraProvider>
         <QueryClientProvider client={queryClient}>
-          <Component {...pageProps} />
+          <ThemeProvider>
+            <Component {...pageProps} />
+          </ThemeProvider>
         </QueryClientProvider>
       </ChakraProvider>
     </AnimatePresence>

@@ -1,5 +1,5 @@
 import { Text, Image, Box, Link } from "@chakra-ui/react";
-import { motion } from "framer-motion";
+import { MotionSmall } from "./motion";
 
 interface Props {
   day: number;
@@ -7,7 +7,7 @@ interface Props {
   data: any;
 }
 
-function WeatherDayBlock(props: Props) {
+function WeatherDayBlock({ day, position, data }: Props) {
   const week = [
     "Sunday",
     "Monday",
@@ -19,28 +19,26 @@ function WeatherDayBlock(props: Props) {
   ];
 
   return (
-    <motion.div whileHover={{ scale: 1.2 }}>
-      <Link href={`/weatherDetail?position=${props.position}&day=${props.day}`}>
+    <MotionSmall>
+      <Link href={`/weather/forecast?position=${position}&day=${day}`}>
         <Box display="block" mr="auto" ml="auto" textAlign="center">
           <Text fontSize="2xl" mt="3rem">
-            {week[props.day]}
+            {week[day]}
           </Text>
           <Image
             display="block"
             mr="auto"
             ml="auto"
-            src={
-              props.data.forecast.forecastday[props.position].day.condition.icon
-            }
+            src={data.forecast.forecastday[position].day.condition.icon}
+            alt={`${data.forecast.forecastday[position].day.condition.text} weather image`}
           ></Image>
           <Text fontSize="xl">
-            Low: {props.data.forecast.forecastday[props.position].day.mintemp_f}
-            ° High:{" "}
-            {props.data.forecast.forecastday[props.position].day.maxtemp_f}°
+            Low: {data.forecast.forecastday[position].day.mintemp_f}° High:{" "}
+            {data.forecast.forecastday[position].day.maxtemp_f}°
           </Text>
         </Box>
       </Link>
-    </motion.div>
+    </MotionSmall>
   );
 }
 

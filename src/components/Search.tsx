@@ -3,11 +3,11 @@ interface Prop {
   optionChoice: (chosen: string) => void;
 }
 
-function Search(props: Prop) {
+function Search({ optionChoice }: Prop) {
   return (
     <Input
       onChange={(e) => {
-        props.optionChoice(e.target.value);
+        optionChoice(e.target.value);
       }}
     />
   );

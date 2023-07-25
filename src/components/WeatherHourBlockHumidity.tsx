@@ -1,5 +1,5 @@
 import { Image, Text } from "@chakra-ui/react";
-import { motion } from "framer-motion";
+import { MotionSmall } from "./motion";
 interface Props {
   day: number;
   militaryHour: number;
@@ -7,24 +7,23 @@ interface Props {
   data: any;
 }
 
-function WeatherHourBlockHumidity(props: Props) {
+function WeatherHourBlockHumidity({
+  day,
+  militaryHour,
+  normalHour,
+  data,
+}: Props) {
   return (
-    <motion.div whileHover={{ scale: 1.2 }}>
-      <Text fontSize="xl">{props.normalHour}</Text>
+    <MotionSmall>
+      <Text fontSize="xl">{normalHour}</Text>
       <Image
-        src={
-          props.data.forecast.forecastday[props.day].hour[props.militaryHour]
-            .condition.icon
-        }
-      ></Image>
+        src={data.forecast.forecastday[day].hour[militaryHour].condition.icon}
+        alt={`${data.forecast.forecastday[day].hour[militaryHour].condition.text} weather image`}
+      />
       <Text fontSize="xl">
-        {
-          props.data.forecast.forecastday[props.day].hour[props.militaryHour]
-            .humidity
-        }
-        %
+        {data.forecast.forecastday[day].hour[militaryHour].humidity}%
       </Text>
-    </motion.div>
+    </MotionSmall>
   );
 }
 

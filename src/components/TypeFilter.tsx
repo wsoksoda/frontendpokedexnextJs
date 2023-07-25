@@ -1,47 +1,27 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "@chakra-ui/react";
 import DesktopPokemonList from "./DesktopPokemonList";
+import { useTypeInfiniteQuery } from "@/utils/APICalls";
 
 interface Props {
   choice: string;
-  offset: number;
-
-  setPages: (pages: number) => void;
 }
 
-function TypeFilter(props: Props) {
-  let pokemons: pokemon[] = [];
+function TypeFilter({ choice }: Props) {
+  const { isLoading, error, data, fetchNextPage, hasNextPage } =
+    useTypeInfiniteQuery(choice);
 
-  const [pokemon, setPokemon] = useState<pokemon[]>(pokemons);
-
-  const { isLoading, error, data } = useQuery(
-    ["ability", props.offset, props.choice],
-    async () => {
-      const response = await axios.get(
-        `http://localhost:8081/api/pokemon/type?type=${props.choice}&offset=${props.offset}&pageSize=24`
-      );
-      const data = await response.data;
-      return data;
-    }
-  );
-
-  useEffect(() => {
-    if (data) {
-      setPokemon(data.content);
-      props.setPages(data.totalPages);
-    }
-  }, [data]);
+  const pokemon = data?.pages.flatMap(({ data }) => data.content) ?? [];
 
   if (isLoading) return <Spinner />;
 
-  if (error) return "No Pokemon with that type";
+  if (error) return "An error has occured";
 
   return (
-    <div className="body">
-      <DesktopPokemonList post={pokemon} />
-    </div>
+    <DesktopPokemonList
+      post={pokemon}
+      fetchNextPokemonPage={fetchNextPage}
+      morePokemon={hasNextPage}
+    />
   );
 }
 

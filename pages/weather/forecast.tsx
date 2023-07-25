@@ -1,6 +1,7 @@
 import WeatherDetailBody from "@/components/WeatherDetailBody";
 import WeatherHeader from "@/components/WeatherHeader";
 import WeatherOne from "@/components/WeatherOne";
+import { useWeather } from "@/utils/APICalls";
 import {
   Box,
   Center,
@@ -10,12 +11,10 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-function WeatherDetail() {
+function Forecast() {
   const router = useRouter();
   const [weatherType, setWeatherType] = useState(1);
 
@@ -23,19 +22,10 @@ function WeatherDetail() {
 
   const position = parseInt((router.query.position as string) ?? "1");
 
-  const { isLoading, error, data } = useQuery(["week"], async () => {
-    const response = await axios.get(
-      "http://api.weatherapi.com/v1/forecast.json?key=d5559d652c3543a6ab7144421231906&q=fargo&days=7&aqi=no&alerts=no"
-    );
-
-    const data = await response.data;
-
-    return data;
-  });
+  const { isLoading, error, data } = useWeather();
 
   if (isLoading) return <Spinner />;
-
-  if (error) return "An error has occured";
+  if (error) return "Error ....";
 
   const week = [
     "Sunday",
@@ -81,4 +71,4 @@ function WeatherDetail() {
   );
 }
 
-export default WeatherDetail;
+export default Forecast;
